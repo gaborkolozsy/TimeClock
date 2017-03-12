@@ -9,13 +9,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * Maven based Time Clock application with <strong>Spring, JPA</strong> and 
- * <strong>Hibernate</strong>.
+ * <strong>Hibernate</strong> as a <strong>JPA</strong> implementation.
  * 
  * @author Kolozsy Gábor (kolozsygabor@gmail.com)
  * @version 0.0.1-SNAPSHOT
  * 
- * @see org.springframework.context.ConfigurableApplicationContext
- * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
+ * @see ConfigurableApplicationContext
+ * @see AnnotationConfigApplicationContext
  */
 public class Application {
 

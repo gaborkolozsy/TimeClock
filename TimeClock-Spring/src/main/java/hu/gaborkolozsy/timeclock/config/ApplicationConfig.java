@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
  * @author Kolozsy Gábor (kolozsygabor@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * 
- * @see org.springframework.context.annotation.ComponentScan
- * @see org.springframework.context.annotation.Configuration
+ * @see ComponentScan
+ * @see Configuration
  */
 @Configuration
 @ComponentScan("hu.gaborkolozsy.timeclock.*")

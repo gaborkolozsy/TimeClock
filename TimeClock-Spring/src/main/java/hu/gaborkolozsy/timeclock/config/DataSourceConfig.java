@@ -18,13 +18,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  * @author Kolozsy Gábor (kolozsygabor@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * 
- * @see javax.sql.DataSource
- * @see org.springframework.beans.factory.annotation.Value
- * @see org.springframework.context.annotation.Bean
- * @see org.springframework.context.annotation.Configuration
- * @see org.springframework.context.annotation.PropertySource
- * @see org.springframework.context.support.PropertySourcesPlaceholderConfigurer
- * @see org.springframework.jdbc.datasource.DriverManagerDataSource
+ * @see DataSource
+ * @see Value
+ * @see Bean
+ * @see Configuration
+ * @see PropertySource
+ * @see PropertySourcesPlaceholderConfigurer
+ * @see DriverManagerDataSource
  */
 @Configuration
 @PropertySource("classpath:database.properties")
@@ -43,16 +43,16 @@ public class DataSourceConfig {
     private String password;
     
     /**
-     * Specialization of {@link PlaceholderConfigurerSupport} that resolves<br>
+     * Specialization of {@link PropertySourcesPlaceholderConfigurer} that resolves<br>
      * ${...} placeholders within bean definition property values and<br>
-     * {@code @Value} annotations against the current Spring {@link Environment}<br>
-     * and its set of {@link PropertySources}.
+     * {@code @Value} annotations against the current Spring<br>
+     * {@link org.springframework.core.env.Environment} and its set of<br> 
+     * {@link org.springframework.core.env.PropertySources}.
      * 
      * <p>This method have to run before {@code dataSource()} method and 
      * because of it must be {@code static}.
      * 
-     * @return {@code PropertySourcesPlaceholderConfigurer} object
-     * @see org.springframework.context.support.PropertySourcesPlaceholderConfigurer 
+     * @return {@code PropertySourcesPlaceholderConfigurer}
      */
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySPC() {
@@ -60,10 +60,11 @@ public class DataSourceConfig {
     }
     
     /**
-     * Create a new {@code DriverManagerDataSource} object with the given 
-     * standard {@code DriverManager} parameters.
+     * Create a new {@link DriverManagerDataSource} 
+     * object with the given standard {@code DriverManager} parameters.
      * 
-     * @return {@code DataSource} object
+     * @return {@code DataSource}
+     * @see DataSource
      */
     @Bean
     public DataSource dataSource() {

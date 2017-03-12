@@ -16,10 +16,10 @@ import org.h2.tools.Server;
  * @author Kolozsy Gábor (kolozsygabor@gmail.com)
  * @version 0.0.1-SNAPSHOT
  * 
- * @see java.io.BufferedReader
- * @see java.io.IOException
- * @see java.io.InputStreamReader
- * @see java.sql.SQLException
+ * @see BufferedReader
+ * @see IOException
+ * @see InputStreamReader
+ * @see SQLException
  */
 public class H2DatabaseServer {
 
@@ -34,7 +34,7 @@ public class H2DatabaseServer {
      * and start both.<br>
      * Pirnt the status.
      * 
-     * @see java.sql.SQLException
+     * @see SQLException
      */
     private static void start() {
         try {
