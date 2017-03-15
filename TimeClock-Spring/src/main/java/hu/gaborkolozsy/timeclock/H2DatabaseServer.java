@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Gábor Kolozsy. All rights reserved.
+ * Copyright (c) 2017, Gabor Kolozsy. All rights reserved.
  * 
  */
 package hu.gaborkolozsy.timeclock;
@@ -13,7 +13,7 @@ import org.h2.tools.Server;
 /**
  * Manage the H2 Console {@link org.h2.tools.Server WEB and TCP} servers.
  * 
- * @author Kolozsy Gábor (kolozsygabor@gmail.com)
+ * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @version 0.0.1-SNAPSHOT
  * 
  * @see BufferedReader
