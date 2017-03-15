@@ -27,7 +27,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  * @see DriverManagerDataSource
  */
 @Configuration
-@PropertySource("classpath:properties/database.properties")
+@PropertySource("classpath:database.properties")
 public class DataSourceConfig {
 
     /** The JDBC <strong>url</strong> for accessing {@code DriverManager}. */
