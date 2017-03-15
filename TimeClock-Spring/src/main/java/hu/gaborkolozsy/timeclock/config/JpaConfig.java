@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Gábor Kolozsy. All rights reserved.
+ * Copyright (c) 2017, Gabor Kolozsy. All rights reserved.
  */
 
 package hu.gaborkolozsy.timeclock.config;
@@ -8,8 +8,10 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -21,15 +23,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * JPA configuration. Hibernate is the JPA vendor.
  *
- * @author Kolozsy Gábor (kolozsygabor@gmail.com)
+ * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  *
  * @see Properties
  * @see EntityManagerFactory
  * @see DataSource
  * @see FactoryBean
+ * @see Value
  * @see Bean
  * @see Configuration
+ * @see PropertySource
  * @see PersistenceExceptionTranslationPostProcessor
  * @see JpaTransactionManager
  * @see JpaVendorAdapter
@@ -40,8 +44,29 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:properties/hibernate.properties")
 public class JpaConfig {
 
+    /** The <strong>hibernate.hbm2ddl.auto</strong> property for {@code Hibernate}. */
+    @Value("${hibernate.hbm2ddl.auto}")
+    private String createOrUpdate;
+    
+    /** The <strong>hibernate.show_sql</strong> property for {@code Hibernate}. */
+    @Value("${hibernate.show_sql}")
+    private String showSQL;
+    
+    /** The <strong>hibernate.format_sql</strong> property for {@code Hibernate}. */
+    @Value("${hibernate.format_sql}")
+    private String formatSQL;
+    
+    /** The <strong>hibernate.use_sql_comments</strong> property for {@code Hibernate}. */
+    @Value("${hibernate.use_sql_comments}")
+    private String useSQLComments;
+    
+    /** The <strong>hibernate.dialect</strong> property for {@code Hibernate}. */
+    @Value("${hibernate.dialect}")
+    private String dialect;
+    
     /**
      * {@link FactoryBean} that creates a JPA {@link EntityManagerFactory} 
      * according to JPA's standard <i>container</i> bootstrap contract.
@@ -55,21 +80,11 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource);
         emf.setPackagesToScan(new String[] {"hu.gaborkolozsy.timeclock.entities"});
-        
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        emf.setJpaVendorAdapter(vendorAdapter);
-        
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
-        properties.setProperty("hibernate.show_sql", "true");
-        properties.setProperty("hibernate.format_sql", "true");
-        properties.setProperty("hibernate.use_sql_comments", "true");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        
-        emf.setJpaProperties(properties);
+        emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        emf.setJpaProperties(addHibernateProperties());
         return emf;
     }
-    
+
     /**
      * Create a new {@link JpaTransactionManager} instance.
      * 
@@ -91,4 +106,23 @@ public class JpaConfig {
     public PersistenceExceptionTranslationPostProcessor exceptionTranslator() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
+    
+    /**
+     * Set the {@code Hibernate} properties.
+     * 
+     * @return {@code Properties}
+     * @see Properties
+     */
+    private Properties addHibernateProperties() {
+        return new Properties() {
+            {   
+                setProperty("hibernate.hbm2ddl.auto", createOrUpdate);
+                setProperty("hibernate.show_sql", showSQL);
+                setProperty("hibernate.format_sql", formatSQL);
+                setProperty("hibernate.use_sql_comments", useSQLComments);
+                setProperty("hibernate.dialect", dialect);
+            }
+        };
+    }
+    
 }
