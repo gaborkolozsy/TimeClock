@@ -78,6 +78,7 @@ public class JpaConfig {
     @Bean
     public FactoryBean<EntityManagerFactory> entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+        emf.setPersistenceUnitName("timeclock");
         emf.setDataSource(dataSource);
         emf.setPackagesToScan(new String[] {"hu.gaborkolozsy.timeclock.model"});
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
