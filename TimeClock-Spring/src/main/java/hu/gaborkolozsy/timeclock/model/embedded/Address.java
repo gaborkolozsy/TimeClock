@@ -26,28 +26,28 @@ import javax.persistence.Embeddable;
 public class Address {
 
     @Column(name = "Country")
-    protected String country;
+    private String country;
     
     @Column(name = "Region")
-    protected String region;
+    private String region;
     
     @Column(name = "City")
-    protected String city;
+    private String city;
     
     @Column(name = "Address")
-    protected String address;
+    private String address;
     
     @Column(name = "Zip")
-    protected int zip;
+    private int zip;
     
     @Column(name = "POB")
-    protected int pob;
+    private int pob;
     
     @Column(name = "Phone")
-    protected String pnoneNumber;
+    private String pnoneNumber;
     
     @Column(name = "Email")
-    protected String emailAddress;
+    private String emailAddress;
 
     /**
      * Returns the country.
