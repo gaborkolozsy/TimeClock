@@ -46,9 +46,9 @@ import org.hibernate.annotations.DynamicInsert;
  * @see Version
  * @see DynamicInsert
  */
-//@Entity(name = "Job")
-//@EntityListeners(AuditListener.class)
-//@DynamicInsert                                                                  // I have to control this
+@Entity(name = "Job")
+@EntityListeners(AuditListener.class)
+@DynamicInsert                                                                  // I have to control this
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Job implements Auditable {
 
