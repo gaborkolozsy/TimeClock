@@ -10,10 +10,12 @@ import hu.gaborkolozsy.timeclock.model.abstracts.Builder;
 import hu.gaborkolozsy.timeclock.model.embedded.Audit;
 import hu.gaborkolozsy.timeclock.model.embedded.AuditListener;
 import java.time.LocalDateTime;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -57,22 +59,25 @@ public class Pay implements Auditable {
     
     @Column(name = "Order_Number")
     @JoinColumn(referencedColumnName = "Order_Number", nullable = false)
-    protected int orderNumber;
+    private int orderNumber;
     
     @Column(name = "Pay")
-    protected int pay;
+    private int pay;
     
     @Column(name = "Currency")
-    protected String currency;
+    private String currency;
     
     @Column(name = "Pay_Time")
-    protected LocalDateTime payTime;
+    private LocalDateTime payTime;
     
     @Column(name = "Payable", nullable = false)
-    protected boolean payable;
+    private boolean payable;
     
     @Column(name = "Paid", nullable = false)
-    protected boolean paid;
+    private boolean paid;
+    
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Pay",*/ targetEntity = Job.class)
+    private Job job;
     
     @Embedded
     private final Audit audit = new Audit();
@@ -135,6 +140,14 @@ public class Pay implements Auditable {
      */
     public boolean isPaid() {
         return paid;
+    }
+
+    /**
+     * Returns the pay's {@link Job}.
+     * @return job
+     */
+    public Job getJob() {
+        return job;
     }
 
     /**
