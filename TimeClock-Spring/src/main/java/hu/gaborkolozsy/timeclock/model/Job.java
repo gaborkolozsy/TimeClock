@@ -46,20 +46,28 @@ import org.hibernate.annotations.DynamicInsert;
  * @see Version
  * @see DynamicInsert
  */
-@Entity(name = "Job")
-@EntityListeners(AuditListener.class)
-@DynamicInsert                                                                  // I have to control this
+//@Entity(name = "Job")
+//@EntityListeners(AuditListener.class)
+//@DynamicInsert                                                                  // I have to control this
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Job implements Auditable {
 
     @Id
     @GeneratedValue
     @Column(name = "Job_Id", nullable = false, unique = true, updatable = false)
-    private int jobId;    
+    private int jobId;
+
+    @Column(name = "Customer_Id")
+    @JoinColumn(nullable = false, referencedColumnName = "Customer_Id")
+    private int customerId;
     
     @Column(name = "Developer_Id")
-    @JoinColumn(referencedColumnName = "Developer_Id", nullable = false)
+    @JoinColumn(nullable = false, referencedColumnName = "Developer_Id")
     private int developerId;
+    
+    @Column(name = "Pay_Id")
+    @JoinColumn(nullable = false, referencedColumnName = "Pay_Id")
+    private int payId;
     
     @Column(name = "Order_Number", nullable = false)
     private int orderNumber;
@@ -104,11 +112,27 @@ public class Job implements Auditable {
     }
 
     /**
+     * Returns the specified job's customer ID.
+     * @return job's customer ID
+     */
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    /**
      * Returns the specified job's developer ID.
      * @return job's developer ID
      */
     public int getDeveloperId() {
         return developerId;
+    }
+
+    /**
+     * Returns the specified job's pay ID.
+     * @return job's pay ID 
+     */
+    public int getPayId() {
+        return payId;
     }
 
     /**
@@ -234,6 +258,17 @@ public class Job implements Auditable {
          */
         public static JobBuilder create() {
             return new JobBuilder();
+        }
+        
+        /**
+         * Set the customer's ID for {@code Job} entity.
+         * @param customerId customer's ID
+         * @return this
+         */
+        @Override
+        public JobBuilder setCustomerId(int customerId) {
+            super.entity.customerId = customerId;
+            return this;
         }
 
         /**
