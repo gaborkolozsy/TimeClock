@@ -32,16 +32,16 @@ import javax.persistence.Embeddable;
 public class Audit {
 
     @Column(name = "Created", updatable = false, nullable = false)
-    protected LocalDateTime created;
+    private LocalDateTime created;
     
     @Column(name = "Created_By", updatable = false, nullable = false)
-    protected String createdBy;
+    private String createdBy;
     
     @Column(name = "Updated")
-    protected LocalDateTime updated;
+    private LocalDateTime updated;
     
     @Column(name = "Updated_By")
-    protected String updatedBy;
+    private String updatedBy;
 
     /**
      * Returns the record when was created.
