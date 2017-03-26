@@ -60,10 +60,10 @@ public class Developer implements Auditable {
     private int developerId;
     
     @Column(name = "Fore_Name", nullable = false)
-    protected String forename;
+    private String forename;
     
     @Column(name = "Last_Name", nullable = false)
-    protected String lastName;
+    private String lastName;
     
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Developer",*/ targetEntity = Job.class)
     private Set<Job> job;
@@ -106,8 +106,8 @@ public class Developer implements Auditable {
     }
 
     /**
-     * Returns the specified developer's job.
-     * @return developer's job
+     * Returns the specified developer's jobs as a set.
+     * @return developer's jobs
      */
     public Set<Job> getJob() {
         return job;
