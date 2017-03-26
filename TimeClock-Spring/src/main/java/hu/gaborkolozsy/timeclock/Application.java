@@ -4,11 +4,6 @@
  */
 package hu.gaborkolozsy.timeclock;
 
-import hu.gaborkolozsy.timeclock.model.WorkingHours;
-import hu.gaborkolozsy.timeclock.service.WorkingHoursSrevice;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -30,24 +25,8 @@ public class Application {
         try (ConfigurableApplicationContext context = 
                 new AnnotationConfigApplicationContext("hu.gaborkolozsy.timeclock.config")) {
             
-            WorkingHoursSrevice workTimeService = context.getBean(WorkingHoursSrevice.class);
-            //workTimeService.add();
-            workTimeService.update();
-            
-            workTimeService.updateDeveloperId(1, 3);
-            
-            WorkingHours workTime = workTimeService.findByDeveloperId(3);
-            System.out.println(workTime.getDeveloperId());
-            System.out.println(workTime.getDay());
-            System.out.println(workTime.getWorkStart());
-            System.out.println(workTime.getWorkEnd());
-            System.out.println(workTime.getAudit().getUpdatedBy());
-            
-            LocalDateTime end = workTime.getWorkEnd();
-            LocalDateTime start = workTime.getWorkStart();
-            System.out.println(LocalTime.ofSecondOfDay(end.toEpochSecond(ZoneOffset.UTC) - 
-                                                       start.toEpochSecond(ZoneOffset.UTC)));
         }
+        
     }
     
 }
