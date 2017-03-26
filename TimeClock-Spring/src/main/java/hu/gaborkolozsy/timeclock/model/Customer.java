@@ -11,20 +11,24 @@ import hu.gaborkolozsy.timeclock.model.embedded.Address;
 import hu.gaborkolozsy.timeclock.model.embedded.Audit;
 import hu.gaborkolozsy.timeclock.model.embedded.AuditListener;
 import java.time.LocalDateTime;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import org.hibernate.annotations.DynamicInsert;
 
 /**
- * Represent a customer. This will be stored in database as a table 
- * and it will be called "CUSTOMER".
+ * Represent a customer. This will be stored in database and it will be 
+ * called "CUSTOMER".
  * 
  * <p>The {@link Audit} is embedded.
  *
@@ -59,13 +63,16 @@ public class Customer implements Auditable {
     
     @Column(name = "Order_Number")
     @JoinColumn(referencedColumnName = "Order_Number", nullable = false)
-    protected int orderNumber;
+    private int orderNumber;
     
     @Column(name = "Name", nullable = false)
-    protected String name;
+    private String name;
     
     @Column(name = "Contact", nullable = false)
-    protected String contact;
+    private String contact;
+    
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Customer",*/ targetEntity = Job.class)
+    private Set<Job> job;
     
     @Embedded
     private final Address address = new Address();
@@ -107,6 +114,14 @@ public class Customer implements Auditable {
      */
     public String getContact() {
         return contact;
+    }
+
+    /**
+     * Returns the specified customer's jobs as a set.
+     * @return customer's jobs
+     */
+    public Set<Job> getJob() {
+        return job;
     }
 
     /**
@@ -171,16 +186,6 @@ public class Customer implements Auditable {
             return new CustomerBuilder();
         }
         
-        /**
-         * Set customer's ID.
-         * @param customerId customer's ID
-         * @return this
-         */
-        public CustomerBuilder setCustomerId(int customerId) {
-            super.entity.customerId = customerId;
-            return this;
-        }
-
         /**
          * Set the customer's relevant order number.
          * @param orderNumber order number
