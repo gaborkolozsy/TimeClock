@@ -8,16 +8,25 @@ package hu.gaborkolozsy.timeclock.model.abstracts;
  * Order some common variable and common method to builder classes.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
- * @param <E> type of entity
+ * @param <T> type of entity
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
  */
-abstract class Entity<E, B> {
+abstract class Entity<T, B> {
 
     /**
      * The specified {@TimeClock} entity.
      */
-    public E entity;
+    public T entity;
+    
+    /**
+     * Set the specified {@code TimeClock} entity's customer ID.
+     * @param customerId ID of customer
+     * @return the specified builder type
+     */
+    public B setCustomerId(int customerId) {
+        return null;
+    }
     
     /**
      * Set the specified {@code TimeClock} entity's developer ID.
@@ -25,6 +34,15 @@ abstract class Entity<E, B> {
      * @return the specified builder type
      */
     public B setDeveloperId(int developerId) {
+        return null;
+    }
+    
+    /**
+     * Set the specified {@code TimeClock} entity's pay ID.
+     * @param payId ID of pay
+     * @return the specified builder type
+     */
+    public B setPayId(int payId) {
         return null;
     }
     
