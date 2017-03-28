@@ -17,6 +17,10 @@ import org.springframework.context.annotation.PropertySource;
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
+ * @see EntityManager
+ * @see EntityManagerFactory
+ * @see PersistenceContext
+ * @see Bean
  */
 @Configuration
 @Profile("development")
