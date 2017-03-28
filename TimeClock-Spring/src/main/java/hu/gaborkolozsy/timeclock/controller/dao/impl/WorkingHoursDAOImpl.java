@@ -47,8 +47,8 @@ public class WorkingHoursDAOImpl extends CommonDAOImpl<WorkingHours, Integer> im
     public Iterable<WorkingHours> getAllByDeveloperId(Integer developerId) {
         TypedQuery<WorkingHours> query = entityManager
                 .createQuery("select w from Working_Hours w "
-                           + "where w.developerId = :developerId", WorkingHours.class);
-        query.setParameter("developerId", developerId);
+                           + "where w.developerId = :developerId", WorkingHours.class)
+                .setParameter("developerId", developerId);
         return query.getResultList();
     }
     
