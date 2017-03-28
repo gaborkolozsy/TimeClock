@@ -25,22 +25,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- *
  * @see Properties
  * @see EntityManagerFactory
  * @see DataSource
  * @see FactoryBean
  * @see Value
  * @see Bean
- * @see Configuration
- * @see PropertySource
  * @see PersistenceExceptionTranslationPostProcessor
  * @see JpaTransactionManager
  * @see JpaVendorAdapter
  * @see LocalContainerEntityManagerFactoryBean
  * @see HibernateJpaVendorAdapter
  * @see PlatformTransactionManager
- * @see EnableTransactionManagement
  */
 @Configuration
 @EnableTransactionManagement
