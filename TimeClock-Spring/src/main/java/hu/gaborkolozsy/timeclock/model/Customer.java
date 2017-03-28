@@ -21,6 +21,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -53,6 +54,7 @@ import org.hibernate.annotations.DynamicInsert;
 @Entity(name = "Customer")
 @EntityListeners({AuditListener.class})
 @DynamicInsert                                                                  // I have to control this
+@NamedQuery(name = "all", query = "Select c from Customer c")                   // ??? talán @NamedQueries egy egész külön fájl vagy osztály
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Customer implements Auditable {
 
