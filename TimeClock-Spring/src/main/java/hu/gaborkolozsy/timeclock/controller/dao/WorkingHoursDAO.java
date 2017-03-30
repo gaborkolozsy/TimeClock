@@ -24,10 +24,10 @@ public interface WorkingHoursDAO extends CommonDAO<WorkingHours, Integer> {
     boolean isWorkingHoursExist(Integer primaryKey);
     
     /**
-     * Returns an iterable collection of the {@link WorkingHours} entity 
+     * Returns a list of the {@link WorkingHours} entity 
      * by the specified {@code developerId} foreign key.
      * @param developerId developer ID
-     * @return an iterable collection of {@code WorkingHours} 
+     * @return a list of {@code WorkingHours} 
      */
     List<WorkingHours> getAllByDeveloperId(Integer developerId);
 

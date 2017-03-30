@@ -82,8 +82,8 @@ public class CommonServiceImpl<T, K extends Serializable> implements CommonServi
     }
 
     /**
-     * Returns an iterable collection one of the {@code TimeClock} entity.
-     * @return an iterable collection of entity
+     * Returns a list of the {@code TimeClock} entity.
+     * @return a list of entity
      */
     @Override
     public List<T> getAll() {

@@ -39,10 +39,10 @@ public class WorkingHoursDAOImpl extends CommonDAOImpl<WorkingHours, Integer> im
     }
     
     /**
-     * Returns an iterable collection of the {@link WorkingHours} entity 
+     * Returns a list of the {@link WorkingHours} entity 
      * by the specified {@code developerId} foreign key.
      * @param developerId developer ID
-     * @return an iterable collection of {@code WorkingHours} 
+     * @return a list of {@code WorkingHours} 
      */
     @Override
     public List<WorkingHours> getAllByDeveloperId(Integer developerId) {

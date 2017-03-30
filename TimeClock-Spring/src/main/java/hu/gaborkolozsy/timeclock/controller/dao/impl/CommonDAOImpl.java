@@ -106,7 +106,7 @@ public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K>
     }
 
     /**
-     * Returns an iterable collections with the given entity.
+     * Returns a list with the given entity.
      * 
      * <p><pre>
      *      Or can use in this form too:
@@ -115,7 +115,7 @@ public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K>
      *      ("Select t from " + entityType.getSimpleName() + " t").getResultList();
      * 
      * </pre>
-     * @return an iterable collections of entity
+     * @return a list of entity
      */
     @Override
     public List<T> getAll() {

@@ -48,8 +48,8 @@ public interface CommonService<T, K> {
     T get(K primaryKey);
 
     /**
-     * Returns an iterable collection one of the {@code TimeClock} entity.
-     * @return an iterable collection of entity
+     * Returns a list of the {@code TimeClock} entity.
+     * @return a list of entity
      */
     List<T> getAll();
     
