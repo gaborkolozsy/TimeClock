@@ -55,7 +55,10 @@ import org.hibernate.annotations.DynamicInsert;
 public class Developer implements Auditable {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue
+    @Column(name = "Id", nullable = false, unique = true, updatable = false)
+    private int id;
+    
     @Column(name = "Developer_Id", nullable = false, unique = true, updatable = false)
     private int developerId;
     
@@ -80,6 +83,14 @@ public class Developer implements Auditable {
     @Version
     @Column(name = "Version", nullable = false)
     private int version;
+
+    /**
+     * Returns the ID.
+     * @return ID
+     */
+    public int getId() {
+        return id;
+    }
 
     /**
      * Returns the specified developer's ID.
@@ -181,6 +192,12 @@ public class Developer implements Auditable {
          */
         public static DeveloperBuilder create() {
             return new DeveloperBuilder();
+        }
+
+        @Override
+        public DeveloperBuilder setDeveloperId(int developerId) {
+            super.entity.developerId = developerId;
+            return this;
         }
 
         /**
