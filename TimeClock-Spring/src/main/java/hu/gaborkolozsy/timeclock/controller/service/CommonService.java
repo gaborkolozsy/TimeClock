@@ -11,11 +11,11 @@ import java.util.List;
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @param <T> type of entity
- * @param <K> type of key
+ * @param <ID> type of primary key
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface CommonService<T, K> {
+public interface CommonService<T, ID> {
 
     /**
      * Check if the instance is a managed entity instance belonging to the 
@@ -45,7 +45,7 @@ public interface CommonService<T, K> {
      * @param primaryKey primary key
      * @return the found entity instance or null if the entity does not exist
      */
-    T get(K primaryKey);
+    T get(ID primaryKey);
 
     /**
      * Returns a list of the {@code TimeClock} entity.

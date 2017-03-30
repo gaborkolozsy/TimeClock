@@ -18,24 +18,24 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @param <T> type of entity
- * @param <K> type of key
+ * @param <ID> type of primary key
  * @since 0.0.1-SNAPSHOT
  * @see CommonDAO
  * @see CommonDAOImpl
  * @see List
  */
 @Transactional
-public class CommonServiceImpl<T, K extends Serializable> implements CommonService<T, K> {
+public class CommonServiceImpl<T, ID extends Serializable> implements CommonService<T, ID> {
 
     @Autowired
-    private final CommonDAO<T, K> commonDao;
+    private final CommonDAO<T, ID> commonDao;
     
     /**
      * Constructor wait a {@code CommonDAOImpl} instance but with interface type.
      * <p><strong>So can avoid the {@link NoSuchBeanDefinitionException} exception!!!</strong>
      * @param commonDao {@code CommonDAOImpl}
      */
-    public CommonServiceImpl(CommonDAO<T, K> commonDao) {
+    public CommonServiceImpl(CommonDAO<T, ID> commonDao) {
         this.commonDao = commonDao;
     }
 
@@ -77,7 +77,7 @@ public class CommonServiceImpl<T, K extends Serializable> implements CommonServi
      * @return the found entity instance or null if the entity does not exist
      */
     @Override
-    public T get(K primaryKey) {
+    public T get(ID primaryKey) {
         return commonDao.get(primaryKey);
     }
 
