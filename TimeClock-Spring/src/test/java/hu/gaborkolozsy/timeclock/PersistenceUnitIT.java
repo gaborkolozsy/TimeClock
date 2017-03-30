@@ -4,17 +4,13 @@
 
 package hu.gaborkolozsy.timeclock;
 
-import hu.gaborkolozsy.timeclock.config.ApplicationConfig;
 import javax.persistence.EntityManager;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Timed;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 /**
  * The persistence context test.
@@ -28,9 +24,8 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
  * @see Autowired
  * @see SpringJUnit4ClassRunner
  */
+@Development
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ApplicationConfig.class, loader = AnnotationConfigContextLoader.class)
-@ActiveProfiles(profiles = "development")
 public class PersistenceUnitIT {
 
     @Autowired
