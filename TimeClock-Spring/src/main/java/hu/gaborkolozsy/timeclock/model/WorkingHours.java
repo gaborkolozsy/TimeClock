@@ -57,7 +57,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 public class WorkingHours implements Auditable {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     @Column(name = "WorkingHours_Id", nullable = false, 
             unique = true, updatable = false)
     private int workingHoursId;
