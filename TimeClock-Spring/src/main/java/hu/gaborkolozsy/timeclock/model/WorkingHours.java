@@ -58,9 +58,8 @@ public class WorkingHours implements Auditable {
 
     @Id
     @GeneratedValue
-    @Column(name = "WorkingHours_Id", nullable = false, 
-            unique = true, updatable = false)
-    private int workingHoursId;
+    @Column(name = "Id", nullable = false, unique = true, updatable = false)
+    private int Id;
     
     @Column(name = "Developer_Id")
     @JoinColumn(referencedColumnName = "Developer_Id", nullable = false)
@@ -86,8 +85,8 @@ public class WorkingHours implements Auditable {
      * Returns the specified working hours ID.
      * @return working hours ID
      */
-    public int getWorkingHoursId() {
-        return workingHoursId;
+    public int getId() {
+        return Id;
     }
 
     /**
