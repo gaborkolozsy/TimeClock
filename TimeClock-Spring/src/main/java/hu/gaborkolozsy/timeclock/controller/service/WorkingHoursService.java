@@ -5,12 +5,14 @@
 package hu.gaborkolozsy.timeclock.controller.service;
 
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
+import java.util.List;
 
 /**
  * Extended {@code WorkingHoursService} interface.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
+ * @see List
  */
 public interface WorkingHoursService extends CommonService<WorkingHours, Integer> {
 
@@ -28,7 +30,7 @@ public interface WorkingHoursService extends CommonService<WorkingHours, Integer
      * @param developerId developer ID
      * @return an iterable collection of {@code WorkingHours} 
      */
-    Iterable<WorkingHours> getAllByDeveloperId(Integer developerId);
+    List<WorkingHours> getAllByDeveloperId(Integer developerId);
 
     /**
      * Update all {@link WorkingHours}' {@code developerId} by the specified 

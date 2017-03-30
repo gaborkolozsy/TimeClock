@@ -5,6 +5,7 @@
 package hu.gaborkolozsy.timeclock.controller.dao;
 
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
+import java.util.List;
 
 /**
  * Extended {@code WorkingHoursDAO} interface.
@@ -28,7 +29,7 @@ public interface WorkingHoursDAO extends CommonDAO<WorkingHours, Integer> {
      * @param developerId developer ID
      * @return an iterable collection of {@code WorkingHours} 
      */
-    Iterable<WorkingHours> getAllByDeveloperId(Integer developerId);
+    List<WorkingHours> getAllByDeveloperId(Integer developerId);
 
     /**
      * Update all {@link WorkingHours}' {@code developerId} by the specified 

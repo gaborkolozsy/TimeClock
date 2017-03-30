@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.controller.dao.CommonDAO;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,12 +24,13 @@ import javax.persistence.criteria.Root;
  * @since 0.0.1-SNAPSHOT
  * @see ParameterizedType
  * @see Type
+ * @see List
  * @see EntityManager
  * @see PersistenceContext
  * @see CriteriaBuilder
  * @see CriteriaQuery
  */
-public abstract class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K> {
+public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K> {
     
     /** Interface used to interact with the persistence context. */
     @PersistenceContext(unitName = "timeclock")
@@ -57,7 +59,8 @@ public abstract class CommonDAOImpl<T, K extends Serializable> implements Common
     public CommonDAOImpl() { 
         Type type = getClass().getGenericSuperclass();
         ParameterizedType pType = (ParameterizedType) type; 
-        this.entityType = (Class) pType.getActualTypeArguments()[0];
+        this.entityType = (Class<T>) pType.getActualTypeArguments()[0];
+        //this.entityType = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**
@@ -115,7 +118,7 @@ public abstract class CommonDAOImpl<T, K extends Serializable> implements Common
      * @return an iterable collections of entity
      */
     @Override
-    public Iterable<T> getAll() {
+    public List<T> getAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery((Class<T>) entityType);
         Root<T> root = criteriaQuery.from((Class<T>) entityType);

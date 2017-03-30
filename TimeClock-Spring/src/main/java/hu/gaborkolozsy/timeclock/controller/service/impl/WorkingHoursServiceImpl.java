@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.controller.dao.CommonDAO;
 import hu.gaborkolozsy.timeclock.controller.dao.WorkingHoursDAO;
 import hu.gaborkolozsy.timeclock.controller.service.WorkingHoursService;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
+import java.util.List;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 0.0.1-SNAPSHOT
  * @see CommonDAO
  * @see WorkingHoursDAO
+ * @see List
  * @see Autowired
  * @see Qualifier
  */
@@ -45,7 +47,7 @@ public class WorkingHoursServiceImpl extends CommonServiceImpl<WorkingHours, Int
         super(commonDao);
         this.workingHoursDao = (WorkingHoursDAO) commonDao;
     }
-    
+           
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
@@ -64,7 +66,7 @@ public class WorkingHoursServiceImpl extends CommonServiceImpl<WorkingHours, Int
      * @return an iterable collection of {@code WorkingHours} 
      */
     @Override
-    public Iterable<WorkingHours> getAllByDeveloperId(Integer developerId) {
+    public List<WorkingHours> getAllByDeveloperId(Integer developerId) {
         return workingHoursDao.getAllByDeveloperId(developerId);
     }
 

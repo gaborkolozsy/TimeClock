@@ -3,6 +3,8 @@
  */
 package hu.gaborkolozsy.timeclock.controller.dao;
 
+import java.util.List;
+
 /**
  * The common generic dao interface.
  *
@@ -10,6 +12,7 @@ package hu.gaborkolozsy.timeclock.controller.dao;
  * @param <T> type of entity
  * @param <K> type of key
  * @since 0.0.1-SNAPSHOT
+ * @see List
  */
 public interface CommonDAO<T, K> {
     
@@ -47,7 +50,7 @@ public interface CommonDAO<T, K> {
      * Returns an iterable collection one of the {@code TimeClock} entity.
      * @return an iterable collection of entity
      */
-    Iterable<T> getAll();
+    List<T> getAll();
     
     /**
      * Remove the specified entity instance.

@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.controller.dao.CommonDAO;
 import hu.gaborkolozsy.timeclock.controller.dao.impl.CommonDAOImpl;
 import hu.gaborkolozsy.timeclock.controller.service.CommonService;
 import java.io.Serializable;
+import java.util.List;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 0.0.1-SNAPSHOT
  * @see CommonDAO
  * @see CommonDAOImpl
+ * @see List
  */
 @Transactional
 public class CommonServiceImpl<T, K extends Serializable> implements CommonService<T, K> {
@@ -84,7 +86,7 @@ public class CommonServiceImpl<T, K extends Serializable> implements CommonServi
      * @return an iterable collection of entity
      */
     @Override
-    public Iterable<T> getAll() {
+    public List<T> getAll() {
         return commonDao.getAll();
     }
 

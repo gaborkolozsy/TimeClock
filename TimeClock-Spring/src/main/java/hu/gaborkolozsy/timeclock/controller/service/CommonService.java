@@ -4,6 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.controller.service;
 
+import java.util.List;
+
 /**
  * The common generic service interface.
  *
@@ -11,6 +13,7 @@ package hu.gaborkolozsy.timeclock.controller.service;
  * @param <T> type of entity
  * @param <K> type of key
  * @since 0.0.1-SNAPSHOT
+ * @see List
  */
 public interface CommonService<T, K> {
 
@@ -48,7 +51,7 @@ public interface CommonService<T, K> {
      * Returns an iterable collection one of the {@code TimeClock} entity.
      * @return an iterable collection of entity
      */
-    Iterable<T> getAll();
+    List<T> getAll();
     
     /**
      * Remove the specified entity instance.
