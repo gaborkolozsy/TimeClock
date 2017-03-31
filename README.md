@@ -1,4 +1,4 @@
-# TimeClock
+# TimeClock - Spring, JPA, Hibernate, H2
 Maven based project with Spring, JPA and Hibernate. 
 
 ## Description
