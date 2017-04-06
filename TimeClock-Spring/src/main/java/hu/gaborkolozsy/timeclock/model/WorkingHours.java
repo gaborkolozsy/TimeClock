@@ -16,8 +16,11 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -28,10 +31,14 @@ import org.hibernate.annotations.SelectBeforeUpdate;
  * and it will be called "WORKING_HOURS".
  * 
  * <p>The {@link Audit} is embedded.
+ * 
+ * <p>@DynamicUpdate and @SelectBeforeUpdate annotations not working 
+ * with @PreUpdate ({@code Audit} class) annotation. But update is dynamic now.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see AbstractWorkingHoursBuilder
+ * @see Audit
  * @see AuditListener
  * @see Serializable
  * @see LocalDate
@@ -41,8 +48,11 @@ import org.hibernate.annotations.SelectBeforeUpdate;
  * @see Entity
  * @see EntityListeners
  * @see GeneratedValue
+ * @see GenerationType
  * @see Id
  * @see JoinColumn
+ * @see ManyToOne
+ * @see SequenceGenerator
  * @see Version
  * @see DynamicInsert
  * @see DynamicUpdate
@@ -50,21 +60,15 @@ import org.hibernate.annotations.SelectBeforeUpdate;
  */
 @Entity(name = "Working_Hours")
 @EntityListeners(AuditListener.class)
-@DynamicInsert                                                                  // I have to control this
-//@DynamicUpdate()                                                              <!-- NOT WORKING WITH @PreUpdate -->
-//@SelectBeforeUpdate()
+@DynamicInsert
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class WorkingHours implements Auditable {
 
     @Id
-    @GeneratedValue
-    @Column(name = "WorkingHours_Id", nullable = false, 
-            unique = true, updatable = false)
-    private int workingHoursId;
-    
-    @Column(name = "Developer_Id")
-    @JoinColumn(referencedColumnName = "Developer_Id", nullable = false)
-    private int developerId;
+    @GeneratedValue(generator = "workingHoursGEN", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(allocationSize = 1, name = "workingHoursGEN", sequenceName = "workingHoursSEQ")
+    @Column(name = "Id", nullable = false, unique = true, updatable = false)
+    private Long id;
     
     @Column(name = "Work_Day", updatable = false, nullable = false)
     private LocalDate day;
@@ -72,8 +76,18 @@ public class WorkingHours implements Auditable {
     @Column(name = "Work_Begin", updatable = false, nullable = false)
     private LocalDateTime workStart;
     
-    @Column(name = "Work_End" , updatable = false, nullable = false)
+    @Column(name = "Work_End")
     private LocalDateTime workEnd;
+    
+    /**
+     * <strong>
+     * If want {@code Developer_Id} column for referenced column by @ManyToOne 
+     * relationship instead of default primary key, than {@code Developer} entity 
+     * must implements the {@code Serializable} interface.</strong>
+     */
+    @ManyToOne
+    @JoinColumn(name = "Developer_Id", nullable = false, referencedColumnName = "Developer_Id")
+    private Developer developer;
     
     @Embedded
     private final Audit audit = new Audit();
@@ -83,23 +97,15 @@ public class WorkingHours implements Auditable {
     private int version;
 
     /**
-     * Returns the specified working hours ID.
-     * @return working hours ID
+     * Returns working hours' generated ID.
+     * @return working hours' ID
      */
-    public int getWorkingHoursId() {
-        return workingHoursId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Returns the specified working hours' developer's ID.
-     * @return developer's ID
-     */
-    public int getDeveloperId() {
-        return developerId;
-    }
-
-    /**
-     * Returns the specified working hours' day.
+     * Returns working hours' day.
      * @return day
      */
     public LocalDate getDay() {
@@ -107,19 +113,27 @@ public class WorkingHours implements Auditable {
     }
 
     /**
-     * Returns the specified working hours' start time.
-     * @return working hours start time
+     * Returns working hours' start time.
+     * @return working hours' start time
      */
     public LocalDateTime getWorkStart() {
         return workStart;
     }
 
     /**
-     * Returns the specified working hours' end time.
-     * @return working hours end time
+     * Returns working hours' end time.
+     * @return working hours' end time
      */
     public LocalDateTime getWorkEnd() {
         return workEnd;
+    }
+    
+    /**
+     * Returns working hours' developer.
+     * @return developer's ID
+     */
+    public Developer getDeveloper() {
+        return developer;
     }
 
     /**
@@ -133,27 +147,26 @@ public class WorkingHours implements Auditable {
     
     /**
      * Returns the {@link WorkingHours}' entity actual version.
-     * @return version
+     * @return version No.
      */
     public int getVersion() {
         return version;
     }
     
     /**
-    * {@code WorkingHoursBuilder} is used to build instances of 
-    * {@link WorkingHours} from values configured by the setters. 
-    * 
-    * <p>The class is achieves the Build design pattern.
-    *
-    * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
-    * @since 0.0.1-SNAPSHOT
-    * @see Builder
-    * @see AbstractWorkingHoursBuilder
-    * @see LocalDate
-    * @see LocalDateTime
-    */
-    public static class WorkingHoursBuilder extends 
-            AbstractWorkingHoursBuilder<WorkingHours, WorkingHoursBuilder> {
+     * {@code WorkingHoursBuilder} is used to build instances of 
+     * {@link WorkingHours} from values configured by the setters. 
+     * 
+     * <p>The class is achieves the Build design pattern.
+     *
+     * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
+     * @since 0.0.1-SNAPSHOT
+     * @see Builder
+     * @see AbstractWorkingHoursBuilder
+     * @see LocalDate
+     * @see LocalDateTime
+     */
+    public static class WorkingHoursBuilder extends AbstractWorkingHoursBuilder<WorkingHours, WorkingHoursBuilder> {
 
         /**
          * Constructor without parameter.
@@ -177,18 +190,7 @@ public class WorkingHours implements Auditable {
         public static WorkingHoursBuilder create() {
             return new WorkingHoursBuilder();
         }
-
-        /**
-         * Set the developer's ID.
-         * @param developerId developer's ID
-         * @return this
-         */
-        @Override
-        public WorkingHoursBuilder setDeveloperId(int developerId) {
-            super.entity.developerId = developerId;
-            return this;
-        }
-
+        
         /**
          * Set the actual work day.
          * @param day actual work day
@@ -219,6 +221,17 @@ public class WorkingHours implements Auditable {
         @Override
         public WorkingHoursBuilder setWorkEnd(LocalDateTime end) {
             super.entity.workEnd = end;
+            return this;
+        }
+        
+        /**
+         * Set the developer.
+         * @param developer developer
+         * @return this
+         */
+        @Override
+        public WorkingHoursBuilder setDeveloper(Developer developer) {
+            super.entity.developer = developer;
             return this;
         }
 

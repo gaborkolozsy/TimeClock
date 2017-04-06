@@ -20,7 +20,7 @@ import javax.persistence.criteria.Root;
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @param <T> type of entity
- * @param <K> type of key
+ * @param <ID> type of primary key
  * @since 0.0.1-SNAPSHOT
  * @see ParameterizedType
  * @see Type
@@ -30,7 +30,7 @@ import javax.persistence.criteria.Root;
  * @see CriteriaBuilder
  * @see CriteriaQuery
  */
-public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K> {
+public class CommonDAOImpl<T, ID extends Serializable> implements CommonDAO<T, ID> {
     
     /** Interface used to interact with the persistence context. */
     @PersistenceContext(unitName = "timeclock")
@@ -60,7 +60,6 @@ public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K>
         Type type = getClass().getGenericSuperclass();
         ParameterizedType pType = (ParameterizedType) type; 
         this.entityType = (Class<T>) pType.getActualTypeArguments()[0];
-        //this.entityType = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**
@@ -75,12 +74,19 @@ public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K>
     }
     
     /**
-     * Make an instance, managed and persistent.
+     * Make an instance, managed and persistent. Return the entity's ID.
      * @param entity entity instance
+     * @return the ID of entity instance
      */
     @Override
-    public void add(T entity) {
+    public ID add(T entity) {
         entityManager.persist(entity);
+        if (isExist(entity)) {
+            return (ID) entityManager.getEntityManagerFactory()
+                    .getPersistenceUnitUtil()
+                    .getIdentifier(entity);
+        }
+        return null;
     }
     
     /**
@@ -101,7 +107,7 @@ public class CommonDAOImpl<T, K extends Serializable> implements CommonDAO<T, K>
      * @return the found entity instance or null if the entity does not exist
      */
     @Override
-    public T get(K primaryKey) {
+    public T get(ID primaryKey) {
         return entityManager.find(entityType, primaryKey);
     }
 

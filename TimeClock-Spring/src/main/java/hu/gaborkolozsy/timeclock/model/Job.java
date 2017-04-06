@@ -16,9 +16,12 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -32,44 +35,36 @@ import org.hibernate.annotations.DynamicInsert;
  * @since 0.0.1-SNAPSHOT
  * @see AbstractJobBuilder
  * @see Builder
+ * @see Audit
  * @see AuditListener
  * @see CascadeType
  * @see Column
  * @see Embedded
- * @see Entity
  * @see EntityListeners
  * @see FetchType
  * @see GeneratedValue
+ * @see GenerationType
  * @see Id
  * @see JoinColumn
+ * @see ManyToOne
  * @see OneToOne
+ * @see SequenceGenerator
  * @see Version
  * @see DynamicInsert
  */
 @Entity(name = "Job")
 @EntityListeners(AuditListener.class)
-@DynamicInsert                                                                  // I have to control this
+@DynamicInsert
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Job implements Auditable {
 
     @Id
-    @GeneratedValue
-    @Column(name = "Job_Id", nullable = false, unique = true, updatable = false)
-    private int jobId;
+    @GeneratedValue(generator = "jobGEN", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(initialValue = 100, name = "jobGEN", sequenceName = "jobSEQ")
+    @Column(name = "Id", nullable = false, unique = true, updatable = false)
+    private Long id;
 
-    @Column(name = "Customer_Id")
-    @JoinColumn(nullable = false, referencedColumnName = "Customer_Id")
-    private int customerId;
-    
-    @Column(name = "Developer_Id")
-    @JoinColumn(nullable = false, referencedColumnName = "Developer_Id")
-    private int developerId;
-    
-    @Column(name = "Pay_Id")
-    @JoinColumn(nullable = false, referencedColumnName = "Pay_Id")
-    private int payId;
-    
-    @Column(name = "Order_Number", nullable = false)
+    @Column(name = "Order_Number", nullable = false, unique = true, updatable = false)
     private int orderNumber;
     
     @Column(name = "Project", nullable = false)
@@ -90,10 +85,27 @@ public class Job implements Auditable {
     @Column(name = "Comment")
     private String comment;
     
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Job",*/ targetEntity = Customer.class)
+    /**
+     * <strong>
+     * If want {@code Customer_Id} column for referenced column by @ManyToOne 
+     * relationship instead of default primary key, than {@code Customer} entity 
+     * must implements the {@code Serializable} interface.</strong>
+     */
+    @ManyToOne
+    @JoinColumn(name = "Customer_Id", nullable = false, referencedColumnName = "Customer_Id")
     private Customer customer;
     
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Job",*/ targetEntity = Pay.class)
+    /**
+     * <strong>
+     * If want {@code Developer_Id} column for referenced column by @ManyToOne 
+     * relationship instead of default primary key, than {@code Developer} entity 
+     * must implements the {@code Serializable} interface.</strong>
+     */
+    @ManyToOne
+    @JoinColumn(name = "Developer_Id", nullable = false, referencedColumnName = "Developer_Id")
+    private Developer developer;
+    
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "job", targetEntity = Pay.class)
     private Pay pay;
     
     @Embedded
@@ -104,39 +116,15 @@ public class Job implements Auditable {
     private int version;
 
     /**
-     * Returns the specified job ID.
+     * Returns job's generated ID.
      * @return job ID
      */
-    public int getJobId() {
-        return jobId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Returns the specified job's customer ID.
-     * @return job's customer ID
-     */
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    /**
-     * Returns the specified job's developer ID.
-     * @return job's developer ID
-     */
-    public int getDeveloperId() {
-        return developerId;
-    }
-
-    /**
-     * Returns the specified job's pay ID.
-     * @return job's pay ID 
-     */
-    public int getPayId() {
-        return payId;
-    }
-
-    /**
-     * Returns the specified job's order number.
+     * Returns job's order number.
      * @return job's order number
      */
     public int getOrderNumber() {
@@ -144,7 +132,7 @@ public class Job implements Auditable {
     }
     
     /**
-     * Returns the specified job's project name.
+     * Returns job's project name.
      * @return job's project name
      */
     public String getProjectName() {
@@ -160,7 +148,7 @@ public class Job implements Auditable {
     }
     
     /**
-     * Returns the specified job's package name.
+     * Returns job's package name.
      * @return job's package name
      */
     public String getPackageName() {
@@ -168,7 +156,7 @@ public class Job implements Auditable {
     }
 
     /**
-     * Returns the specified job's class name.
+     * Returns job's class name.
      * @return job's class name
      */
     public String getClassName() {
@@ -176,7 +164,7 @@ public class Job implements Auditable {
     }
 
     /**
-     * Returns the specified job's status.
+     * Returns job's status.
      * @return job's status
      */
     public String getStatus() {
@@ -184,7 +172,7 @@ public class Job implements Auditable {
     }
 
     /**
-     * Returns the specified job's comment.
+     * Returns job's comment.
      * @return job's comment
      */
     public String getComment() {
@@ -192,15 +180,23 @@ public class Job implements Auditable {
     }
 
     /**
-     * Returns the specified job's relevant {@code Cusomer}.
+     * Returns job's relevant {@code Cusomer}.
      * @return job's {@code Customer}
      */
     public Customer getCustomer() {
         return customer;
     }
-
+    
     /**
-     * Returns the specified job's relevant {@code Pay}.
+     * Returns job's developer.
+     * @return job's developer
+     */
+    public Developer getDeveloper() {
+        return developer;
+    }
+    
+    /**
+     * Returns job's relevant {@code Pay}.
      * @return job's {@code Pay}
      */
     public Pay getPay() {
@@ -218,7 +214,7 @@ public class Job implements Auditable {
     
     /**
      * Returns the {@link Job}'s entity actual version.
-     * @return version
+     * @return version No.
      */
     public int getVersion() {
         return version;
@@ -260,28 +256,6 @@ public class Job implements Auditable {
             return new JobBuilder();
         }
         
-        /**
-         * Set the customer's ID for {@code Job} entity.
-         * @param customerId customer's ID
-         * @return this
-         */
-        @Override
-        public JobBuilder setCustomerId(int customerId) {
-            super.entity.customerId = customerId;
-            return this;
-        }
-
-        /**
-         * Set the developer's ID for {@code Job} entity.
-         * @param developerId developer's ID
-         * @return this
-         */
-        @Override
-        public JobBuilder setDeveloperId(int developerId) {
-            super.entity.developerId = developerId;
-            return this;
-        }
-
         /**
          * Set the job's order number for {@code Job} entity.
          * @param orderNumber job's order number
@@ -359,6 +333,39 @@ public class Job implements Auditable {
             return this;
         }
 
+        /**
+         * Set the {@code Job} entity's relevant customer.
+         * @param customer customer
+         * @return this
+         */
+        @Override
+        public JobBuilder setCustomer(Customer customer) {
+            super.entity.customer = customer;
+            return this;
+        }
+
+        /**
+         * Set the developer for {@code Job} entity.
+         * @param developer developer
+         * @return this
+         */
+        @Override
+        public JobBuilder setDeveloper(Developer developer) {
+            super.entity.developer = developer;
+            return this;
+        }
+
+        /**
+         * Set the pay for {@code Job} entity.
+         * @param pay pay
+         * @return this
+         */
+        @Override
+        public JobBuilder setPay(Pay pay) {
+            super.entity.pay = pay;
+            return this;
+        }
+        
         /**
          * Return a new {@code Job} set instance.
          * @return {@code Job}

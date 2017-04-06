@@ -17,9 +17,11 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -33,12 +35,14 @@ import org.hibernate.annotations.DynamicInsert;
  * @since 0.0.1-SNAPSHOT
  * @see AbstractPayBuilder
  * @see Builder
+ * @see Audit
  * @see AuditListener
  * @see LocalDateTime
+ * @see CascadeType
  * @see Column
  * @see Embedded
- * @see Entity
  * @see EntityListeners
+ * @see FetchType
  * @see GeneratedValue
  * @see Id
  * @see JoinColumn
@@ -48,18 +52,15 @@ import org.hibernate.annotations.DynamicInsert;
  */
 @Entity(name = "Pay")
 @EntityListeners(AuditListener.class)
-@DynamicInsert                                                                  // I have to control this
+@DynamicInsert
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Pay implements Auditable {
 
     @Id
-    @GeneratedValue
-    @Column(name = "Pay_Id", nullable = false, unique = true, updatable = false)
-    private int payId;
-    
-    @Column(name = "Order_Number")
-    @JoinColumn(referencedColumnName = "Order_Number", nullable = false)
-    private int orderNumber;
+    @GeneratedValue(generator = "payGEN", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(initialValue = 100, name = "payGEN", sequenceName = "paySEQ")
+    @Column(name = "Id", nullable = false, unique = true, updatable = false)
+    private Long id;
     
     @Column(name = "Pay")
     private int pay;
@@ -76,7 +77,8 @@ public class Pay implements Auditable {
     @Column(name = "Paid", nullable = false)
     private boolean paid;
     
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Pay",*/ targetEntity = Job.class)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, targetEntity = Job.class)
+    @JoinColumn(name = "Order_Number", nullable = false, referencedColumnName = "Order_Number")
     private Job job;
     
     @Embedded
@@ -87,23 +89,15 @@ public class Pay implements Auditable {
     private int version;
 
     /**
-     * Returns the specified pay's ID.
+     * Returns pay's generated ID.
      * @return pay's ID
      */
-    public int getPayId() {
-        return payId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Returns the specified pay's relevant order number.
-     * @return pay's order number
-     */
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    /**
-     * Returns the specified {@code Pay}'s pay.
+     * Returns {@code Pay}'s pay.
      * @return pay
      */
     public int getPay() {
@@ -111,7 +105,7 @@ public class Pay implements Auditable {
     }
 
     /**
-     * Returns the specified pay's currency.
+     * Returns pay's currency.
      * @return pay's currency
      */
     public String getCurrency() {
@@ -119,7 +113,7 @@ public class Pay implements Auditable {
     }
 
     /**
-     * Returns the specified pay's pay time.
+     * Returns pay's pay time.
      * @return pay's pay time
      */
     public LocalDateTime getPayTime() {
@@ -127,23 +121,23 @@ public class Pay implements Auditable {
     }
 
     /**
-     * Returns true if the specified pay is payable. False otherwise.
-     * @return pay is payable
+     * Returns true if the pay is payable. False otherwise.
+     * @return true if pay is payable
      */
     public boolean isPayable() {
         return payable;
     }
 
     /**
-     * Returns true if the specified pay is paid. False otherwise.
-     * @return pay is paid
+     * Returns true if the pay is paid. False otherwise.
+     * @return true if pay is paid
      */
     public boolean isPaid() {
         return paid;
     }
 
     /**
-     * Returns the pay's {@link Job}.
+     * Returns the pay's relevant {@link Job}.
      * @return job
      */
     public Job getJob() {
@@ -168,17 +162,17 @@ public class Pay implements Auditable {
     }
     
     /**
-    * {@code PayBuilder} is used to build instances of 
-    * {@link Pay} from values configured by the setters.
-    * 
-    * <p>The class is achieves the Build design pattern.
-    *
-    * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
-    * @since 0.0.1-SNAPSHOT
-    * @see LocalDateTime
-    * @see Builder
-    * @see AbstractPayBuilder
-    */
+     * {@code PayBuilder} is used to build instances of 
+     * {@link Pay} from values configured by the setters.
+     * 
+     * <p>The class is achieves the Build design pattern.
+     *
+     * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
+     * @since 0.0.1-SNAPSHOT
+     * @see LocalDateTime
+     * @see Builder
+     * @see AbstractPayBuilder
+     */
     public static class PayBuilder extends AbstractPayBuilder<Pay, PayBuilder> {
 
         /**
@@ -202,17 +196,6 @@ public class Pay implements Auditable {
          */
         public static PayBuilder create() {
             return new PayBuilder();
-        }
-
-        /**
-         * Set the No. of order.
-         * @param orderNumber number of order
-         * @return this
-         */
-        @Override
-        public PayBuilder setOrderNumber(int orderNumber) {
-            super.entity.orderNumber = orderNumber;
-            return this;
         }
 
         /**
@@ -267,6 +250,17 @@ public class Pay implements Auditable {
         @Override
         public PayBuilder isPaid(boolean paid) {
             super.entity.paid = paid;
+            return this;
+        }
+
+        /**
+         * Set the {@code Pay}'s relevant {@code Job}.
+         * @param job job
+         * @return this
+         */
+        @Override
+        public PayBuilder setJob(Job job) {
+            super.entity.job =job;
             return this;
         }
 

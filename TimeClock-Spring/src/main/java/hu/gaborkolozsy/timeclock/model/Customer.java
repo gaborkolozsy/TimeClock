@@ -10,8 +10,10 @@ import hu.gaborkolozsy.timeclock.model.abstracts.Builder;
 import hu.gaborkolozsy.timeclock.model.embedded.Address;
 import hu.gaborkolozsy.timeclock.model.embedded.Audit;
 import hu.gaborkolozsy.timeclock.model.embedded.AuditListener;
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -19,11 +21,12 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -32,40 +35,51 @@ import org.hibernate.annotations.DynamicInsert;
  * called "CUSTOMER".
  * 
  * <p>The {@link Audit} is embedded.
+ * 
+ * <p><strong>
+ * If want {@code Customer_Id} column for referenced column by @ManyToOne 
+ * relationship instead of default primary key, than {@code Customer} entity 
+ * must implements the {@code Serializable} interface.</strong>
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see AbstractCustomerBuilder
  * @see Builder
  * @see Address
+ * @see Audit
  * @see AuditListener
  * @see LocalDateTime
+ * @see ArrayList
+ * @see List
+ * @see CascadeType
  * @see Column
  * @see Embedded
- * @see Entity
  * @see EntityListeners
+ * @see FetchType
  * @see GeneratedValue
+ * @see GenerationType
  * @see Id
  * @see JoinColumn
+ * @see OneToMany
  * @see OneToOne
+ * @see SequenceGenerator
  * @see Version
  * @see DynamicInsert
  */
 @Entity(name = "Customer")
 @EntityListeners({AuditListener.class})
-@DynamicInsert                                                                  // I have to control this
-@NamedQuery(name = "all", query = "Select c from Customer c")                   // ??? talán @NamedQueries egy egész külön fájl vagy osztály
-@SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
-public class Customer implements Auditable {
+@DynamicInsert
+@SuppressWarnings({"PersistenceUnitPresent"})
+public class Customer implements Auditable, Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "customerGEN", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(initialValue = 100, name = "customerGEN", sequenceName = "customerSEQ")
+    @Column(name = "Id", nullable = false, unique = true, updatable = false)
+    private Long id;
+    
     @Column(name = "Customer_Id", nullable = false, unique = true, updatable = false)
     private int customerId;
-    
-    @Column(name = "Order_Number")
-    @JoinColumn(referencedColumnName = "Order_Number", nullable = false)
-    private int orderNumber;
     
     @Column(name = "Name", nullable = false)
     private String name;
@@ -73,8 +87,8 @@ public class Customer implements Auditable {
     @Column(name = "Contact", nullable = false)
     private String contact;
     
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, /*mappedBy = "Customer",*/ targetEntity = Job.class)
-    private Set<Job> job;
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "customer", targetEntity = Job.class)
+    private List<Job> jobs = new ArrayList<>(0);
     
     @Embedded
     private final Address address = new Address();
@@ -87,23 +101,23 @@ public class Customer implements Auditable {
     private int version;
 
     /**
-     * Returns the specified customer ID.
-     * @return customer ID
+     * Returns customer's generated ID.
+     * @return customer's ID
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Returns customer's natural ID.
+     * @return customer's natural ID
      */
     public int getCustomerId() {
         return customerId;
     }
 
     /**
-     * Returns the specified customer's relevant order number.
-     * @return order number
-     */
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    /**
-     * Returns the specified customer's name.
+     * Returns customer's name.
      * @return customer's name
      */
     public String getName() {
@@ -111,7 +125,7 @@ public class Customer implements Auditable {
     }
 
     /**
-     * Returns the contact person by the specified customer's.
+     * Returns the contact person by the customer's.
      * @return contact person
      */
     public String getContact() {
@@ -119,15 +133,15 @@ public class Customer implements Auditable {
     }
 
     /**
-     * Returns the specified customer's jobs as a set.
+     * Returns customer's ordered jobs as a list.
      * @return customer's jobs
      */
-    public Set<Job> getJob() {
-        return job;
+    public List<Job> getJobs() {
+        return jobs;
     }
 
     /**
-     * Returns the specified customer's address.
+     * Returns customer's address.
      * @return customer's address
      */
     public Address getAddress() {
@@ -145,7 +159,7 @@ public class Customer implements Auditable {
     
     /**
      * Returns the {@link Customer}'s entity actual version.
-     * @return version
+     * @return version No.
      */
     public int getVersion() {
         return version;
@@ -162,8 +176,7 @@ public class Customer implements Auditable {
     * @see Builder
     * @see AbstractCustomerBuilder
     */
-    public static class CustomerBuilder extends 
-            AbstractCustomerBuilder<Customer, CustomerBuilder> {
+    public static class CustomerBuilder extends AbstractCustomerBuilder<Customer, CustomerBuilder> {
 
         /**
          * Constructor without parameter.
@@ -187,18 +200,18 @@ public class Customer implements Auditable {
         public static CustomerBuilder create() {
             return new CustomerBuilder();
         }
-        
+
         /**
-         * Set the customer's relevant order number.
-         * @param orderNumber order number
+         * Set the {@code Customer}'s natural ID.
+         * @param customerId customer's ID
          * @return this
          */
         @Override
-        public CustomerBuilder setOrderNumber(int orderNumber) {
-            super.entity.orderNumber = orderNumber;
+        public CustomerBuilder setCustomerId(int customerId) {
+            super.entity.customerId = customerId;
             return this;
         }
-
+        
         /**
          * Set the customer's name.
          * @param name name
@@ -218,6 +231,17 @@ public class Customer implements Auditable {
         @Override
         public CustomerBuilder setContact(String contact) {
             super.entity.contact = contact;
+            return this;
+        }
+
+        /**
+         * Set the {@link Customer}'s job list.
+         * @param jobs {@link Customer}'s jobs
+         * @return this
+         */
+        @Override
+        public CustomerBuilder setJobs(List<Job> jobs) {
+            super.entity.jobs = jobs;
             return this;
         }
 
