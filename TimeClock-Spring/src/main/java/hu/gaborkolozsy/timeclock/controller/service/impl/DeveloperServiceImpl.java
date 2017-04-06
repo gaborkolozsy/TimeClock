@@ -61,6 +61,16 @@ public class DeveloperServiceImpl extends CommonServiceImpl<Developer, Long> imp
     }
 
     /**
+     * Update lastname by {@link Developer}'s {@code developerId}.
+     * @param developerId the developer's ID
+     * @param lastname the developer's lastname
+     */
+    @Override
+    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
+        developerDao.updateLastnameByDeveloperId(developerId, lastname);
+    }
+    
+    /**
      * Returns a {@code Developer} entity by the specified developer's ID.
      * @param developerID developer's ID
      * @return a {@code Developer} 
@@ -78,16 +88,6 @@ public class DeveloperServiceImpl extends CommonServiceImpl<Developer, Long> imp
     @Override
     public List<Developer> getAllByForename(String foreName) {
         return developerDao.getAllByForename(foreName);
-    }
-
-    /**
-     * Update lastname by {@link Developer}'s {@code developerId}.
-     * @param developerId the developer's ID
-     * @param lastname the developer's lastname
-     */
-    @Override
-    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
-        developerDao.updateLastnameByDeveloperId(developerId, lastname);
     }
 
     /**

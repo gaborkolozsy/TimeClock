@@ -25,6 +25,13 @@ public interface DeveloperService extends CommonService<Developer, Long> {
     boolean isDeveloperExist(Integer developerId);
     
     /**
+     * Update lastname by {@link Developer}'s {@code developerId}.
+     * @param developerId the developer's ID
+     * @param lastname the developer's lastname
+     */
+    void updateLastnameByDeveloperId(Integer developerId, String lastname);
+    
+    /**
      * Returns a {@code Developer} entity by the specified developer's ID.
      * @param developerID developer's ID
      * @return a {@code Developer} 
@@ -38,13 +45,6 @@ public interface DeveloperService extends CommonService<Developer, Long> {
      */
     List<Developer> getAllByForename(String foreName);
 
-    /**
-     * Update lastname by {@link Developer}'s {@code developerId}.
-     * @param developerId the developer's ID
-     * @param lastname the developer's lastname
-     */
-    void updateLastnameByDeveloperId(Integer developerId, String lastname);
-    
     /**
      * Remove {@link Developer} entity with specified {@code developerId}.
      * @param developerId developer's ID

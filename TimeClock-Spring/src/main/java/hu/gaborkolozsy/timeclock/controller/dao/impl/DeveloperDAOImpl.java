@@ -34,6 +34,18 @@ public class DeveloperDAOImpl extends CommonDAOImpl<Developer, Long> implements 
     }
 
     /**
+     * Update the {@link Developer}'s last name by the specified develpoer's ID.
+     * @param developerId developer's ID
+     * @param lastname developer's last name
+     */
+    @Override
+    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
+        entityManager.merge(new DeveloperBuilder(getByDeveloperId(developerId))
+                .setLastName(lastname)
+                .build());
+    }
+
+    /**
      * Returns a {@code Developer} entity instance by the specified developer's ID.
      * @param developerID developer's ID
      * @return the {@code Developer} instance
@@ -57,19 +69,7 @@ public class DeveloperDAOImpl extends CommonDAOImpl<Developer, Long> implements 
                 .setParameter("forename", forename)
                 .getResultList();
     }
-
-    /**
-     * Update the {@link Developer}'s last name by the specified develpoer's ID.
-     * @param developerId developer's ID
-     * @param lastname developer's last name
-     */
-    @Override
-    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
-        entityManager.merge(new DeveloperBuilder(getByDeveloperId(developerId))
-                .setLastName(lastname)
-                .build());
-    }
-
+    
     /**
      * Remove the {@link Developer} entity with specified developer's ID.
      * @param developerId developer's ID
