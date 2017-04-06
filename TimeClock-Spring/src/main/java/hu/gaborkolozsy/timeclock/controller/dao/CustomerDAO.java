@@ -41,7 +41,7 @@ public interface CustomerDAO extends CommonDAO<Customer, Long>{
      * @param name customer's name
      * @return {@code Customer} instance
      */
-    Customer getByName(String name);
+    Customer getByCustomerName(String name);
     
     /**
      * Remove {@code Customer} by the specified customer's ID.
