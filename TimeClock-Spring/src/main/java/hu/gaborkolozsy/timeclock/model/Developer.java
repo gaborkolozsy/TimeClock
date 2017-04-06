@@ -78,10 +78,8 @@ import org.hibernate.loader.MultipleBagFetchException;
 @EntityListeners(AuditListener.class)
 @DynamicInsert
 @NamedQueries({ 
-    @NamedQuery(name = "getByDeveloperId", 
-                query = "from Developer d where d.developerId = :developerId"),
-    @NamedQuery(name = "getAllByForename", 
-                query = "from Developer d where d.forename = :forename")
+    @NamedQuery(name = "getByDeveloperId", query = "from Developer d where d.developerId = :developerId"),
+    @NamedQuery(name = "getAllByForename", query = "from Developer d where d.forename = :forename")
 })
 @SuppressWarnings({"PersistenceUnitPresent"})
 public class Developer implements Auditable, Serializable {
@@ -194,7 +192,7 @@ public class Developer implements Auditable, Serializable {
     
     /**
      * {@code DeveloperBuilder} is used to build instances of 
-     * {@link Developer} from values configured by the setters.
+     * {@code Developer} from values configured by the setters.
      * 
      * <p>The class is achieves the Build design pattern.
      *
@@ -213,7 +211,7 @@ public class Developer implements Auditable, Serializable {
         }
 
         /**
-         * Constructor with one parameter.
+         * Constructor with parameter.
          * @param developer {@code Developer}
          */
         public DeveloperBuilder(Developer developer) {

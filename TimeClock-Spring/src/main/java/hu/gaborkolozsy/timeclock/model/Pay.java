@@ -163,7 +163,7 @@ public class Pay implements Auditable {
     
     /**
      * {@code PayBuilder} is used to build instances of 
-     * {@link Pay} from values configured by the setters.
+     * {@code Pay} from values configured by the setters.
      * 
      * <p>The class is achieves the Build design pattern.
      *

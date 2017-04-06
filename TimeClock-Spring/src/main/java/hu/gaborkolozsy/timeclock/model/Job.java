@@ -217,7 +217,7 @@ public class Job implements Auditable {
     
     /**
      * {@code JobBuilder} is used to build instances of 
-     * {@link Job} from values configured by the setters.
+     * {@code Job} from values configured by the setters.
      * 
      * <p>The class is achieves the Build design pattern.
      *

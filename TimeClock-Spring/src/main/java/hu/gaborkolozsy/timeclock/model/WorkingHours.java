@@ -154,7 +154,7 @@ public class WorkingHours implements Auditable {
     
     /**
      * {@code WorkingHoursBuilder} is used to build instances of 
-     * {@link WorkingHours} from values configured by the setters. 
+     * {@code WorkingHours} from values configured by the setters. 
      * 
      * <p>The class is achieves the Build design pattern.
      *
