@@ -19,6 +19,15 @@ import hu.gaborkolozsy.timeclock.model.Job.JobBuilder;
 public abstract class AbstractJobBuilder<E, B> extends Entity<E, B> implements Builder<E> {
 
     /**
+     * Set the job's order No..
+     * @param orderNumber No. of order
+     * @return the specified builder type
+     */
+    public B setOrderNumber(int orderNumber) {
+        return null;
+    }
+    
+    /**
      * Set the project' name.
      * @param projectName the project's name
      * @return builder implement class

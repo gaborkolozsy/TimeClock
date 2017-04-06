@@ -4,6 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.model.abstracts;
 
+import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.model.Pay.PayBuilder;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
  * @param <E> type of entity
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
+ * @see Job
  * @see LocalDateTime
  */
 public abstract class AbstractPayBuilder<E, B> extends Entity<E, B> implements Builder<E> {
@@ -54,5 +56,12 @@ public abstract class AbstractPayBuilder<E, B> extends Entity<E, B> implements B
      * @return builder implement class
      */
     public abstract B isPaid(boolean paid);
+    
+    /**
+     * Set the {@code Pay}'s relevant {@code Job}.
+     * @param job job
+     * @return builder implement class
+     */
+    public abstract B setJob(Job job);
     
 }
