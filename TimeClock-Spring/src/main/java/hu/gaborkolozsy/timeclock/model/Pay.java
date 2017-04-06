@@ -58,7 +58,7 @@ public class Pay implements Auditable {
 
     @Id
     @GeneratedValue(generator = "payGEN", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(initialValue = 100, name = "payGEN", sequenceName = "paySEQ")
+    @SequenceGenerator(initialValue = 1, name = "payGEN", sequenceName = "paySEQ")
     @Column(name = "Id", nullable = false, unique = true, updatable = false)
     private Long id;
     

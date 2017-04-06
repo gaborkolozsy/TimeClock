@@ -4,10 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.model.abstracts;
 
-import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.model.Job;
-import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.model.embedded.Address;
 import java.util.List;
 
@@ -27,15 +25,6 @@ abstract class Entity<T, B> {
     public T entity;
     
     /**
-     * Set the specified {@code TimeClock} entity's customer.
-     * @param customer customer
-     * @return the specified builder type
-     */
-    public B setCustomer(Customer customer) {
-        return null;
-    }
-    
-    /**
      * Set the specified {@code TimeClock} entity's developer.
      * @param developer developer
      * @return the specified builder type
@@ -50,15 +39,6 @@ abstract class Entity<T, B> {
      * @return builder implement class
      */
     public B setJobs(List<Job> jobs) {
-        return null;
-    }
-    
-    /**
-     * Set the specified {@code TimeClock} entity's pay.
-     * @param pay pay
-     * @return the specified builder type
-     */
-    public B setPay(Pay pay) {
         return null;
     }
     

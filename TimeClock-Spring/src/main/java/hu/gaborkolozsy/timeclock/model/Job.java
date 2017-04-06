@@ -31,6 +31,13 @@ import org.hibernate.annotations.DynamicInsert;
  * 
  * <p>The {@link Audit} is embedded.
  * 
+ * <p><strong>
+ * If want {@code Customer_Id} or {@code Developer_Id} column for referenced 
+ * column by @ManyToOne relationship instead of default primary key, 
+ * than {@code Customer} or {@code Developer} entity 
+ * must implements the {@code Serializable} interface.</strong>
+ *
+ * 
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see AbstractJobBuilder
@@ -60,7 +67,7 @@ public class Job implements Auditable {
 
     @Id
     @GeneratedValue(generator = "jobGEN", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(initialValue = 100, name = "jobGEN", sequenceName = "jobSEQ")
+    @SequenceGenerator(initialValue = 1, name = "jobGEN", sequenceName = "jobSEQ")
     @Column(name = "Id", nullable = false, unique = true, updatable = false)
     private Long id;
 
@@ -85,22 +92,10 @@ public class Job implements Auditable {
     @Column(name = "Comment")
     private String comment;
     
-    /**
-     * <strong>
-     * If want {@code Customer_Id} column for referenced column by @ManyToOne 
-     * relationship instead of default primary key, than {@code Customer} entity 
-     * must implements the {@code Serializable} interface.</strong>
-     */
     @ManyToOne
     @JoinColumn(name = "Customer_Id", nullable = false, referencedColumnName = "Customer_Id")
     private Customer customer;
     
-    /**
-     * <strong>
-     * If want {@code Developer_Id} column for referenced column by @ManyToOne 
-     * relationship instead of default primary key, than {@code Developer} entity 
-     * must implements the {@code Serializable} interface.</strong>
-     */
     @ManyToOne
     @JoinColumn(name = "Developer_Id", nullable = false, referencedColumnName = "Developer_Id")
     private Developer developer;

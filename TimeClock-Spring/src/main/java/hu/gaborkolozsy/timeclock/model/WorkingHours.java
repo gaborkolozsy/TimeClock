@@ -34,6 +34,11 @@ import org.hibernate.annotations.SelectBeforeUpdate;
  * 
  * <p>@DynamicUpdate and @SelectBeforeUpdate annotations not working 
  * with @PreUpdate ({@code Audit} class) annotation. But update is dynamic now.
+ * 
+ * <p><strong>
+ * If want {@code Developer_Id} column for referenced column by @ManyToOne 
+ * relationship instead of default primary key, than {@code Developer} entity 
+ * must implements the {@code Serializable} interface.</strong>
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
@@ -79,12 +84,6 @@ public class WorkingHours implements Auditable {
     @Column(name = "Work_End")
     private LocalDateTime workEnd;
     
-    /**
-     * <strong>
-     * If want {@code Developer_Id} column for referenced column by @ManyToOne 
-     * relationship instead of default primary key, than {@code Developer} entity 
-     * must implements the {@code Serializable} interface.</strong>
-     */
     @ManyToOne
     @JoinColumn(name = "Developer_Id", nullable = false, referencedColumnName = "Developer_Id")
     private Developer developer;
