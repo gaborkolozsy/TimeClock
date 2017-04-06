@@ -90,14 +90,14 @@ public class Customer implements Auditable, Serializable {
     @Column(name = "Name", nullable = false)
     private String name;
     
-    @Column(name = "Contact", nullable = false)
+    @Column(name = "Contact")
     private String contact;
     
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "customer", targetEntity = Job.class)
     private List<Job> jobs = new ArrayList<>(0);
     
     @Embedded
-    private final Address address = new Address();
+    private Address address;
     
     @Embedded
     private final Audit audit = new Audit();
@@ -172,16 +172,16 @@ public class Customer implements Auditable, Serializable {
     }
     
     /**
-    * {@code CustomerBuilder} is used to build instances of 
-    * {@code Customer} from values configured by the setters.
-    * 
-    * <p>The class is achieves the Build design pattern.
-    *
-    * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
-    * @since 0.0.1-SNAPSHOT
-    * @see Builder
-    * @see AbstractCustomerBuilder
-    */
+     * {@code CustomerBuilder} is used to build instances of 
+     * {@code Customer} from values configured by the setters.
+     * 
+     * <p>The class is achieves the Build design pattern.
+     *
+     * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
+     * @since 0.0.1-SNAPSHOT
+     * @see Builder
+     * @see AbstractCustomerBuilder
+     */
     public static class CustomerBuilder extends AbstractCustomerBuilder<Customer, CustomerBuilder> {
 
         /**
@@ -252,12 +252,23 @@ public class Customer implements Auditable, Serializable {
         }
 
         /**
+         * Set the customer's {@code Address}.
+         * @param address customer's {@code Address}
+         * @return this
+         */
+        @Override
+        public CustomerBuilder setAddress(Address address) {
+            super.entity.address = address;
+            return this;
+        }
+
+        /**
          * Return a new {@code Customer} set instance.
          * @return {@code Customer}
          */
         @Override
         public Customer build() {
-            return entity;
+            return super.entity;
         }
         
     }
