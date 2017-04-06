@@ -5,6 +5,7 @@
 package hu.gaborkolozsy.timeclock.controller.service;
 
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface WorkingHoursService extends CommonService<WorkingHours, Integer> {
+public interface WorkingHoursService extends CommonService<WorkingHours, Long> {
 
     /**
      * Check if the instance is a managed entity instance belonging to the 
@@ -22,29 +23,14 @@ public interface WorkingHoursService extends CommonService<WorkingHours, Integer
      * @param primaryKey primary key
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isWorkingHoursExist(Integer primaryKey);
+    boolean isWorkingHoursExist(Long primaryKey);
     
     /**
-     * Returns a list of the {@link WorkingHours} entity 
-     * by the specified {@code developerId} foreign key.
-     * @param developerId developer ID
-     * @return a list of {@code WorkingHours} 
+     * Update the {@link WorkingHours}' {@code Work_End} column from null to the
+     * correct time.
+     * @param workingHours {@code WorkingHours}
+     * @param workEnd the work's end
      */
-    List<WorkingHours> getAllByDeveloperId(Integer developerId);
-
-    /**
-     * Update all {@link WorkingHours}' {@code developerId} by the specified 
-     * foreign key.
-     * @param oldDeveloperId the old developer ID
-     * @param newDeveloperId the new developer ID
-     */
-    void updateAllDeveloperIdBySpecifiedId(Integer oldDeveloperId, Integer newDeveloperId);
-    
-    /**
-     * Remove all {@link WorkingHours} entity with specified {@code developerId}
-     * foreign key.
-     * @param developerId developer ID
-     */
-    void removeAllWorkingHoursByDeveloperId(Integer developerId);
+    void updateWorkEnd(WorkingHours workingHours, LocalDateTime workEnd);
     
 }

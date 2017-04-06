@@ -6,8 +6,11 @@ package hu.gaborkolozsy.timeclock.controller.service.impl;
 
 import hu.gaborkolozsy.timeclock.controller.dao.CommonDAO;
 import hu.gaborkolozsy.timeclock.controller.dao.WorkingHoursDAO;
+import hu.gaborkolozsy.timeclock.controller.dao.impl.CommonDAOImpl;
+import hu.gaborkolozsy.timeclock.controller.dao.impl.WorkingHoursDAOImpl;
 import hu.gaborkolozsy.timeclock.controller.service.WorkingHoursService;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +25,30 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 0.0.1-SNAPSHOT
  * @see CommonDAO
  * @see WorkingHoursDAO
+ * @see LocalDateTime
  * @see List
  * @see Autowired
  * @see Qualifier
  */
 @Service
 @Transactional
-public class WorkingHoursServiceImpl extends CommonServiceImpl<WorkingHours, Integer> implements WorkingHoursService {
+public class WorkingHoursServiceImpl extends CommonServiceImpl<WorkingHours, Long> implements WorkingHoursService {
 
     @Autowired
     private final WorkingHoursDAO workingHoursDao;
     
     /**
-     * Constructor wait a {@code CommonDAOImpl} instance.
+     * Constructor in parameter wait a {@link CommonDAOImpl} instance with its
+     * interface type.
      * 
      * <p><strong>
      * If the parameter type implement an interface than must use it as a parameter type. 
      * Otherwise throw an {@link NoSuchBeanDefinitionException} exception!!!
      * </strong>
      * 
-     * @param commonDao 
+     * @param commonDao {@link WorkingHoursDAOImpl} instance 
      */
-    public WorkingHoursServiceImpl(@Qualifier("workingHoursDAOImpl") CommonDAO<WorkingHours, Integer> commonDao) {
+    public WorkingHoursServiceImpl(@Qualifier("workingHoursDAOImpl") CommonDAO<WorkingHours, Long> commonDao) {
         super(commonDao);
         this.workingHoursDao = (WorkingHoursDAO) commonDao;
     }
@@ -55,40 +60,19 @@ public class WorkingHoursServiceImpl extends CommonServiceImpl<WorkingHours, Int
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isWorkingHoursExist(Integer primaryKey) {
+    public boolean isWorkingHoursExist(Long primaryKey) {
         return workingHoursDao.isWorkingHoursExist(primaryKey);
     }
 
     /**
-     * Returns a list of the {@link WorkingHours} entity 
-     * by the specified {@code developerId} foreign key.
-     * @param developerId developer ID
-     * @return a list of {@code WorkingHours} 
+     * Update the {@link WorkingHours}' {@code Work_End} column from null to the
+     * correct time.
+     * @param workingHours {@code WorkingHours}
+     * @param workEnd the work's end
      */
     @Override
-    public List<WorkingHours> getAllByDeveloperId(Integer developerId) {
-        return workingHoursDao.getAllByDeveloperId(developerId);
-    }
-
-    /**
-     * Update all {@link WorkingHours}' {@code developerId} by the specified 
-     * foreign key.
-     * @param oldDeveloperId the old developer ID
-     * @param newDeveloperId the new developer ID
-     */
-    @Override
-    public void updateAllDeveloperIdBySpecifiedId(Integer oldDeveloperId, Integer newDeveloperId) {
-         workingHoursDao.updateAllDeveloperIdBySpecifiedId(oldDeveloperId, newDeveloperId);
-    }
-
-    /**
-     * Remove all {@link WorkingHours} entity with specified {@code developerId}
-     * foreign key.
-     * @param developerId developer ID
-     */
-    @Override
-    public void removeAllWorkingHoursByDeveloperId(Integer developerId) {
-        workingHoursDao.removeAllWorkingHoursByDeveloperId(developerId);
+    public void updateWorkEnd(WorkingHours workingHours, LocalDateTime workEnd) {
+        workingHoursDao.updateWorkEnd(workingHours, workEnd);
     }
     
 }
