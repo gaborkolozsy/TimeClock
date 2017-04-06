@@ -24,6 +24,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -69,6 +71,10 @@ import org.hibernate.annotations.DynamicInsert;
 @Entity(name = "Customer")
 @EntityListeners({AuditListener.class})
 @DynamicInsert
+@NamedQueries({
+    @NamedQuery(name = "getByCustomerId", query = "from Customer c where c.customerId = :customerId"),
+    @NamedQuery(name = "getByCustomerName", query = "from Customer c where c.name = :name")
+})
 @SuppressWarnings({"PersistenceUnitPresent"})
 public class Customer implements Auditable, Serializable {
 
@@ -167,7 +173,7 @@ public class Customer implements Auditable, Serializable {
     
     /**
     * {@code CustomerBuilder} is used to build instances of 
-    * {@link Customer} from values configured by the setters.
+    * {@code Customer} from values configured by the setters.
     * 
     * <p>The class is achieves the Build design pattern.
     *
@@ -186,7 +192,7 @@ public class Customer implements Auditable, Serializable {
         }
         
         /**
-         * Constructor with one parameter.
+         * Constructor with parameter.
          * @param customer {@code Customer}
          */
         public CustomerBuilder(Customer customer) {
