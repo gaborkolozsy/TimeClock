@@ -183,7 +183,7 @@ public class Pay implements Auditable {
         }
 
         /**
-         * Constructor with one parameter.
+         * Constructor with parameter.
          * @param pay {@code Pay}
          */
         public PayBuilder(Pay pay) {

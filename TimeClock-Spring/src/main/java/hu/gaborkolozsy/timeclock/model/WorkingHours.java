@@ -175,7 +175,7 @@ public class WorkingHours implements Auditable {
         }
 
         /**
-         * Constructor with one parameter.
+         * Constructor with parameter.
          * @param workingHours {@code WorkingHours}
          */
         public WorkingHoursBuilder(WorkingHours workingHours) {

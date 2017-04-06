@@ -236,7 +236,7 @@ public class Job implements Auditable {
         }
 
         /**
-         * Constructor with one parameter.
+         * Constructor with parameter.
          * @param job {@code Job}
          */
         public JobBuilder(Job job) {
