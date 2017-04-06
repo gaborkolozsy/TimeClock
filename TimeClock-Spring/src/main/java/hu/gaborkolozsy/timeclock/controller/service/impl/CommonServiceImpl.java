@@ -51,12 +51,13 @@ public class CommonServiceImpl<T, ID extends Serializable> implements CommonServ
     }
 
     /**
-     * Make an instance, managed and persistent.
+     * Make an instance, managed and persistent. Return the entity's ID.
      * @param entity entity instance
+     * @return the ID of entity instance
      */
     @Override
-    public void add(T entity) {
-        commonDao.add(entity);
+    public ID add(T entity) {
+        return commonDao.add(entity);
     }
 
     /**

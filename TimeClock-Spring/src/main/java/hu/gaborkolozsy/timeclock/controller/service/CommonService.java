@@ -26,10 +26,11 @@ public interface CommonService<T, ID> {
     boolean isExist(T entity);
 
     /**
-     * Make an instance, managed and persistent.
+     * Make an instance, managed and persistent. Return the entity's ID.
      * @param entity entity instance
+     * @return the ID of entity instance
      */
-    void add(T entity);
+    ID add(T entity);
 
     /**
      * Merge the state of the given entity into the current persistence context.
