@@ -60,7 +60,6 @@ public class CommonDAOImpl<T, ID extends Serializable> implements CommonDAO<T, I
         Type type = getClass().getGenericSuperclass();
         ParameterizedType pType = (ParameterizedType) type; 
         this.entityType = (Class<T>) pType.getActualTypeArguments()[0];
-        //this.entityType = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**
@@ -75,12 +74,19 @@ public class CommonDAOImpl<T, ID extends Serializable> implements CommonDAO<T, I
     }
     
     /**
-     * Make an instance, managed and persistent.
+     * Make an instance, managed and persistent. Return the entity's ID.
      * @param entity entity instance
+     * @return the ID of entity instance
      */
     @Override
-    public void add(T entity) {
+    public ID add(T entity) {
         entityManager.persist(entity);
+        if (isExist(entity)) {
+            return (ID) entityManager.getEntityManagerFactory()
+                    .getPersistenceUnitUtil()
+                    .getIdentifier(entity);
+        }
+        return null;
     }
     
     /**
