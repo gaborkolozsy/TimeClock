@@ -4,6 +4,13 @@
 
 package hu.gaborkolozsy.timeclock.model.abstracts;
 
+import hu.gaborkolozsy.timeclock.model.Customer;
+import hu.gaborkolozsy.timeclock.model.Developer;
+import hu.gaborkolozsy.timeclock.model.Job;
+import hu.gaborkolozsy.timeclock.model.Pay;
+import hu.gaborkolozsy.timeclock.model.embedded.Address;
+import java.util.List;
+
 /**
  * Order some common variable and common method to builder classes.
  *
@@ -20,38 +27,47 @@ abstract class Entity<T, B> {
     public T entity;
     
     /**
-     * Set the specified {@code TimeClock} entity's customer ID.
-     * @param customerId ID of customer
+     * Set the specified {@code TimeClock} entity's customer.
+     * @param customer customer
      * @return the specified builder type
      */
-    public B setCustomerId(int customerId) {
+    public B setCustomer(Customer customer) {
         return null;
     }
     
     /**
-     * Set the specified {@code TimeClock} entity's developer ID.
-     * @param developerId ID of developer
+     * Set the specified {@code TimeClock} entity's developer.
+     * @param developer developer
      * @return the specified builder type
      */
-    public B setDeveloperId(int developerId) {
+    public B setDeveloper(Developer developer) {
         return null;
     }
     
     /**
-     * Set the specified {@code TimeClock} entity's pay ID.
-     * @param payId ID of pay
-     * @return the specified builder type
+     * Set the specified {@code TimeClock} entity's job list.
+     * @param jobs entity's jobs
+     * @return builder implement class
      */
-    public B setPayId(int payId) {
+    public B setJobs(List<Job> jobs) {
         return null;
     }
     
     /**
-     * Set the specified {@code TimeClock} entity's order No..
-     * @param orderNumber No. of order
+     * Set the specified {@code TimeClock} entity's pay.
+     * @param pay pay
      * @return the specified builder type
      */
-    public B setOrderNumber(int orderNumber) {
+    public B setPay(Pay pay) {
+        return null;
+    }
+    
+    /**
+     * Set the specified {@code TimeClock} entity's {@code Address}.
+     * @param address {@code Address}
+     * @return the specified builder type
+     */
+    public B setAddress(Address address) {
         return null;
     }
     
