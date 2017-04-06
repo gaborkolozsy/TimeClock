@@ -14,7 +14,7 @@ import java.util.List;
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface DeveloperDAO extends CommonDAO<Developer, Integer> {
+public interface DeveloperDAO extends CommonDAO<Developer, Long> {
 
     /**
      * Check if the instance is a managed entity instance belonging to the 
@@ -25,18 +25,18 @@ public interface DeveloperDAO extends CommonDAO<Developer, Integer> {
     boolean isDeveloperExist(Integer developerId);
     
     /**
-     * Returns a {@link Developer} entity by the specified developer's ID.
+     * Returns a {@code Developer} entity by the specified developer's ID.
      * @param developerID developer's ID
      * @return a {@code Developer} 
      */
     Developer getByDeveloperId(Integer developerID);
     
     /**
-     * Returns a list of the {@link Developer} entity by the specified fore name.
+     * Returns a list of the {@code Developer} entity by the specified fore name.
      * @param foreName fore Name
      * @return a list of {@code Developer}
      */
-    List<Developer> getAllByForeName(String foreName);
+    List<Developer> getAllByForename(String foreName);
 
     /**
      * Update lastname by {@link Developer}'s {@code developerId}.
