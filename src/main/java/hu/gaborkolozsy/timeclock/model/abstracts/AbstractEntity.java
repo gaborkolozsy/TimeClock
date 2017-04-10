@@ -17,7 +17,7 @@ import java.util.List;
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
  */
-abstract class Entity<T, B> {
+abstract class AbstractEntity<T, B> {
 
     /**
      * The specified {@TimeClock} entity.
