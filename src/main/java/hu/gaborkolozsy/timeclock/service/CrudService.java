@@ -5,7 +5,7 @@
 package hu.gaborkolozsy.timeclock.service;
 
 /**
- * The basic C.R.U.D. generic service interface.
+ * The basic <strong>C.R.U.D.</strong> generic service interface.
  * <blockquote>
  * <table border=2 style=background-color:rgb(220,220,220)>
  *  <tr>

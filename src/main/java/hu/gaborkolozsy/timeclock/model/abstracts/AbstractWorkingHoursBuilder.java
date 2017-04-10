@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  * @see LocalDate
  * @see LocalDateTime 
  */
-public abstract class AbstractWorkingHoursBuilder<E, B> extends Entity<E, B> implements Builder<E> {
+public abstract class AbstractWorkingHoursBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
     
     /**
      * Set the actual day.

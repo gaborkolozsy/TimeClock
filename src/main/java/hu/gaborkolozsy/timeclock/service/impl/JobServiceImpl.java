@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
  * @see Qualifier
  */
 @Service
-public class JobServiceImpl extends CommonServiceImpl<Job, Long> implements JobService {
+public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobService {
 
     @Autowired
     private final JobDAO jobDAO;

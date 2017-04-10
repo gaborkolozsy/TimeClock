@@ -16,7 +16,7 @@ import hu.gaborkolozsy.timeclock.model.embedded.Address.AddressBuilder;
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
  */
-public abstract class AbstractAddressBuilder<E, B> extends Entity<E, B> implements Builder<E> {
+public abstract class AbstractAddressBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
 
     /**
      * Set the country.

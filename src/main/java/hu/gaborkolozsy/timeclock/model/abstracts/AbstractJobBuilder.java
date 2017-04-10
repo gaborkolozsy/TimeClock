@@ -18,7 +18,7 @@ import hu.gaborkolozsy.timeclock.model.Pay;
  * @param <B> type of builder 
  * @since 0.0.1-SNAPSHOT
  */
-public abstract class AbstractJobBuilder<E, B> extends Entity<E, B> implements Builder<E> {
+public abstract class AbstractJobBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
 
     /**
      * Set the job's order No..

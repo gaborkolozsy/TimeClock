@@ -14,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * The basic generic service implementation dependent with persistence context.
+ * The basic <strong>C.R.U.D.</strong> generic service implementation dependent 
+ * with persistence context.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @param <T> type of entity
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @see List
  */
 @Transactional
-public class CommonServiceImpl<T, K extends Serializable> implements CrudService<T, K> {
+public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T, K> {
 
     @Autowired
     private final CrudDAO<T, K> crudDao;
@@ -35,7 +36,7 @@ public class CommonServiceImpl<T, K extends Serializable> implements CrudService
      * <p><strong>So can avoid the {@link NoSuchBeanDefinitionException} exception!!!</strong>
      * @param crudDao {@code CrudDAOImpl}
      */
-    public CommonServiceImpl(CrudDAO<T, K> crudDao) {
+    public CrudServiceImpl(CrudDAO<T, K> crudDao) {
         this.crudDao = crudDao;
     }
 
