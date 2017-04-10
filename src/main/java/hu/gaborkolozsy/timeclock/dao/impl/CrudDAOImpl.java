@@ -34,7 +34,7 @@ public class CrudDAOImpl<T, K extends Serializable> implements CrudDAO<T, K> {
     
     /** Interface used to interact with the persistence context. */
     @PersistenceContext(unitName = "Time_Clock")
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     /** An entity type. */
     private final Class<? extends T> entityType;
