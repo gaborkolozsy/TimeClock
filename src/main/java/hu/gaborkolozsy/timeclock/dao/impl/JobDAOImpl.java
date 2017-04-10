@@ -11,11 +11,13 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
- * 
+ * Extends {@code CrudDAOImpl} and implement {@code JobDAO}. 
+ * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see 
+ * @see JobBuilder
+ * @see List
  */
 @Repository
 public class JobDAOImpl extends CrudDAOImpl<Job, Long> implements JobDAO {
