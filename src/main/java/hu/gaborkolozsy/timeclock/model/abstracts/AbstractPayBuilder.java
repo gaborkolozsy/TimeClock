@@ -20,42 +20,49 @@ import java.time.LocalDateTime;
  * @see Job
  * @see LocalDateTime
  */
-public abstract class AbstractPayBuilder<E, B> extends Entity<E, B> implements Builder<E> {
+public abstract class AbstractPayBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
 
     /**
-     * Set the pay.
-     * @param pay the pay
+     * Set the {@code Pay}'s ID.
+     * @param payId pay's ID
      * @return builder implement class
      */
-    public abstract B setPay(int pay);
+    public abstract B setPayId(String payId);
     
     /**
-     * Set the currency.
+     * Set the {@code Pay}'s payment.
+     * @param payment the payment
+     * @return builder implement class
+     */
+    public abstract B setPayment(double payment);
+    
+    /**
+     * Set the {@code Pay}'s currency.
      * @param currency currency
      * @return builder implement class
      */
     public abstract B setCurrency(String currency);
     
     /**
-     * Set the pay time.
-     * @param payTime pay time
+     * Set the {@code Pay}'s payment time.
+     * @param paymentTime payment time
      * @return builder implement class
      */
-    public abstract B setPayTime(LocalDateTime payTime);
+    public abstract B setPaymentTime(LocalDateTime paymentTime);
     
     /**
-     * Set playable.
+     * Set the {@code Pay} is playable.
      * @param payable payable
      * @return builder implement class
      */
-    public abstract B isPayable(boolean payable);
+    public abstract B setPayable(boolean payable);
     
     /**
-     * Set paid.
+     * Set the {@code Pay} is paid.
      * @param paid paid
      * @return builder implement class
      */
-    public abstract B isPaid(boolean paid);
+    public abstract B setPaid(boolean paid);
     
     /**
      * Set the {@code Pay}'s relevant {@code Job}.

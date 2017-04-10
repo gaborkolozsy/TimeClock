@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * @since 0.0.1-SNAPSHOT
  * @see LocalDateTime
  */
-public abstract class AbstractAuditBuilder<E, B> extends Entity<E, B> implements Builder<E> {
+public abstract class AbstractAuditBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
 
     /**
      * Set the created.
