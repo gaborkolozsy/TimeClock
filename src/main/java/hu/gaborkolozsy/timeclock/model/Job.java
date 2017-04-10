@@ -55,6 +55,8 @@ import org.hibernate.annotations.DynamicInsert;
  * @see Id
  * @see JoinColumn
  * @see ManyToOne
+ * @see NamedQueries
+ * @see NamedQuery
  * @see OneToOne
  * @see SequenceGenerator
  * @see Version

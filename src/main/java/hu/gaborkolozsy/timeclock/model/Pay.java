@@ -20,13 +20,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import org.hibernate.annotations.DynamicInsert;
 
 /**
- * Represent a pay. This will be stored in database as a table 
+ * Represent a {@code Pay}. This will be stored in database as a table 
  * and it will be called "PAY".
  * 
  * <p>The {@link Audit} is embedded.
@@ -44,8 +46,11 @@ import org.hibernate.annotations.DynamicInsert;
  * @see EntityListeners
  * @see FetchType
  * @see GeneratedValue
+ * @see GenerationType
  * @see Id
  * @see JoinColumn
+ * @see NamedQueries
+ * @see NamedQuery
  * @see OneToOne
  * @see Version
  * @see DynamicInsert
@@ -53,6 +58,11 @@ import org.hibernate.annotations.DynamicInsert;
 @Entity(name = "Pay")
 @EntityListeners(AuditListener.class)
 @DynamicInsert
+@NamedQueries({
+    @NamedQuery(name = "getByPayId", query = "from Pay p where p.payId = :payId"),
+    @NamedQuery(name = "getByPayable", query = "from Pay p where p.payable = :payable"),
+    @NamedQuery(name = "getByPaid", query = "from Pay p where p.paid = :paid")
+})
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Pay implements Auditable {
 
@@ -62,14 +72,17 @@ public class Pay implements Auditable {
     @Column(name = "Id", nullable = false, unique = true, updatable = false)
     private Long id;
     
-    @Column(name = "Pay")
-    private int pay;
+    @Column(name = "Pay_Id", nullable = false, unique = true, updatable = false)
+    private String payId;
+    
+    @Column(name = "Payment")
+    private double payment;
     
     @Column(name = "Currency")
     private String currency;
     
-    @Column(name = "Pay_Time")
-    private LocalDateTime payTime;
+    @Column(name = "Payment_Time")
+    private LocalDateTime paymentTime;
     
     @Column(name = "Payable", nullable = false)
     private boolean payable;
@@ -77,7 +90,7 @@ public class Pay implements Auditable {
     @Column(name = "Paid", nullable = false)
     private boolean paid;
     
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, targetEntity = Job.class)
+    @OneToOne
     @JoinColumn(name = "Order_Number", nullable = false, referencedColumnName = "Order_Number")
     private Job job;
     
@@ -89,23 +102,49 @@ public class Pay implements Auditable {
     private int version;
 
     /**
-     * Returns pay's generated ID.
-     * @return pay's ID
+     * Returns payment's generated ID.
+     * @return payment's ID
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Returns {@code Pay}'s pay.
-     * @return pay
+     * Returns the payment's ID.<br>
+ The payment's ID created for example:
+ <blockquote>
+     * <table border=2 style=background-color:rgb(220,220,220)>
+     *  <tr>
+     *   <th>Customer's ID.</th>
+     *   <th>Job's Order No.</th>
+     *   <th>Pay's No.</th>
+     *   <th>Pay's ID.</th>
+     *  </tr>
+     *  <tr>
+     *   <td><center><font color=blue>0150</font></center></td>
+     *   <td><center><font color=blue>1382</font></center></td>
+     *   <td><center><font color=blue>0001</font></center></td>
+     *   <td><center><font color=blue>0150-1382-0001</font></center></td>
+     *  </tr>
+     * </table>
+     * </blockquote>
+     * 
+     * @return payment's ID
      */
-    public int getPay() {
-        return pay;
+    public String getPayId() {
+        return payId;
     }
 
     /**
-     * Returns pay's currency.
+     * Returns {@code Pay}'s payment.
+     * @return payment
+     */
+    public double getPayment() {
+        return payment;
+    }
+
+    /**
+     * Returns {@code Pay}'s currency.
      * @return pay's currency
      */
     public String getCurrency() {
@@ -113,31 +152,31 @@ public class Pay implements Auditable {
     }
 
     /**
-     * Returns pay's pay time.
-     * @return pay's pay time
+     * Returns {@code Pay}'s payment time.
+     * @return pay's payment time
      */
-    public LocalDateTime getPayTime() {
-        return payTime;
+    public LocalDateTime getPaymentTime() {
+        return paymentTime;
     }
 
     /**
-     * Returns true if the pay is payable. False otherwise.
-     * @return true if pay is payable
+     * Returns true if the payment is payable. False otherwise.
+     * @return true if payment is payable
      */
     public boolean isPayable() {
         return payable;
     }
 
     /**
-     * Returns true if the pay is paid. False otherwise.
-     * @return true if pay is paid
+     * Returns true if the payment is paid. False otherwise.
+     * @return true if payment is paid
      */
     public boolean isPaid() {
         return paid;
     }
 
     /**
-     * Returns the pay's relevant {@link Job}.
+     * Returns the {@code Pay}'s relevant {@link Job}.
      * @return job
      */
     public Job getJob() {
@@ -199,18 +238,29 @@ public class Pay implements Auditable {
         }
 
         /**
-         * Set the pay.
-         * @param pay pay
+         * Set the {@code Pay}'s ID.
+         * @param payId pay's ID
          * @return this
          */
         @Override
-        public PayBuilder setPay(int pay) {
-            super.entity.pay = pay;
+        public PayBuilder setPayId(String payId) {
+            super.entity.payId = payId;
             return this;
         }
 
         /**
-         * Set the pay's currency.
+         * Set the payment.
+         * @param payment payment
+         * @return this
+         */
+        @Override
+        public PayBuilder setPayment(double payment) {
+            super.entity.payment = payment;
+            return this;
+        }
+
+        /**
+         * Set the {@code Pay}'s currency.
          * @param currency currency
          * @return this
          */
@@ -221,34 +271,34 @@ public class Pay implements Auditable {
         }
 
         /**
-         * Set the pay's time.
-         * @param payTime pay time
+         * Set the {@code Pay}'s time.
+         * @param paymentTime payment time
          * @return this
          */
         @Override
-        public PayBuilder setPayTime(LocalDateTime payTime) {
-            super.entity.payTime = payTime;
+        public PayBuilder setPaymentTime(LocalDateTime paymentTime) {
+            super.entity.paymentTime = paymentTime;
             return this;
         }
 
         /**
-         * Set the payable.
+         * Set the {@code Pay} is payable.
          * @param payable payable
          * @return this
          */
         @Override
-        public PayBuilder isPayable(boolean payable) {
+        public PayBuilder setPayable(boolean payable) {
             super.entity.payable = payable;
             return this;
         }
 
         /**
-         * Set the paid.
+         * Set the {@code Pay} is paid.
          * @param paid paid
          * @return this
          */
         @Override
-        public PayBuilder isPaid(boolean paid) {
+        public PayBuilder setPaid(boolean paid) {
             super.entity.paid = paid;
             return this;
         }
