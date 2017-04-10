@@ -29,7 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class PersistenceUnitIT {
 
     @Autowired
-    EntityManager entityManager;
+    private EntityManager entityManager;
     
     @Test
     @Timed(millis = 100l)
