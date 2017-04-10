@@ -16,7 +16,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -32,7 +31,6 @@ public class WorkingHoursServiceImplIT extends DevelopmentTest {
     EntityManager em;
     
     @Autowired
-    @Qualifier("WorkingHoursServiceImpl")
     WorkingHoursService workingHoursService;
     
     /**
@@ -48,7 +46,7 @@ public class WorkingHoursServiceImplIT extends DevelopmentTest {
      */
     @Test
     public void testUpdateWorkEnd() {
-        createWorkingHours();
+        assertNotNull(createWorkingHours());
     }
     
     private static WorkingHours createWorkingHours() {
