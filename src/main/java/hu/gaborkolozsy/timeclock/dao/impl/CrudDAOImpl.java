@@ -16,7 +16,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- * The basic C.R.U.D. generic DAO implementation dependent with persistence context.
+ * The basic <strong>C.R.U.D.</strong> generic DAO implementation dependent 
+ * with persistence context.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @param <T> type of entity
