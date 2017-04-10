@@ -35,7 +35,6 @@ public class WorkingHoursServiceImplIT extends DevelopmentTest {
     @Qualifier("WorkingHoursServiceImpl")
     WorkingHoursService workingHoursService;
     
-    
     /**
      * Test is workingHoursService correct instance.
      */
@@ -49,7 +48,7 @@ public class WorkingHoursServiceImplIT extends DevelopmentTest {
      */
     @Test
     public void testUpdateWorkEnd() {
-        
+        createWorkingHours();
     }
     
     private static WorkingHours createWorkingHours() {
