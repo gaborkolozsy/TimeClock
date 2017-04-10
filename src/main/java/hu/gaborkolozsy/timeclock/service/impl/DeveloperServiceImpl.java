@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
  * @see Qualifier
  */
 @Service
-public class DeveloperServiceImpl extends CommonServiceImpl<Developer, Long> implements DeveloperService {
+public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> implements DeveloperService {
 
     @Autowired
     private final DeveloperDAO developerDao;

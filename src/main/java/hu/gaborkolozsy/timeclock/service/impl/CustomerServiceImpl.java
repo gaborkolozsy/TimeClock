@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
  * @see Qualifier
  */
 @Service
-public class CustomerServiceImpl extends CommonServiceImpl<Customer, Long> implements CustomerService {
+public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long> implements CustomerService {
 
     @Autowired
     private final CustomerDAO customerDao;

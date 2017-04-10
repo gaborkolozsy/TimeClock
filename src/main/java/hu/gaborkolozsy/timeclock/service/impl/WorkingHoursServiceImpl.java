@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class WorkingHoursServiceImpl extends CommonServiceImpl<WorkingHours, Long> implements WorkingHoursService {
+public class WorkingHoursServiceImpl extends CrudServiceImpl<WorkingHours, Long> implements WorkingHoursService {
 
     @Autowired
     private final WorkingHoursDAO workingHoursDao;
