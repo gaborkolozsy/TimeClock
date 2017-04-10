@@ -10,7 +10,6 @@ import hu.gaborkolozsy.timeclock.model.WorkingHours.WorkingHoursBuilder;
 import hu.gaborkolozsy.timeclock.service.WorkingHoursService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import javax.persistence.EntityManager;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -28,10 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class WorkingHoursServiceImplIT extends DevelopmentTest {
 
     @Autowired
-    EntityManager em;
-    
-    @Autowired
-    WorkingHoursService workingHoursService;
+    private WorkingHoursService workingHoursService;
     
     /**
      * Test is workingHoursService correct instance.
