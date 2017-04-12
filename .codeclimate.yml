@@ -1,0 +1,10 @@
+## YAML Template.
+---
+engines:
+  checkstyle:
+    enabled: true
+    channel: "beta"
+
+ratings:
+  paths:
+  - "**.java"
