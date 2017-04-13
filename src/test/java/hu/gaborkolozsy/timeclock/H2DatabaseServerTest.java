@@ -7,7 +7,10 @@ package hu.gaborkolozsy.timeclock;
 import org.h2.tools.Server;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,12 +44,18 @@ public class H2DatabaseServerTest {
         this.h2DbServer = new H2DatabaseServer();
     }
     
+    /**
+     * If all test done.
+     */
     @AfterClass
     public static void afterClass() {
         tcpServer.shutdown();
         webServer.shutdown();
     }
 
+    /**
+     * Set up before test.
+     */
     @Before
     public void setUp() {
         ReflectionTestUtils.invokeMethod(h2DbServer, "start");
@@ -54,6 +63,9 @@ public class H2DatabaseServerTest {
         webServer = (Server) ReflectionTestUtils.getField(h2DbServer, "webServer");
     }
 
+    /**
+     * After test.
+     */
     @After
     public void tearDown() {
         tcpServer.stop();

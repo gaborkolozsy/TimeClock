@@ -5,7 +5,10 @@
 package hu.gaborkolozsy.timeclock;
 
 import javax.persistence.EntityManager;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +29,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @Development
 @RunWith(SpringJUnit4ClassRunner.class)
-public class PersistenceUnitIT {
+public class PersistenceUnitIt {
 
     @Autowired
     private EntityManager entityManager;
     
     @Test
-    @Timed(millis = 100l)
+    @Timed(millis = 100L)
     public void testPersistenceUnit() {
         assertNotNull("The Persistence Unit is null!", entityManager);
     }
     
     @Test
-    @Timed(millis = 100l)
+    @Timed(millis = 100L)
     public void testPersistenceUnitIsOpen() {
         assertTrue("The Persistence Unit is close! Expected -> Open", entityManager.isOpen());
     }

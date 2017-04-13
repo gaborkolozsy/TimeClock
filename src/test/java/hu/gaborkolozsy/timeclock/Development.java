@@ -31,13 +31,26 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration
 public @interface Development {
     
+    /**
+     * Alias for {@link #profiles}. Change active profile.
+     * @return profile's name as a string array
+     */
     @AliasFor(annotation = ActiveProfiles.class, attribute = "profiles")
     String[] changeProfil() default {"development"};
 
+    /**
+     * Alias for {@link #classes}. Change config class.
+     * @return config class as a class array
+     */
     @AliasFor(annotation = ContextConfiguration.class, attribute = "classes")
     Class<?>[] changeDefaultClass() default {ApplicationConfig.class};
     
+    /**
+     * Alias for {@link #loader}. Change loader.
+     * @return loader class as a class array
+     */
     @AliasFor(annotation = ContextConfiguration.class, attribute = "loader")
-    Class<? extends ContextLoader> changeDefaultLoader() default AnnotationConfigContextLoader.class;
+    Class<? extends ContextLoader> changeDefaultLoader() 
+            default AnnotationConfigContextLoader.class;
     
 }
