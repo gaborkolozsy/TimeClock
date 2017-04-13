@@ -4,6 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.dao.impl.DeveloperDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Developer;
@@ -13,11 +15,9 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import hu.gaborkolozsy.timeclock.dao.CrudDao;
-import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 
 /**
- * Developer service implementation. Connect between Controller and DAO.
+ * Developer service implementation. Connect between Controller and Dao.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
@@ -30,7 +30,8 @@ import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
  * @see Qualifier
  */
 @Service
-public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> implements DeveloperService {
+public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> 
+        implements DeveloperService {
 
     @Autowired
     private final DeveloperDao developerDao;
@@ -46,19 +47,19 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> imple
      * 
      * @param crudDao {@link DeveloperDaoImpl} instance 
      */
-    public DeveloperServiceImpl(@Qualifier("developerDAOImpl") CrudDao<Developer, Long> crudDao) {
+    public DeveloperServiceImpl(@Qualifier("developerDaoImpl") CrudDao<Developer, Long> crudDao) {
         super(crudDao);
         this.developerDao = (DeveloperDao) crudDao;
     }
 
     /**
      * Returns a {@code Developer} entity by the specified developer's ID.
-     * @param developerID developer's ID
+     * @param developerId developer's ID
      * @return a {@code Developer} 
      */
     @Override
-    public Developer getByDeveloperId(Integer developerID) {
-        return developerDao.getByDeveloperId(developerID);
+    public Developer getByDeveloperId(Integer developerId) {
+        return developerDao.getByDeveloperId(developerId);
     }
 
     /**

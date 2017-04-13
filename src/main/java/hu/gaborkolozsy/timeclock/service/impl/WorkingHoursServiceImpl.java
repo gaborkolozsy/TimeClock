@@ -4,6 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.dao.impl.WorkingHoursDaoImpl;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
@@ -14,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import hu.gaborkolozsy.timeclock.dao.CrudDao;
-import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
 
 /**
  * Working hours service implementation. Connect between Controller and DAO.
@@ -30,7 +30,8 @@ import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
  */
 @Service
 @Transactional
-public class WorkingHoursServiceImpl extends CrudServiceImpl<WorkingHours, Long> implements WorkingHoursService {
+public class WorkingHoursServiceImpl extends CrudServiceImpl<WorkingHours, Long> 
+        implements WorkingHoursService {
 
     @Autowired
     private final WorkingHoursDao workingHoursDao;
@@ -46,7 +47,9 @@ public class WorkingHoursServiceImpl extends CrudServiceImpl<WorkingHours, Long>
      * 
      * @param crudDao {@link WorkingHoursDaoImpl} instance 
      */
-    public WorkingHoursServiceImpl(@Qualifier("workingHoursDAOImpl") CrudDao<WorkingHours, Long> crudDao) {
+    public WorkingHoursServiceImpl(@Qualifier("workingHoursDaoImpl") 
+            CrudDao<WorkingHours, Long> crudDao) {
+        
         super(crudDao);
         this.workingHoursDao = (WorkingHoursDao) crudDao;
     }

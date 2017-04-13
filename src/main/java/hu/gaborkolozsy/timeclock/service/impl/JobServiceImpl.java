@@ -4,6 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.JobDao;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.service.JobService;
@@ -12,11 +14,9 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import hu.gaborkolozsy.timeclock.dao.CrudDao;
-import hu.gaborkolozsy.timeclock.dao.JobDao;
 
 /**
- * Job service implementation. Connect between Controller and DAO.
+ * Job service implementation. Connect between Controller and Dao.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
@@ -32,7 +32,7 @@ import hu.gaborkolozsy.timeclock.dao.JobDao;
 public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobService {
 
     @Autowired
-    private final JobDao jobDAO;
+    private final JobDao jobDao;
 
     /**
      * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
@@ -45,9 +45,9 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * 
      * @param crudDao {@link JobDAOImpl} instance 
      */
-    public JobServiceImpl(@Qualifier("jobDAOImpl") CrudDao<Job, Long> crudDao) {
+    public JobServiceImpl(@Qualifier("jobDaoImpl") CrudDao<Job, Long> crudDao) {
         super(crudDao);
-        this.jobDAO = (JobDao) crudDao;
+        this.jobDao = (JobDao) crudDao;
     }
 
     /**
@@ -57,7 +57,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public Job getByOrderNumber(int orderNumber) {
-        return jobDAO.getByOrderNumber(orderNumber);
+        return jobDao.getByOrderNumber(orderNumber);
     }
 
     /**
@@ -67,7 +67,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public List<Job> getAllByProjectName(String projectName) {
-        return jobDAO.getAllByProjectName(projectName);
+        return jobDao.getAllByProjectName(projectName);
     }
 
     /**
@@ -77,7 +77,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public List<Job> getAllByStatus(String status) {
-        return jobDAO.getAllByStatus(status);
+        return jobDao.getAllByStatus(status);
     }
 
     /**
@@ -87,7 +87,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public void updateStatusByOrderNumber(int orderNumber, String status) {
-        jobDAO.updateStatusByOrderNumber(orderNumber, status);
+        jobDao.updateStatusByOrderNumber(orderNumber, status);
     }
 
     /**
@@ -97,7 +97,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public void updateCommentByOrderNumber(int orderNumber, String comment) {
-        jobDAO.updateCommentByOrderNumber(orderNumber, comment);
+        jobDao.updateCommentByOrderNumber(orderNumber, comment);
     }
 
     /**
@@ -106,7 +106,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public void removeByOrderNumber(int orderNumber) {
-        jobDAO.removeByOrderNumber(orderNumber);
+        jobDao.removeByOrderNumber(orderNumber);
     }
 
     /**
@@ -117,7 +117,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public boolean isJobExist(int orderNumber) {
-        return jobDAO.isJobExist(orderNumber);
+        return jobDao.isJobExist(orderNumber);
     }
     
 }
