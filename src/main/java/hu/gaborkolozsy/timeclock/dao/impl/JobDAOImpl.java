@@ -4,14 +4,14 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
-import hu.gaborkolozsy.timeclock.dao.JobDAO;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.model.Job.JobBuilder;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import hu.gaborkolozsy.timeclock.dao.JobDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code JobDAO}. 
+ * Extends {@code CrudDAOImpl} and implement {@code JobDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @see List
  */
 @Repository
-public class JobDAOImpl extends CrudDAOImpl<Job, Long> implements JobDAO {
+public class JobDAOImpl extends CrudDAOImpl<Job, Long> implements JobDao {
 
     /**
      * Returns a {@code Job} entity by the specified order No..

@@ -4,8 +4,6 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.DeveloperDAO;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
 import hu.gaborkolozsy.timeclock.dao.impl.DeveloperDAOImpl;
 import hu.gaborkolozsy.timeclock.model.Developer;
@@ -15,14 +13,16 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 
 /**
  * Developer service implementation. Connect between Controller and DAO.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see DeveloperDAO
+ * @see CrudDao
+ * @see DeveloperDao
  * @see CrudDAOImpl
  * @see DeveloperDAOImpl
  * @see List
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> implements DeveloperService {
 
     @Autowired
-    private final DeveloperDAO developerDao;
+    private final DeveloperDao developerDao;
     
     /**
      * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
@@ -46,9 +46,9 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> imple
      * 
      * @param crudDao {@link DeveloperDAOImpl} instance 
      */
-    public DeveloperServiceImpl(@Qualifier("developerDAOImpl") CrudDAO<Developer, Long> crudDao) {
+    public DeveloperServiceImpl(@Qualifier("developerDAOImpl") CrudDao<Developer, Long> crudDao) {
         super(crudDao);
-        this.developerDao = (DeveloperDAO) crudDao;
+        this.developerDao = (DeveloperDao) crudDao;
     }
 
     /**

@@ -4,8 +4,6 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.CustomerDAO;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
 import hu.gaborkolozsy.timeclock.dao.impl.CustomerDAOImpl;
 import hu.gaborkolozsy.timeclock.model.Customer;
@@ -14,14 +12,16 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.CustomerDao;
 
 /**
  * Customer service implementation. Connect between Controller and DAO.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see CustomerDAO
+ * @see CrudDao
+ * @see CustomerDao
  * @see CrudDAOImpl
  * @see CustomerDAOImpl
  * @see Autowired
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long> implements CustomerService {
 
     @Autowired
-    private final CustomerDAO customerDao;
+    private final CustomerDao customerDao;
 
     /**
      * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
@@ -44,9 +44,9 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long> impleme
      * 
      * @param crudDao {@link CustomerDAOImpl} instance 
      */
-    public CustomerServiceImpl(@Qualifier("customerDAOImpl") CrudDAO<Customer, Long> crudDao) {
+    public CustomerServiceImpl(@Qualifier("customerDAOImpl") CrudDao<Customer, Long> crudDao) {
         super(crudDao);
-        this.customerDao = (CustomerDAO) crudDao;
+        this.customerDao = (CustomerDao) crudDao;
     }
 
     /**

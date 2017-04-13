@@ -4,8 +4,6 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.PayDAO;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.service.PayService;
@@ -14,14 +12,16 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.PayDao;
 
 /**
  * Pay service implementation. Connect between Controller and DAO.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see PayDAO
+ * @see CrudDao
+ * @see PayDao
  * @see CrudDAOImpl
  * @see PayDAOImpl
  * @see List
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class PayServiceImpl extends CrudServiceImpl<Pay, Long> implements PayService {
 
     @Autowired
-    private final PayDAO payDao;
+    private final PayDao payDao;
 
     /**
      * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
@@ -45,9 +45,9 @@ public class PayServiceImpl extends CrudServiceImpl<Pay, Long> implements PaySer
      * 
      * @param crudDao {@link PayDAOImpl} instance 
      */
-    public PayServiceImpl(@Qualifier("payDAOImpl") CrudDAO<Pay, Long> crudDao) {
+    public PayServiceImpl(@Qualifier("payDAOImpl") CrudDao<Pay, Long> crudDao) {
         super(crudDao);
-        this.payDao = (PayDAO) crudDao;
+        this.payDao = (PayDao) crudDao;
     }
 
     /**

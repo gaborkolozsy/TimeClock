@@ -8,13 +8,13 @@ import hu.gaborkolozsy.timeclock.model.Job;
 import java.util.List;
 
 /**
- * Extended {@code JobDAO} interface.
+ * Extended {@code JobDao} interface.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface JobDAO extends CrudDAO<Job, Long> {
+public interface JobDao extends CrudDao<Job, Long> {
 
     /**
      * Returns a {@code Job} entity by the specified order No..

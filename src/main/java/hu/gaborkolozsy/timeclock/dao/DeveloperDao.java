@@ -8,20 +8,20 @@ import hu.gaborkolozsy.timeclock.model.Developer;
 import java.util.List;
 
 /**
- * Extended {@code DeveloperDAO} interface.
+ * Extended {@code DeveloperDao} interface.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface DeveloperDAO extends CrudDAO<Developer, Long> {
+public interface DeveloperDao extends CrudDao<Developer, Long> {
 
     /**
      * Returns a {@code Developer} entity by the specified developer's ID.
-     * @param developerID developer's ID
+     * @param developerId developer's ID
      * @return a {@code Developer} instance
      */
-    Developer getByDeveloperId(Integer developerID);
+    Developer getByDeveloperId(Integer developerId);
     
     /**
      * Returns a list of the {@code Developer} entities by the specified fore name.

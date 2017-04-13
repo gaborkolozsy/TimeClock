@@ -4,14 +4,14 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
-import hu.gaborkolozsy.timeclock.dao.DeveloperDAO;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.model.Developer.DeveloperBuilder;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code DeveloperDAO}. 
+ * Extends {@code CrudDAOImpl} and implement {@code DeveloperDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @see list
  */
 @Repository
-public class DeveloperDAOImpl extends CrudDAOImpl<Developer, Long> implements DeveloperDAO {
+public class DeveloperDAOImpl extends CrudDAOImpl<Developer, Long> implements DeveloperDao {
 
     /**
      * Returns a {@code Developer} entity instance by the specified developer's ID.

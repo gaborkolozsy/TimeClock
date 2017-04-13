@@ -4,8 +4,6 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.JobDAO;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.service.JobService;
@@ -14,14 +12,16 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.JobDao;
 
 /**
  * Job service implementation. Connect between Controller and DAO.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see JobDAO
+ * @see CrudDao
+ * @see JobDao
  * @see CrudDAOImpl
  * @see JobDAOImpl
  * @see List
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobService {
 
     @Autowired
-    private final JobDAO jobDAO;
+    private final JobDao jobDAO;
 
     /**
      * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
@@ -45,9 +45,9 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * 
      * @param crudDao {@link JobDAOImpl} instance 
      */
-    public JobServiceImpl(@Qualifier("jobDAOImpl") CrudDAO<Job, Long> crudDao) {
+    public JobServiceImpl(@Qualifier("jobDAOImpl") CrudDao<Job, Long> crudDao) {
         super(crudDao);
-        this.jobDAO = (JobDAO) crudDao;
+        this.jobDAO = (JobDao) crudDao;
     }
 
     /**

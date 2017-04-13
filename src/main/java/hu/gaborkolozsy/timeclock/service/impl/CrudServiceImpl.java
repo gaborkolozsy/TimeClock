@@ -4,7 +4,6 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
 import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
 import hu.gaborkolozsy.timeclock.service.CrudService;
 import java.io.Serializable;
@@ -12,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
 
 /**
  * The basic <strong>C.R.U.D.</strong> generic service implementation dependent 
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <T> type of entity
  * @param <K> type of primary key
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
+ * @see CrudDao
  * @see CrudDAOImpl
  * @see List
  */
@@ -29,14 +29,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T, K> {
 
     @Autowired
-    private final CrudDAO<T, K> crudDao;
+    private final CrudDao<T, K> crudDao;
     
     /**
      * Constructor wait a {@code CrudDAOImpl} instance but with interface type.
      * <p><strong>So can avoid the {@link NoSuchBeanDefinitionException} exception!!!</strong>
      * @param crudDao {@code CrudDAOImpl}
      */
-    public CrudServiceImpl(CrudDAO<T, K> crudDao) {
+    public CrudServiceImpl(CrudDao<T, K> crudDao) {
         this.crudDao = crudDao;
     }
 

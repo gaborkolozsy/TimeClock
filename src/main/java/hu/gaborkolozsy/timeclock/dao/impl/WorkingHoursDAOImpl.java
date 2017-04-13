@@ -3,14 +3,14 @@
  */
 package hu.gaborkolozsy.timeclock.dao.impl;
 
-import hu.gaborkolozsy.timeclock.dao.WorkingHoursDAO;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
 import hu.gaborkolozsy.timeclock.model.WorkingHours.WorkingHoursBuilder;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Repository;
+import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
 
 /** 
- * Extends {@code CrudDAOImpl} and implement {@code WorkingHoursDAO}. 
+ * Extends {@code CrudDAOImpl} and implement {@code WorkingHoursDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
  * @see LocalDateTime
  */
 @Repository
-public class WorkingHoursDAOImpl extends CrudDAOImpl<WorkingHours, Long> implements WorkingHoursDAO {
+public class WorkingHoursDAOImpl extends CrudDAOImpl<WorkingHours, Long> implements WorkingHoursDao {
 
     /**
      * Update the {@link WorkingHours}' {@code Work_End} column from null to the

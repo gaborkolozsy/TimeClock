@@ -4,14 +4,14 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CustomerDAO;
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Customer.CustomerBuilder;
 import javax.persistence.PersistenceException;
 import org.springframework.stereotype.Repository;
+import hu.gaborkolozsy.timeclock.dao.CustomerDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code CustomerDAO}. 
+ * Extends {@code CrudDAOImpl} and implement {@code CustomerDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
  * @see CustomerBuilder
  */
 @Repository
-public class CustomerDAOImpl extends CrudDAOImpl<Customer, Long> implements CustomerDAO {
+public class CustomerDAOImpl extends CrudDAOImpl<Customer, Long> implements CustomerDao {
 
     /**
      * Returns {@code Customer} by the specified customer's ID.

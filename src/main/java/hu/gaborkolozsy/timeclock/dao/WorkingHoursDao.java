@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Extended {@code WorkingHoursDAO} interface.
+ * Extended {@code WorkingHoursDao} interface.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface WorkingHoursDAO extends CrudDAO<WorkingHours, Long> {
+public interface WorkingHoursDao extends CrudDao<WorkingHours, Long> {
 
     /**
      * Update the {@link WorkingHours}' {@code Work_End} column from null to the
