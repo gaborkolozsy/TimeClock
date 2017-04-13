@@ -15,17 +15,17 @@ Maven based project with Spring, JPA and Hibernate.
 # &nbsp;
 <br>
 <p>
-    <a href="https://github.com/gaborkolozsy/test/watchers">
-        <img src="https://img.shields.io/github/watchers/gaborkolozsy/test.svg?style=social&label=Watch">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring/watchers">
+        <img src="https://img.shields.io/github/watchers/gaborkolozsy/TimeClock-Spring.svg?style=social&label=Watch">
     </a>
-    <a href="https://github.com/gaborkolozsy/test/stargazers">
-        <img src="https://img.shields.io/github/stars/gaborkolozsy/test.svg?style=social&label=Star">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring/stargazers">
+        <img src="https://img.shields.io/github/stars/gaborkolozsy/TimeClock-Spring.svg?style=social&label=Star">
     </a>
-    <a href="https://github.com/gaborkolozsy/test/network">
-        <img src="https://img.shields.io/github/forks/gaborkolozsy/test.svg?style=social&label=Fork">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring/network">
+        <img src="https://img.shields.io/github/forks/gaborkolozsy/TimeClock-Spring.svg?style=social&label=Fork">
     </a>
-    <a href="https://github.com/gaborkolozsy/test/blob/develop/LICENSE">
-        <img align="right" src="https://img.shields.io/github/license/gaborkolozsy/test.svg">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring/blob/master/LICENSE">
+        <img align="right" src="https://img.shields.io/github/license/gaborkolozsy/TimeClock-Spring.svg">
     </a>
     <p align="center">
         <a href="https://github.com/gaborkolozsy">
