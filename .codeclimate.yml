@@ -4,7 +4,7 @@ engines:
   checkstyle:
     enabled: true
     channel: "beta"
-    config: 'codeclimate-checkstyle.xml'
+    config: 'codeclimate-checkstyle.xsd'
 
 ratings:
   paths:
