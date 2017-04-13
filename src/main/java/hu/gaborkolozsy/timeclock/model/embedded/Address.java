@@ -74,7 +74,7 @@ public class Address {
     }
 
     /**
-     * Returns the address
+     * Returns the address.
      * @return address
      */
     public String getAddress() {
