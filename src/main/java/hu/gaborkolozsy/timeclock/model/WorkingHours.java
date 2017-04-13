@@ -71,7 +71,8 @@ public class WorkingHours implements Auditable {
 
     @Id
     @GeneratedValue(generator = "workingHoursGEN", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(allocationSize = 1, name = "workingHoursGEN", sequenceName = "workingHoursSEQ")
+    @SequenceGenerator(allocationSize = 1, name = "workingHoursGEN", 
+                       sequenceName = "workingHoursSEQ")
     @Column(name = "Id", nullable = false, unique = true, updatable = false)
     private Long id;
     
@@ -165,7 +166,8 @@ public class WorkingHours implements Auditable {
      * @see LocalDate
      * @see LocalDateTime
      */
-    public static class WorkingHoursBuilder extends AbstractWorkingHoursBuilder<WorkingHours, WorkingHoursBuilder> {
+    public static class WorkingHoursBuilder extends 
+            AbstractWorkingHoursBuilder<WorkingHours, WorkingHoursBuilder> {
 
         /**
          * Constructor without parameter.

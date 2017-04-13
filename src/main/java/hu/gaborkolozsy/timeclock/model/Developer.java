@@ -38,13 +38,11 @@ import org.hibernate.loader.MultipleBagFetchException;
  * 
  * <p>The {@link Audit} is embedded.
  * 
- * <p><strong>
- * If want {@code Developer_Id} column for referenced column by @ManyToOne 
- * relationship instead of default primary key, than {@code Developer} entity 
- * must implements the {@code Serializable} interface.
+ * <p><strong>If want {@code Developer_Id} column for referenced column 
+ * by @ManyToOne relationship instead of default primary key, than 
+ * {@code Developer} entity must implements the {@code Serializable} interface.
  * 
- * <p>
- * Without @Fetch(FetchMode.SELECT) hibernate throws a 
+ * <p>Without @Fetch(FetchMode.SELECT) hibernate throws a 
  * {@link MultipleBagFetchException}. Cause: cannot simultaneously fetch 
  * multiple bags. With {@code List} don't, but with {@code Set} work good.
  * </strong>
@@ -78,8 +76,10 @@ import org.hibernate.loader.MultipleBagFetchException;
 @EntityListeners(AuditListener.class)
 @DynamicInsert
 @NamedQueries({ 
-    @NamedQuery(name = "getByDeveloperId", query = "from Developer d where d.developerId = :developerId"),
-    @NamedQuery(name = "getAllByForename", query = "from Developer d where d.forename = :forename")
+    @NamedQuery(name = "getByDeveloperId", 
+                query = "from Developer d where d.developerId = :developerId"),
+    @NamedQuery(name = "getAllByForename", 
+                query = "from Developer d where d.forename = :forename")
 })
 @SuppressWarnings({"PersistenceUnitPresent"})
 public class Developer implements Auditable, Serializable {
@@ -100,11 +100,13 @@ public class Developer implements Auditable, Serializable {
     private String lastName;
     
     @Fetch(FetchMode.SELECT)
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "developer", targetEntity = Job.class)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
+               mappedBy = "developer", targetEntity = Job.class)
     private List<Job> jobs = new ArrayList<>(0);
     
     @Fetch(FetchMode.SELECT)
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "developer", targetEntity = WorkingHours.class)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
+               mappedBy = "developer", targetEntity = WorkingHours.class)
     private List<WorkingHours> workingHours = new ArrayList<>(0);
     
     @Embedded
@@ -201,7 +203,8 @@ public class Developer implements Auditable, Serializable {
      * @see Builder
      * @see AbstractDeveloperBuilder
      */
-    public static class DeveloperBuilder extends AbstractDeveloperBuilder<Developer, DeveloperBuilder> {
+    public static class DeveloperBuilder extends 
+            AbstractDeveloperBuilder<Developer, DeveloperBuilder> {
 
         /**
          * Constructor without parameter.

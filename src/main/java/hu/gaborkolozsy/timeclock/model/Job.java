@@ -66,9 +66,12 @@ import org.hibernate.annotations.DynamicInsert;
 @EntityListeners(AuditListener.class)
 @DynamicInsert
 @NamedQueries({
-    @NamedQuery(name = "getAllByOrderNumber", query = "select j from Job j where j.orderNumber = :orderNumber"),
-    @NamedQuery(name = "getAllByProjectName", query = "from Job j where j.projectName = :projectName"),
-    @NamedQuery(name = "getAllByStatus", query = "from Job j where j.status = :status")
+    @NamedQuery(name = "getAllByOrderNumber", 
+                query = "select j from Job j where j.orderNumber = :orderNumber"),
+    @NamedQuery(name = "getAllByProjectName", 
+                query = "from Job j where j.projectName = :projectName"),
+    @NamedQuery(name = "getAllByStatus", 
+                query = "from Job j where j.status = :status")
 })
 @SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
 public class Job implements Auditable {
@@ -108,7 +111,8 @@ public class Job implements Auditable {
     @JoinColumn(name = "Developer_Id", nullable = false, referencedColumnName = "Developer_Id")
     private Developer developer;
     
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "job", targetEntity = Pay.class)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
+              mappedBy = "job", targetEntity = Pay.class)
     private Pay pay;
     
     @Embedded
