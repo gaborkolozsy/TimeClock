@@ -4,14 +4,14 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
-import hu.gaborkolozsy.timeclock.dao.PayDAO;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.model.Pay.PayBuilder;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import hu.gaborkolozsy.timeclock.dao.PayDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code PayDAO}. 
+ * Extends {@code CrudDaoImpl} and implement {@code PayDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @see List
  */
 @Repository
-public class PayDAOImpl extends CrudDAOImpl<Pay, Long> implements PayDAO {
+public class PayDaoImpl extends CrudDaoImpl<Pay, Long> implements PayDao {
 
     /**
      * Returns a {@code Pay} entity by the specified ID.

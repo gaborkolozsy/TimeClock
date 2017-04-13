@@ -4,14 +4,14 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
-import hu.gaborkolozsy.timeclock.dao.DeveloperDAO;
+import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.model.Developer.DeveloperBuilder;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code DeveloperDAO}. 
+ * Extends {@code CrudDaoImpl} and implement {@code DeveloperDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -20,17 +20,17 @@ import org.springframework.stereotype.Repository;
  * @see list
  */
 @Repository
-public class DeveloperDAOImpl extends CrudDAOImpl<Developer, Long> implements DeveloperDAO {
+public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements DeveloperDao {
 
     /**
      * Returns a {@code Developer} entity instance by the specified developer's ID.
-     * @param developerID developer's ID
+     * @param developerId developer's ID
      * @return the {@code Developer} instance
      */
     @Override
-    public Developer getByDeveloperId(Integer developerID) {
+    public Developer getByDeveloperId(Integer developerId) {
         return entityManager.createNamedQuery("getByDeveloperId", Developer.class)
-                .setParameter("developerId", developerID)
+                .setParameter("developerId", developerId)
                 .getSingleResult();
     }
 

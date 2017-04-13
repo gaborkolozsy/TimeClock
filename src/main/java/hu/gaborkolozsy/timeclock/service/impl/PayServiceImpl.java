@@ -4,9 +4,9 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.PayDAO;
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.PayDao;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.service.PayService;
 import java.util.List;
@@ -20,9 +20,9 @@ import org.springframework.stereotype.Service;
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see PayDAO
- * @see CrudDAOImpl
+ * @see CrudDao
+ * @see PayDao
+ * @see CrudDaoImpl
  * @see PayDAOImpl
  * @see List
  * @see Autowired
@@ -32,10 +32,10 @@ import org.springframework.stereotype.Service;
 public class PayServiceImpl extends CrudServiceImpl<Pay, Long> implements PayService {
 
     @Autowired
-    private final PayDAO payDao;
+    private final PayDao payDao;
 
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
@@ -45,9 +45,9 @@ public class PayServiceImpl extends CrudServiceImpl<Pay, Long> implements PaySer
      * 
      * @param crudDao {@link PayDAOImpl} instance 
      */
-    public PayServiceImpl(@Qualifier("payDAOImpl") CrudDAO<Pay, Long> crudDao) {
+    public PayServiceImpl(@Qualifier("payDaoImpl") CrudDao<Pay, Long> crudDao) {
         super(crudDao);
-        this.payDao = (PayDAO) crudDao;
+        this.payDao = (PayDao) crudDao;
     }
 
     /**

@@ -22,15 +22,21 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  */
 public class DataSourceConfig {
 
-    /** The JDBC <strong>url</strong> for accessing {@code DriverManager}. */
+    /** 
+     * The JDBC <strong>url</strong> for accessing {@code DriverManager}. 
+     */
     @Value("${database.url}")
     private String url;
     
-    /** The JDBC <strong>user</strong> for accessing {@code DriverManager}. */
+    /** 
+     * The JDBC <strong>user</strong> for accessing {@code DriverManager}. 
+     */
     @Value("${database.user}")
     private String user;
     
-    /** The JDBC <strong>password</strong> for accessing {@code DriverManager}. */
+    /** 
+     * The JDBC <strong>password</strong> for accessing {@code DriverManager}. 
+     */
     @Value("${database.password}")
     private String password;
     
@@ -47,7 +53,7 @@ public class DataSourceConfig {
      * @return {@code PropertySourcesPlaceholderConfigurer}
      */
     @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySPC() {
+    public static PropertySourcesPlaceholderConfigurer propertySpc() {
         return new PropertySourcesPlaceholderConfigurer();
     }
     

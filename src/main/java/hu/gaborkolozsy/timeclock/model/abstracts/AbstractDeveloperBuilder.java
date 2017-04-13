@@ -18,7 +18,8 @@ import java.util.List;
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
  */
-public abstract class AbstractDeveloperBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
+public abstract class AbstractDeveloperBuilder<E, B> extends AbstractEntity<E, B> 
+        implements Builder<E> {
 
     /**
      * Set the {@link Developer}'s natural ID.

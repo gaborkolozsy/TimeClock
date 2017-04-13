@@ -72,8 +72,10 @@ import org.hibernate.annotations.DynamicInsert;
 @EntityListeners({AuditListener.class})
 @DynamicInsert
 @NamedQueries({
-    @NamedQuery(name = "getByCustomerId", query = "from Customer c where c.customerId = :customerId"),
-    @NamedQuery(name = "getByCustomerName", query = "from Customer c where c.name = :name")
+    @NamedQuery(name = "getByCustomerId", 
+                query = "from Customer c where c.customerId = :customerId"),
+    @NamedQuery(name = "getByCustomerName", 
+                query = "from Customer c where c.name = :name")
 })
 @SuppressWarnings({"PersistenceUnitPresent"})
 public class Customer implements Auditable, Serializable {
@@ -93,7 +95,8 @@ public class Customer implements Auditable, Serializable {
     @Column(name = "Contact")
     private String contact;
     
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "customer", targetEntity = Job.class)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
+               mappedBy = "customer", targetEntity = Job.class)
     private List<Job> jobs = new ArrayList<>(0);
     
     @Embedded

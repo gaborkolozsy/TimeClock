@@ -18,10 +18,10 @@ public interface DeveloperService extends CrudService<Developer, Long> {
     
     /**
      * Returns a {@code Developer} entity by the specified developer's ID.
-     * @param developerID developer's ID
+     * @param developerId developer's ID
      * @return a {@code Developer} 
      */
-    Developer getByDeveloperId(Integer developerID);
+    Developer getByDeveloperId(Integer developerId);
     
     /**
      * Returns a list of the {@code Developer} entity by the specified fore name.

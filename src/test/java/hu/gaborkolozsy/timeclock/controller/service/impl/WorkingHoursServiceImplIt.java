@@ -10,8 +10,12 @@ import hu.gaborkolozsy.timeclock.model.WorkingHours.WorkingHoursBuilder;
 import hu.gaborkolozsy.timeclock.service.WorkingHoursService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +28,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @since 0.0.1-SNAPSHOT
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-public class WorkingHoursServiceImplIT extends DevelopmentTest {
+public class WorkingHoursServiceImplIt extends DevelopmentTest {
 
     @Autowired
     private WorkingHoursService workingHoursService;

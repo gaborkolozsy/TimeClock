@@ -2,6 +2,7 @@
  * Copyright (c) 2017, Gabor Kolozsy. All rights reserved.
  * 
  */
+
 package hu.gaborkolozsy.timeclock;
 
 import java.io.BufferedReader;
@@ -22,10 +23,14 @@ import org.h2.tools.Server;
  */
 public class H2DatabaseServer {
 
-    /** <strong>{@code TCP}</strong> server. */
+    /**
+     * <strong>{@code TCP}</strong> server. 
+     */
     private static Server tcpServer;
     
-    /** <strong>{@code WEB}</strong> server. */
+    /** 
+     * <strong>{@code WEB}</strong> server. 
+     */
     private static Server webServer;
     
     /**
@@ -64,6 +69,7 @@ public class H2DatabaseServer {
     }
     
     /**
+     * Main.
      * @param args the command line arguments
      */
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2017, Gabor Kolozsy. All rights reserved.
  */
+
 package hu.gaborkolozsy.timeclock.dao;
 
 /**
@@ -40,7 +41,7 @@ package hu.gaborkolozsy.timeclock.dao;
  * @param <K> type of primary key
  * @since 0.0.1-SNAPSHOT
  */
-public interface CrudDAO<T, K> {
+public interface CrudDao<T, K> {
     
     /**
      * Make an instance, managed and persistent. Return the saved entity.

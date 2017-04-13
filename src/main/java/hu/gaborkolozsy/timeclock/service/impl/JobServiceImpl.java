@@ -4,9 +4,9 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.JobDAO;
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.JobDao;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.service.JobService;
 import java.util.List;
@@ -16,13 +16,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
- * Job service implementation. Connect between Controller and DAO.
+ * Job service implementation. Connect between Controller and Dao.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see JobDAO
- * @see CrudDAOImpl
+ * @see CrudDao
+ * @see JobDao
+ * @see CrudDaoImpl
  * @see JobDAOImpl
  * @see List
  * @see Autowired
@@ -32,10 +32,10 @@ import org.springframework.stereotype.Service;
 public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobService {
 
     @Autowired
-    private final JobDAO jobDAO;
+    private final JobDao jobDao;
 
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
@@ -45,9 +45,9 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * 
      * @param crudDao {@link JobDAOImpl} instance 
      */
-    public JobServiceImpl(@Qualifier("jobDAOImpl") CrudDAO<Job, Long> crudDao) {
+    public JobServiceImpl(@Qualifier("jobDaoImpl") CrudDao<Job, Long> crudDao) {
         super(crudDao);
-        this.jobDAO = (JobDAO) crudDao;
+        this.jobDao = (JobDao) crudDao;
     }
 
     /**
@@ -57,7 +57,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public Job getByOrderNumber(int orderNumber) {
-        return jobDAO.getByOrderNumber(orderNumber);
+        return jobDao.getByOrderNumber(orderNumber);
     }
 
     /**
@@ -67,7 +67,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public List<Job> getAllByProjectName(String projectName) {
-        return jobDAO.getAllByProjectName(projectName);
+        return jobDao.getAllByProjectName(projectName);
     }
 
     /**
@@ -77,7 +77,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public List<Job> getAllByStatus(String status) {
-        return jobDAO.getAllByStatus(status);
+        return jobDao.getAllByStatus(status);
     }
 
     /**
@@ -87,7 +87,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public void updateStatusByOrderNumber(int orderNumber, String status) {
-        jobDAO.updateStatusByOrderNumber(orderNumber, status);
+        jobDao.updateStatusByOrderNumber(orderNumber, status);
     }
 
     /**
@@ -97,7 +97,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public void updateCommentByOrderNumber(int orderNumber, String comment) {
-        jobDAO.updateCommentByOrderNumber(orderNumber, comment);
+        jobDao.updateCommentByOrderNumber(orderNumber, comment);
     }
 
     /**
@@ -106,7 +106,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public void removeByOrderNumber(int orderNumber) {
-        jobDAO.removeByOrderNumber(orderNumber);
+        jobDao.removeByOrderNumber(orderNumber);
     }
 
     /**
@@ -117,7 +117,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      */
     @Override
     public boolean isJobExist(int orderNumber) {
-        return jobDAO.isJobExist(orderNumber);
+        return jobDao.isJobExist(orderNumber);
     }
     
 }

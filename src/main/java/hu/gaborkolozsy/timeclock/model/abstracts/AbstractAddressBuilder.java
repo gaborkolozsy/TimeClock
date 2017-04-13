@@ -16,7 +16,8 @@ import hu.gaborkolozsy.timeclock.model.embedded.Address.AddressBuilder;
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
  */
-public abstract class AbstractAddressBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
+public abstract class AbstractAddressBuilder<E, B> extends AbstractEntity<E, B> 
+        implements Builder<E> {
 
     /**
      * Set the country.
@@ -68,8 +69,8 @@ public abstract class AbstractAddressBuilder<E, B> extends AbstractEntity<E, B> 
     public abstract B setPhoneNumber(String phoneNumber);
 
     /**
-     * Set the email address
-     * @param emailAddress
+     * Set the email address.
+     * @param emailAddress email address
      * @return builder implement class
      */
     public abstract B setEmailAddress(String emailAddress);

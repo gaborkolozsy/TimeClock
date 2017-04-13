@@ -8,13 +8,13 @@ import hu.gaborkolozsy.timeclock.model.Pay;
 import java.util.List;
 
 /**
- * Extended {@code PayDAO} interface.
+ * Extended {@code PayDao} interface.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  * @see List
  */
-public interface PayDAO extends CrudDAO<Pay, Long> {
+public interface PayDao extends CrudDao<Pay, Long> {
 
     /**
      * Returns a {@code Pay} entity by the specified ID.

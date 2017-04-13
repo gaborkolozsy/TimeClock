@@ -8,12 +8,12 @@ import hu.gaborkolozsy.timeclock.model.Customer;
 import javax.persistence.PersistenceException;
 
 /**
- * Extended {@code CustomerDAO} interface.
+ * Extended {@code CustomerDao} interface.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
  */
-public interface CustomerDAO extends CrudDAO<Customer, Long> {
+public interface CustomerDao extends CrudDao<Customer, Long> {
 
     /**
      * Returns {@code Customer} by the specified customer's ID.

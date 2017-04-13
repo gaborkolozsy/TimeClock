@@ -4,10 +4,10 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.CrudDAO;
-import hu.gaborkolozsy.timeclock.dao.DeveloperDAO;
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
-import hu.gaborkolozsy.timeclock.dao.impl.DeveloperDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
+import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.DeveloperDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.service.DeveloperService;
 import java.util.List;
@@ -17,26 +17,27 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
- * Developer service implementation. Connect between Controller and DAO.
+ * Developer service implementation. Connect between Controller and Dao.
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
- * @see CrudDAO
- * @see DeveloperDAO
- * @see CrudDAOImpl
- * @see DeveloperDAOImpl
+ * @see CrudDao
+ * @see DeveloperDao
+ * @see CrudDaoImpl
+ * @see DeveloperDaoImpl
  * @see List
  * @see Autowired
  * @see Qualifier
  */
 @Service
-public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> implements DeveloperService {
+public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> 
+        implements DeveloperService {
 
     @Autowired
-    private final DeveloperDAO developerDao;
+    private final DeveloperDao developerDao;
     
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
@@ -44,21 +45,21 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> imple
      * Otherwise throw an {@link NoSuchBeanDefinitionException} exception!!!
      * </strong>
      * 
-     * @param crudDao {@link DeveloperDAOImpl} instance 
+     * @param crudDao {@link DeveloperDaoImpl} instance 
      */
-    public DeveloperServiceImpl(@Qualifier("developerDAOImpl") CrudDAO<Developer, Long> crudDao) {
+    public DeveloperServiceImpl(@Qualifier("developerDaoImpl") CrudDao<Developer, Long> crudDao) {
         super(crudDao);
-        this.developerDao = (DeveloperDAO) crudDao;
+        this.developerDao = (DeveloperDao) crudDao;
     }
 
     /**
      * Returns a {@code Developer} entity by the specified developer's ID.
-     * @param developerID developer's ID
+     * @param developerId developer's ID
      * @return a {@code Developer} 
      */
     @Override
-    public Developer getByDeveloperId(Integer developerID) {
-        return developerDao.getByDeveloperId(developerID);
+    public Developer getByDeveloperId(Integer developerId) {
+        return developerDao.getByDeveloperId(developerId);
     }
 
     /**
