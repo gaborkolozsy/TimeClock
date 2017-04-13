@@ -3,7 +3,7 @@
 engines:
   checkstyle:
     enabled: true
-    #channel: "beta"
+    channel: "beta"
     config: 'codeclimate-checkstyle.xsd'
 
 ratings:
