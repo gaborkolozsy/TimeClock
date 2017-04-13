@@ -4,7 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.service.CrudService;
 import java.io.Serializable;
 import java.util.List;
@@ -22,7 +22,7 @@ import hu.gaborkolozsy.timeclock.dao.CrudDao;
  * @param <K> type of primary key
  * @since 0.0.1-SNAPSHOT
  * @see CrudDao
- * @see CrudDAOImpl
+ * @see CrudDaoImpl
  * @see List
  */
 @Transactional
@@ -32,9 +32,9 @@ public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T
     private final CrudDao<T, K> crudDao;
     
     /**
-     * Constructor wait a {@code CrudDAOImpl} instance but with interface type.
+     * Constructor wait a {@code CrudDaoImpl} instance but with interface type.
      * <p><strong>So can avoid the {@link NoSuchBeanDefinitionException} exception!!!</strong>
-     * @param crudDao {@code CrudDAOImpl}
+     * @param crudDao {@code CrudDaoImpl}
      */
     public CrudServiceImpl(CrudDao<T, K> crudDao) {
         this.crudDao = crudDao;

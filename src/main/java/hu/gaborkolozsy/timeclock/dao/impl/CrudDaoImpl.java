@@ -31,7 +31,7 @@ import hu.gaborkolozsy.timeclock.dao.CrudDao;
  * @see CriteriaBuilder
  * @see CriteriaQuery
  */
-public class CrudDAOImpl<T, K extends Serializable> implements CrudDao<T, K> {
+public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     
     /** Interface used to interact with the persistence context. */
     @PersistenceContext(unitName = "Time_Clock")
@@ -57,10 +57,10 @@ public class CrudDAOImpl<T, K extends Serializable> implements CrudDao<T, K> {
      * 
      * </pre>
      */
-    public CrudDAOImpl() { 
+    public CrudDaoImpl() { 
         Type type = getClass().getGenericSuperclass();
-        ParameterizedType pType = (ParameterizedType) type; 
-        this.entityType = (Class<T>) pType.getActualTypeArguments()[0];
+        ParameterizedType parameterizedType = (ParameterizedType) type; 
+        this.entityType = (Class<T>) parameterizedType.getActualTypeArguments()[0];
     }
 
     /**

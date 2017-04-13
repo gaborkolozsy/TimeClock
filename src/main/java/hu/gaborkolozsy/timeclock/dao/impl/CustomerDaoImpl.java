@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import hu.gaborkolozsy.timeclock.dao.CustomerDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code CustomerDao}. 
+ * Extends {@code CrudDaoImpl} and implement {@code CustomerDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -19,7 +19,7 @@ import hu.gaborkolozsy.timeclock.dao.CustomerDao;
  * @see CustomerBuilder
  */
 @Repository
-public class CustomerDAOImpl extends CrudDAOImpl<Customer, Long> implements CustomerDao {
+public class CustomerDaoImpl extends CrudDaoImpl<Customer, Long> implements CustomerDao {
 
     /**
      * Returns {@code Customer} by the specified customer's ID.

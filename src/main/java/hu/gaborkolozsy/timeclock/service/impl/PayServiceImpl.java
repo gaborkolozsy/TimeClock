@@ -4,7 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.service.PayService;
 import java.util.List;
@@ -22,7 +22,7 @@ import hu.gaborkolozsy.timeclock.dao.PayDao;
  * @since 0.0.1-SNAPSHOT
  * @see CrudDao
  * @see PayDao
- * @see CrudDAOImpl
+ * @see CrudDaoImpl
  * @see PayDAOImpl
  * @see List
  * @see Autowired
@@ -35,7 +35,7 @@ public class PayServiceImpl extends CrudServiceImpl<Pay, Long> implements PaySer
     private final PayDao payDao;
 
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>

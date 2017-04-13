@@ -4,8 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
-import hu.gaborkolozsy.timeclock.dao.impl.DeveloperDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.DeveloperDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.service.DeveloperService;
 import java.util.List;
@@ -23,8 +23,8 @@ import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
  * @since 0.0.1-SNAPSHOT
  * @see CrudDao
  * @see DeveloperDao
- * @see CrudDAOImpl
- * @see DeveloperDAOImpl
+ * @see CrudDaoImpl
+ * @see DeveloperDaoImpl
  * @see List
  * @see Autowired
  * @see Qualifier
@@ -36,7 +36,7 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> imple
     private final DeveloperDao developerDao;
     
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
@@ -44,7 +44,7 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long> imple
      * Otherwise throw an {@link NoSuchBeanDefinitionException} exception!!!
      * </strong>
      * 
-     * @param crudDao {@link DeveloperDAOImpl} instance 
+     * @param crudDao {@link DeveloperDaoImpl} instance 
      */
     public DeveloperServiceImpl(@Qualifier("developerDAOImpl") CrudDao<Developer, Long> crudDao) {
         super(crudDao);

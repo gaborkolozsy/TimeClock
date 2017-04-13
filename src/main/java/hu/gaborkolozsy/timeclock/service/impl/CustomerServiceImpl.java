@@ -4,8 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
-import hu.gaborkolozsy.timeclock.dao.impl.CustomerDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CustomerDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.service.CustomerService;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -22,8 +22,8 @@ import hu.gaborkolozsy.timeclock.dao.CustomerDao;
  * @since 0.0.1-SNAPSHOT
  * @see CrudDao
  * @see CustomerDao
- * @see CrudDAOImpl
- * @see CustomerDAOImpl
+ * @see CrudDaoImpl
+ * @see CustomerDaoImpl
  * @see Autowired
  * @see Qualifier
  */
@@ -34,7 +34,7 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long> impleme
     private final CustomerDao customerDao;
 
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
@@ -42,7 +42,7 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long> impleme
      * Otherwise throw an {@link NoSuchBeanDefinitionException} exception!!!
      * </strong>
      * 
-     * @param crudDao {@link CustomerDAOImpl} instance 
+     * @param crudDao {@link CustomerDaoImpl} instance 
      */
     public CustomerServiceImpl(@Qualifier("customerDAOImpl") CrudDao<Customer, Long> crudDao) {
         super(crudDao);

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import hu.gaborkolozsy.timeclock.dao.PayDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code PayDao}. 
+ * Extends {@code CrudDaoImpl} and implement {@code PayDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -20,7 +20,7 @@ import hu.gaborkolozsy.timeclock.dao.PayDao;
  * @see List
  */
 @Repository
-public class PayDAOImpl extends CrudDAOImpl<Pay, Long> implements PayDao {
+public class PayDaoImpl extends CrudDaoImpl<Pay, Long> implements PayDao {
 
     /**
      * Returns a {@code Pay} entity by the specified ID.

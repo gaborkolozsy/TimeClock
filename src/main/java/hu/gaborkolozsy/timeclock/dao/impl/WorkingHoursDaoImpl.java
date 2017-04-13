@@ -1,16 +1,17 @@
 /*
  * Copyright (c) 2017, Gabor Kolozsy. All rights reserved.
  */
+
 package hu.gaborkolozsy.timeclock.dao.impl;
 
+import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
 import hu.gaborkolozsy.timeclock.model.WorkingHours.WorkingHoursBuilder;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Repository;
-import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
 
 /** 
- * Extends {@code CrudDAOImpl} and implement {@code WorkingHoursDao}. 
+ * Extends {@code CrudDaoImpl} and implement {@code WorkingHoursDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -19,7 +20,8 @@ import hu.gaborkolozsy.timeclock.dao.WorkingHoursDao;
  * @see LocalDateTime
  */
 @Repository
-public class WorkingHoursDAOImpl extends CrudDAOImpl<WorkingHours, Long> implements WorkingHoursDao {
+public class WorkingHoursDaoImpl extends CrudDaoImpl<WorkingHours, Long> 
+        implements WorkingHoursDao {
 
     /**
      * Update the {@link WorkingHours}' {@code Work_End} column from null to the

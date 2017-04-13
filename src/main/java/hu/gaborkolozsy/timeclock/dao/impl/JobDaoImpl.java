@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import hu.gaborkolozsy.timeclock.dao.JobDao;
 
 /**
- * Extends {@code CrudDAOImpl} and implement {@code JobDao}. 
+ * Extends {@code CrudDaoImpl} and implement {@code JobDao}. 
  * Interact with persistence context (database).
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -20,7 +20,7 @@ import hu.gaborkolozsy.timeclock.dao.JobDao;
  * @see List
  */
 @Repository
-public class JobDAOImpl extends CrudDAOImpl<Job, Long> implements JobDao {
+public class JobDaoImpl extends CrudDaoImpl<Job, Long> implements JobDao {
 
     /**
      * Returns a {@code Job} entity by the specified order No..

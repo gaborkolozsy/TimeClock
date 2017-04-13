@@ -4,8 +4,8 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
-import hu.gaborkolozsy.timeclock.dao.impl.WorkingHoursDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.WorkingHoursDaoImpl;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
 import hu.gaborkolozsy.timeclock.service.WorkingHoursService;
 import java.time.LocalDateTime;
@@ -36,7 +36,7 @@ public class WorkingHoursServiceImpl extends CrudServiceImpl<WorkingHours, Long>
     private final WorkingHoursDao workingHoursDao;
     
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
@@ -44,7 +44,7 @@ public class WorkingHoursServiceImpl extends CrudServiceImpl<WorkingHours, Long>
      * Otherwise throw an {@link NoSuchBeanDefinitionException} exception!!!
      * </strong>
      * 
-     * @param crudDao {@link WorkingHoursDAOImpl} instance 
+     * @param crudDao {@link WorkingHoursDaoImpl} instance 
      */
     public WorkingHoursServiceImpl(@Qualifier("workingHoursDAOImpl") CrudDao<WorkingHours, Long> crudDao) {
         super(crudDao);

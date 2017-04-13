@@ -4,7 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.service.impl;
 
-import hu.gaborkolozsy.timeclock.dao.impl.CrudDAOImpl;
+import hu.gaborkolozsy.timeclock.dao.impl.CrudDaoImpl;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.service.JobService;
 import java.util.List;
@@ -22,7 +22,7 @@ import hu.gaborkolozsy.timeclock.dao.JobDao;
  * @since 0.0.1-SNAPSHOT
  * @see CrudDao
  * @see JobDao
- * @see CrudDAOImpl
+ * @see CrudDaoImpl
  * @see JobDAOImpl
  * @see List
  * @see Autowired
@@ -35,7 +35,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
     private final JobDao jobDAO;
 
     /**
-     * Constructor in parameter wait a {@link CrudDAOImpl} instance with its
+     * Constructor in parameter wait a {@link CrudDaoImpl} instance with its
      * interface type.
      * 
      * <p><strong>
