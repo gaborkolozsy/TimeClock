@@ -16,7 +16,8 @@ import hu.gaborkolozsy.timeclock.model.Customer.CustomerBuilder;
  * @param <B> type of builder
  * @since 0.0.1-SNAPSHOT
  */
-public abstract class AbstractCustomerBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
+public abstract class AbstractCustomerBuilder<E, B> extends AbstractEntity<E, B> 
+        implements Builder<E> {
 
     /**
      * Set the {@code Customer}'s natural ID.
