@@ -4,11 +4,11 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
+import hu.gaborkolozsy.timeclock.dao.JobDao;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.model.Job.JobBuilder;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import hu.gaborkolozsy.timeclock.dao.JobDao;
 
 /**
  * Extends {@code CrudDaoImpl} and implement {@code JobDao}. 

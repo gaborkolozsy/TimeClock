@@ -4,6 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
+import hu.gaborkolozsy.timeclock.dao.CrudDao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -13,7 +14,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import hu.gaborkolozsy.timeclock.dao.CrudDao;
 
 /**
  * The basic <strong>C.R.U.D.</strong> generic DAO implementation dependent 

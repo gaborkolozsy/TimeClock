@@ -4,11 +4,11 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
+import hu.gaborkolozsy.timeclock.dao.CustomerDao;
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Customer.CustomerBuilder;
 import javax.persistence.PersistenceException;
 import org.springframework.stereotype.Repository;
-import hu.gaborkolozsy.timeclock.dao.CustomerDao;
 
 /**
  * Extends {@code CrudDaoImpl} and implement {@code CustomerDao}. 

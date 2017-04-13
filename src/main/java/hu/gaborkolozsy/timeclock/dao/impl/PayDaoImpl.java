@@ -4,11 +4,11 @@
 
 package hu.gaborkolozsy.timeclock.dao.impl;
 
+import hu.gaborkolozsy.timeclock.dao.PayDao;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.model.Pay.PayBuilder;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import hu.gaborkolozsy.timeclock.dao.PayDao;
 
 /**
  * Extends {@code CrudDaoImpl} and implement {@code PayDao}. 
