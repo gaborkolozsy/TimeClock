@@ -43,23 +43,33 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:properties/hibernate.properties")
 public class JpaConfig {
 
-    /** The <strong>hibernate.hbm2ddl.auto</strong> property for {@code Hibernate}. */
+    /** 
+     * The <strong>hibernate.hbm2ddl.auto</strong> property for {@code Hibernate}. 
+     */
     @Value("${hibernate.hbm2ddl.auto}")
     private String createOrUpdate;
     
-    /** The <strong>hibernate.show_sql</strong> property for {@code Hibernate}. */
+    /** 
+     * The <strong>hibernate.show_sql</strong> property for {@code Hibernate}. 
+     */
     @Value("${hibernate.show_sql}")
-    private String showSQL;
+    private String showSql;
     
-    /** The <strong>hibernate.format_sql</strong> property for {@code Hibernate}. */
+    /** 
+     * The <strong>hibernate.format_sql</strong> property for {@code Hibernate}. 
+     */
     @Value("${hibernate.format_sql}")
-    private String formatSQL;
+    private String formatSql;
     
-    /** The <strong>hibernate.use_sql_comments</strong> property for {@code Hibernate}. */
+    /** 
+     * The <strong>hibernate.use_sql_comments</strong> property for {@code Hibernate}. 
+     */
     @Value("${hibernate.use_sql_comments}")
-    private String useSQLComments;
+    private String useSqlComments;
     
-    /** The <strong>hibernate.dialect</strong> property for {@code Hibernate}. */
+    /** 
+     * The <strong>hibernate.dialect</strong> property for {@code Hibernate}. 
+     */
     @Value("${hibernate.dialect}")
     private String dialect;
     
@@ -107,12 +117,12 @@ public class JpaConfig {
      * @see Properties
      */
     private Properties addHibernateProperties() {
-        Properties p = new Properties();
-        p.setProperty("hibernate.hbm2ddl.auto", createOrUpdate);
-        p.setProperty("hibernate.show_sql", showSQL);
-        p.setProperty("hibernate.format_sql", formatSQL);
-        p.setProperty("hibernate.use_sql_comments", useSQLComments);
-        p.setProperty("hibernate.dialect", dialect);
-        return p;
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", createOrUpdate);
+        properties.setProperty("hibernate.show_sql", showSql);
+        properties.setProperty("hibernate.format_sql", formatSql);
+        properties.setProperty("hibernate.use_sql_comments", useSqlComments);
+        properties.setProperty("hibernate.dialect", dialect);
+        return properties;
     }
 }
