@@ -1,12 +1,12 @@
 <p align="center">
-    <a href="https://github.com/gaborkolozsy/test/">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring">
         <img src="https://cloud.githubusercontent.com/assets/23102020/25065509/9f53b23e-2211-11e7-8ef7-7b245ae34459.png"
             width="400">
     </a>
 </p>
 
 <p align="center">
-    <a href="https://github.com/gaborkolozsy/test/">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring">
         <img src="https://cloud.githubusercontent.com/assets/23102020/25065512/a4a6d75c-2211-11e7-8416-675c006aa4ba.png"
             width="200">
     </a>
@@ -34,12 +34,12 @@
 
 Maven based project with Spring, JPA and Hibernate.
 
-[![Language](https://img.shields.io/badge/Language-Java-red.svg?colorB=b07219)]()
-[![Framework](https://img.shields.io/badge/Framework-Spring-green.svg?colorB=6db33f)]()
-[![API](https://img.shields.io/badge/API-JPA&nbsp;|&nbsp;Hibernate-red.svg)]()
-[![Build Tool](https://img.shields.io/badge/Build-Maven-blue.svg)]()
-[![Database](https://img.shields.io/badge/DB-H2-yellow.svg)]()
-[![Design Patterns](https://img.shields.io/badge/Design&nbsp;Pattern-DAO&nbsp;|&nbsp;Builder-orange.svg)]()
+[![Language](https://img.shields.io/badge/Language-Java-red.svg?colorB=b07219)](https://github.com/gaborkolozsy/TimeClock-Spring)
+[![Framework](https://img.shields.io/badge/Framework-Spring-green.svg?colorB=6db33f)](https://github.com/gaborkolozsy/TimeClock-Spring)
+[![API](https://img.shields.io/badge/API-JPA&nbsp;|&nbsp;Hibernate-red.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
+[![Build Tool](https://img.shields.io/badge/Build-Maven-blue.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
+[![Database](https://img.shields.io/badge/DB-H2-yellow.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
+[![Design Patterns](https://img.shields.io/badge/Design&nbsp;Pattern-DAO&nbsp;|&nbsp;Builder-orange.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
 
 ## Content of table
 
@@ -67,7 +67,7 @@ The program will help you to check-in and to checkout to your job. The working h
     <a href="https://github.com/gaborkolozsy/followers">
         <img src="https://img.shields.io/github/followers/gaborkolozsy.svg?style=social&label=Follow">
     </a>
-    <a href="https://github.com/gaborkolozsy/TimeClock-Spring/blob/master/LICENSE">
+    <a href="https://github.com/gaborkolozsy/TimeClock-Spring/blob/master/LICENSE.txt">
         <img align="right" src="https://img.shields.io/github/license/gaborkolozsy/TimeClock-Spring.svg">
     </a>
     <p align="center">
