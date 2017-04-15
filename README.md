@@ -46,7 +46,7 @@ Maven based project with Spring, JPA and Hibernate.
 * [Build construction](#build-construction)
 * [Description](#description)
 * [Next point](#)
-* [License](LICENSE)
+* [License](LICENSE.txt)
 
 ## Description
 
