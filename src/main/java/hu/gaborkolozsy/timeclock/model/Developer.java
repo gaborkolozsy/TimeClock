@@ -42,7 +42,7 @@ import org.hibernate.loader.MultipleBagFetchException;
  * by @ManyToOne relationship instead of default primary key, than 
  * {@code Developer} entity must implements the {@code Serializable} interface.
  * 
- * <p>Without @Fetch(FetchMode.SELECT) hibernate throws a 
+ * Without @Fetch(FetchMode.SELECT) hibernate throws a 
  * {@link MultipleBagFetchException}. Cause: cannot simultaneously fetch 
  * multiple bags. With {@code List} don't, but with {@code Set} work good.
  * </strong>
