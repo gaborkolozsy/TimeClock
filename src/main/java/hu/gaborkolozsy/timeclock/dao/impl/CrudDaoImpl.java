@@ -116,8 +116,8 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
      * @param entity entity instance
      */
     @Override
-    public void update(T entity) {
-        entityManager.merge(entity);
+    public <S extends T> S update(S entity) {
+        return entityManager.merge(entity);
     }
     
     /**

@@ -69,9 +69,12 @@ public interface CrudDao<T, K> {
     
     /**
      * Merge the state of the given entity into the current persistence context.
+     * Return the updated entity.
+     * @param <S> the extended entity
      * @param entity entity instance
+     * @return the updated entity instance
      */
-    void update(T entity);
+    <S extends T> S update(S entity);
     
     /**
      * Remove the specified entity instance.

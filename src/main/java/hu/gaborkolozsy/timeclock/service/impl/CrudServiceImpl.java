@@ -79,8 +79,8 @@ public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T
      * @param entity entity instance 
      */
     @Override
-    public void update(T entity) {
-        crudDao.update(entity);
+    public <S extends T> S update(S entity) {
+        return crudDao.update(entity);
     }
 
     /**
