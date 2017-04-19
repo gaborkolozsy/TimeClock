@@ -96,7 +96,7 @@ public class Developer implements Auditable, Serializable {
     @Column(name = "Forename", nullable = false)
     private String forename;
     
-    @Column(name = "Last_Name")
+    @Column(name = "Last_Name", nullable = false)
     private String lastName;
     
     @Fetch(FetchMode.SELECT)
