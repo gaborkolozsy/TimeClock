@@ -44,12 +44,10 @@ package hu.gaborkolozsy.timeclock.dao;
 public interface CrudDao<T, K> {
     
     /**
-     * Make an instance, managed and persistent. Return the saved entity.
-     * @param <S> the extended entity
+     * Make an instance, managed and persistent.
      * @param entity entity instance
-     * @return the saved entity instance
      */
-    <S extends T> S save(S entity);
+    void save(T entity);
 
     /**
      * Find by primary key.
@@ -81,6 +79,11 @@ public interface CrudDao<T, K> {
      * @param entity entity instance
      */
     void remove(T entity);
+    
+    /**
+     * Remove all entity instance.
+     */
+    void removeAll();
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
