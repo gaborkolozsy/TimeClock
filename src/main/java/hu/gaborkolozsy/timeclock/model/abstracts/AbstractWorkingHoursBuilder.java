@@ -4,6 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.model.abstracts;
 
+import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.model.WorkingHours;
 import hu.gaborkolozsy.timeclock.model.WorkingHours.WorkingHoursBuilder;
 import java.time.LocalDate;
@@ -43,5 +44,12 @@ public abstract class AbstractWorkingHoursBuilder<E, B> extends AbstractEntity<E
      * @return builder implement class
      */
     public abstract B setWorkEnd(LocalDateTime end);
+    
+    /**
+     * Set the specified {@code TimeClock} entity's developer.
+     * @param developer developer
+     * @return the specified builder type
+     */
+    public abstract B setDeveloper(Developer developer);
     
 }

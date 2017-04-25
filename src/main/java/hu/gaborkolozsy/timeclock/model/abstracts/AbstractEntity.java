@@ -4,10 +4,7 @@
 
 package hu.gaborkolozsy.timeclock.model.abstracts;
 
-import hu.gaborkolozsy.timeclock.model.Developer;
-import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.model.embedded.Address;
-import java.util.List;
 
 /**
  * Order some common variable and common method to builder classes.
@@ -23,24 +20,6 @@ abstract class AbstractEntity<T, B> {
      * The specified {@TimeClock} entity.
      */
     public T entity;
-    
-    /**
-     * Set the specified {@code TimeClock} entity's developer.
-     * @param developer developer
-     * @return the specified builder type
-     */
-    public B setDeveloper(Developer developer) {
-        return null;
-    }
-    
-    /**
-     * Set the specified {@code TimeClock} entity's job list.
-     * @param jobs entity's jobs
-     * @return the specified builder type
-     */
-    public B setJobs(List<Job> jobs) {
-        return null;
-    }
     
     /**
      * Set the specified {@code TimeClock} entity's {@code Address}.

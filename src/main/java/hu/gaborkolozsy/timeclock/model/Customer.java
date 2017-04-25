@@ -39,7 +39,7 @@ import org.hibernate.annotations.DynamicInsert;
  * <p>The {@link Audit} is embedded.
  * 
  * <p><strong>
- * If want {@code Customer_Id} column for referenced column by @ManyToOne 
+ * If use {@code Customer_Id} column for referenced column by @ManyToOne 
  * relationship instead of default primary key, than {@code Customer} entity 
  * must implements the {@code Serializable} interface.</strong>
  *
@@ -96,8 +96,8 @@ public class Customer implements Auditable, Serializable {
     private String contact;
     
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
-               mappedBy = "customer", targetEntity = Job.class)
-    private List<Job> jobs = new ArrayList<>(0);
+               mappedBy = "customer", orphanRemoval = true, targetEntity = Job.class)
+    private List<Job> jobs;
     
     @Embedded
     private Address address;
@@ -185,7 +185,8 @@ public class Customer implements Auditable, Serializable {
      * @see Builder
      * @see AbstractCustomerBuilder
      */
-    public static class CustomerBuilder extends AbstractCustomerBuilder<Customer, CustomerBuilder> {
+    public static class CustomerBuilder extends 
+            AbstractCustomerBuilder<Customer, CustomerBuilder> {
 
         /**
          * Constructor without parameter.

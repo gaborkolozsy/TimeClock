@@ -12,8 +12,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Timed;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * The persistence context test.
@@ -23,27 +22,23 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @see EntityManager
  * @see org.junit.Assert
  * @see Test
- * @see RunWith
  * @see Autowired
- * @see SpringJUnit4ClassRunner
  */
 @Development
-@RunWith(SpringJUnit4ClassRunner.class)
-public class PersistenceUnitIt {
+@RunWith(SpringRunner.class)
+public class PersistenceUnitTest {
 
     @Autowired
     private EntityManager entityManager;
     
     @Test
-    @Timed(millis = 100L)
     public void testPersistenceUnit() {
         assertNotNull("The Persistence Unit is null!", entityManager);
     }
     
     @Test
-    @Timed(millis = 100L)
     public void testPersistenceUnitIsOpen() {
-        assertTrue("The Persistence Unit is close! Expected -> Open", entityManager.isOpen());
+        assertTrue("The Persistence Unit is close!", entityManager.isOpen());
     }
     
 }

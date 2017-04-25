@@ -64,17 +64,12 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     }
 
     /**
-     * Make an instance, managed and persistent. Return the entity.
+     * Make an instance, managed and persistent.
      * @param entity entity instance
-     * @return the entity instance
      */
     @Override
-    public <S extends T> S save(S entity) {
+    public void save(T entity) {
         entityManager.persist(entity);
-        if (entityManager.contains(entity)) {
-            return entity;
-        }
-        return null;
     }
     
     /**
@@ -116,8 +111,8 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
      * @param entity entity instance
      */
     @Override
-    public void update(T entity) {
-        entityManager.merge(entity);
+    public <S extends T> S update(S entity) {
+        return entityManager.merge(entity);
     }
     
     /**
@@ -128,6 +123,16 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     public void remove(T entity) {
         entityManager.remove(entity);
     }  
+    
+    /**
+     * Remove all entity instance.
+     */
+    @Override
+    public void removeAll() {
+        getAll().forEach((t) -> {
+            entityManager.remove(t);
+        });
+    } 
     
     /**
      * Check if the instance is a managed entity instance belonging to the 

@@ -33,7 +33,6 @@ import org.springframework.test.util.ReflectionTestUtils;
  * @see SpringJUnit4ClassRunner
  * @see ReflectionTestUtils
  */
-@Development(changeDefaultClass = H2DatabaseServer.class, changeProfil = "")
 public class H2DatabaseServerTest {
     
     private final H2DatabaseServer h2DbServer;

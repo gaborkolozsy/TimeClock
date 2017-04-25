@@ -38,13 +38,13 @@ import org.hibernate.loader.MultipleBagFetchException;
  * 
  * <p>The {@link Audit} is embedded.
  * 
- * <p><strong>If want {@code Developer_Id} column for referenced column 
+ * <p><strong>If use {@code Developer_Id} column for referenced column 
  * by @ManyToOne relationship instead of default primary key, than 
  * {@code Developer} entity must implements the {@code Serializable} interface.
  * 
- * Without @Fetch(FetchMode.SELECT) hibernate throws a 
+ * Without <u>@Fetch(FetchMode.SELECT)</u> hibernate throws a 
  * {@link MultipleBagFetchException}. Cause: cannot simultaneously fetch 
- * multiple bags. With {@code List} don't, but with {@code Set} work good.
+ * multiple bags. With {@code List} don't work, but with {@code Set} work good.
  * </strong>
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -96,18 +96,13 @@ public class Developer implements Auditable, Serializable {
     @Column(name = "Forename", nullable = false)
     private String forename;
     
-    @Column(name = "Last_Name")
+    @Column(name = "Last_Name", nullable = false)
     private String lastName;
     
     @Fetch(FetchMode.SELECT)
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
-               mappedBy = "developer", targetEntity = Job.class)
-    private List<Job> jobs = new ArrayList<>(0);
-    
-    @Fetch(FetchMode.SELECT)
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, 
                mappedBy = "developer", targetEntity = WorkingHours.class)
-    private List<WorkingHours> workingHours = new ArrayList<>(0);
+    private List<WorkingHours> workingHours;
     
     @Embedded
     private Address address;
@@ -149,14 +144,6 @@ public class Developer implements Auditable, Serializable {
      */
     public String getLastName() {
         return lastName;
-    }
-
-    /**
-     * Returns developer's jobs as a list.
-     * @return developer's jobs
-     */
-    public List<Job> getJobs() {
-        return jobs;
     }
 
     /**
@@ -262,17 +249,6 @@ public class Developer implements Auditable, Serializable {
             return this;
         }
 
-        /**
-         * Set the {@link Developer}'s job list.
-         * @param jobs {@link Developer}'s jobs
-         * @return builder implement class
-         */
-        @Override
-        public DeveloperBuilder setJobs(List<Job> jobs) {
-            super.entity.jobs = jobs;
-            return this;
-        }
-        
         /**
          * Set the {@link Developer}'s working hours list.
          * @param workingHours {@link Developer}'s working hours

@@ -9,6 +9,7 @@ import hu.gaborkolozsy.timeclock.model.abstracts.Auditable;
 import hu.gaborkolozsy.timeclock.model.abstracts.Builder;
 import hu.gaborkolozsy.timeclock.model.embedded.Audit;
 import hu.gaborkolozsy.timeclock.model.embedded.AuditListener;
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -34,9 +35,8 @@ import org.hibernate.annotations.DynamicInsert;
  * <p>The {@link Audit} is embedded.
  * 
  * <p><strong>
- * If want {@code Customer_Id} or {@code Developer_Id} column for referenced 
- * column by @ManyToOne relationship instead of default primary key, 
- * than {@code Customer} or {@code Developer} entity 
+ * If use {@code Customer_Id} column for referenced column by @ManyToOne 
+ * relationship instead of default primary key, than {@code Customer} entity 
  * must implements the {@code Serializable} interface.</strong>
  * 
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
@@ -73,8 +73,8 @@ import org.hibernate.annotations.DynamicInsert;
     @NamedQuery(name = "getAllByStatus", 
                 query = "from Job j where j.status = :status")
 })
-@SuppressWarnings({"PersistenceUnitPresent", "SerializableClass"})
-public class Job implements Auditable {
+@SuppressWarnings({"PersistenceUnitPresent"})
+public class Job implements Auditable, Serializable {
 
     @Id
     @GeneratedValue(generator = "jobGEN", strategy = GenerationType.SEQUENCE)
@@ -106,14 +106,6 @@ public class Job implements Auditable {
     @ManyToOne
     @JoinColumn(name = "Customer_Id", nullable = false, referencedColumnName = "Customer_Id")
     private Customer customer;
-    
-    @ManyToOne
-    @JoinColumn(name = "Developer_Id", nullable = false, referencedColumnName = "Developer_Id")
-    private Developer developer;
-    
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, 
-              mappedBy = "job", targetEntity = Pay.class)
-    private Pay pay;
     
     @Embedded
     private final Audit audit = new Audit();
@@ -192,22 +184,6 @@ public class Job implements Auditable {
      */
     public Customer getCustomer() {
         return customer;
-    }
-    
-    /**
-     * Returns job's developer.
-     * @return job's developer
-     */
-    public Developer getDeveloper() {
-        return developer;
-    }
-    
-    /**
-     * Returns job's relevant {@code Pay}.
-     * @return job's {@code Pay}
-     */
-    public Pay getPay() {
-        return pay;
     }
 
     /**
@@ -351,28 +327,6 @@ public class Job implements Auditable {
             return this;
         }
 
-        /**
-         * Set the developer for {@code Job} entity.
-         * @param developer developer
-         * @return this
-         */
-        @Override
-        public JobBuilder setDeveloper(Developer developer) {
-            super.entity.developer = developer;
-            return this;
-        }
-
-        /**
-         * Set the pay for {@code Job} entity.
-         * @param pay pay
-         * @return this
-         */
-        @Override
-        public JobBuilder setPay(Pay pay) {
-            super.entity.pay = pay;
-            return this;
-        }
-        
         /**
          * Return a new {@code Job} set instance.
          * @return {@code Job}

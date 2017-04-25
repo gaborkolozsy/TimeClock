@@ -7,7 +7,6 @@ package hu.gaborkolozsy.timeclock.model.abstracts;
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.model.Job.JobBuilder;
-import hu.gaborkolozsy.timeclock.model.Pay;
 
 /**
  * Order some abstract methode for {@link Job} entity's {@link JobBuilder} 
@@ -18,7 +17,8 @@ import hu.gaborkolozsy.timeclock.model.Pay;
  * @param <B> type of builder 
  * @since 0.0.1-SNAPSHOT
  */
-public abstract class AbstractJobBuilder<E, B> extends AbstractEntity<E, B> implements Builder<E> {
+public abstract class AbstractJobBuilder<E, B> extends AbstractEntity<E, B> 
+        implements Builder<E> {
 
     /**
      * Set the job's order No..
@@ -77,12 +77,5 @@ public abstract class AbstractJobBuilder<E, B> extends AbstractEntity<E, B> impl
      * @return builder implement class
      */
     public abstract B setCustomer(Customer customer);
-    
-    /**
-     * Set the {@code Job} entity's relevant pay.
-     * @param pay pay
-     * @return builder implement class
-     */
-    public abstract B setPay(Pay pay);
     
 }

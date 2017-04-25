@@ -44,12 +44,10 @@ package hu.gaborkolozsy.timeclock.service;
 public interface CrudService<T, K> {
 
     /**
-     * Make an instance, managed and persistent. Return the entity.
-     * @param <S> the extended entity
+     * Make an instance, managed and persistent.
      * @param entity entity instance
-     * @return the entity instance
      */
-    <S extends T> S save(S entity);
+    void save(T entity);
 
     /**
      * Find by primary key.
@@ -69,15 +67,23 @@ public interface CrudService<T, K> {
     
     /**
      * Merge the state of the given entity into the current persistence context.
+     * Return the updated entity.
+     * @param <S> the extended entity
      * @param entity entity instance
+     * @return the updated entity instance
      */
-    void update(T entity);
+    <S extends T> S update(S entity);
     
     /**
      * Remove the specified entity instance.
      * @param entity entity instance
      */
     void remove(T entity);
+    
+    /**
+     * Remove all entity instance.
+     */
+    void removeAll();
     
     /**
      * Check if the instance is a managed entity instance belonging to the 

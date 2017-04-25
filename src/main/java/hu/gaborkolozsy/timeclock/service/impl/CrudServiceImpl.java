@@ -43,13 +43,12 @@ public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T
     }
 
     /**
-     * Make an instance, managed and persistent. Return the entity.
+     * Make an instance, managed and persistent.
      * @param entity entity instance
-     * @return the entity instance
      */
     @Override
-    public <S extends T> S save(S entity) {
-        return crudDao.save(entity);
+    public void save(T entity) {
+        crudDao.save(entity);
     }
 
     /**
@@ -79,8 +78,8 @@ public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T
      * @param entity entity instance 
      */
     @Override
-    public void update(T entity) {
-        crudDao.update(entity);
+    public <S extends T> S update(S entity) {
+        return crudDao.update(entity);
     }
 
     /**
@@ -90,6 +89,14 @@ public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T
     @Override
     public void remove(T entity) {
         crudDao.remove(entity);
+    }
+    
+    /**
+     * Remove all entity instance.
+     */
+    @Override
+    public void removeAll() {
+        crudDao.removeAll();
     }
     
     /**
