@@ -4,7 +4,6 @@
 
 package hu.gaborkolozsy.timeclock;
 
-
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Customer.CustomerBuilder;
 import hu.gaborkolozsy.timeclock.model.Developer;
@@ -131,12 +130,12 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * Create a {@code Customer} instance.
      * @return {@code Customer} 
      */
-    private static Customer createCustomer(int i) {
+    private static Customer createCustomer(int someIndex) {
         return new CustomerBuilder()
-                .setCustomerId(i)
-                .setName("Company"+i)
+                .setCustomerId(someIndex)
+                .setName("Company"+someIndex)
                 .setContact("Secretary")
-                .setAddress(createAddressForCostumer(i))
+                .setAddress(createAddressForCostumer(someIndex))
                 .build();
     }
     
@@ -144,12 +143,12 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * Create a {@code Developer} instance.
      * @return {@code Developer} 
      */
-    private static Developer createDeveloper(int i) {
+    private static Developer createDeveloper(int someIndex) {
         return new DeveloperBuilder()
-                .setDeveloperId(i)
+                .setDeveloperId(someIndex)
                 .setForename("Megan")
                 .setLastName("Fox")
-                .setAddress(createAddressForDeveloper(i))
+                .setAddress(createAddressForDeveloper(someIndex))
                 .build();
     }
     
@@ -168,9 +167,9 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * Create a {@code Job} instance.
      * @return {@code Job} 
      */
-    private static Job createJob(int i) {
+    private static Job createJob(int someIndex) {
         return new JobBuilder()
-                .setOrderNumber(i)
+                .setOrderNumber(someIndex)
                 .setProjectName("Project")
                 .setStatus("WIP")
                 .build();
@@ -180,8 +179,8 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * Create a {@code Pay} instance.
      * @return {@code Pay} 
      */
-    private static Pay createPay(int i) {
-        String payId = "1600-0100-000"+i;
+    private static Pay createPay(int someIndex) {
+        String payId = "1600-0100-000" + someIndex;
         return new PayBuilder()
                 .setPayId(payId)
                 .setPayable(true)
@@ -193,14 +192,14 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * Create a {@code Address} instance for {@code Costumer}.
      * @return {@code Address} 
      */
-    private static Address createAddressForCostumer(int i) {
+    private static Address createAddressForCostumer(int someIndex) {
         return new Address.AddressBuilder()
                 .setCountry("Hungary")
                 .setCity("Budapest")
                 .setRegion("Pest megye")
                 .setAddress("Blind Street 1.")
                 .setZip(1492)
-                .setPob(i)
+                .setPob(someIndex)
                 .setPhoneNumber("7654321")
                 .setEmailAddress("customer@testemail.com")
                 .build();
@@ -210,14 +209,14 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * Create a {@code Address} instance for {@code Costumer}.
      * @return {@code Address} 
      */
-    private static Address createAddressForDeveloper(int i) {
+    private static Address createAddressForDeveloper(int someIndex) {
         return new Address.AddressBuilder()
                 .setCountry("USA")
                 .setCity("LosAngeles")
                 .setRegion("Down town")
                 .setAddress("Developer Street 1.")
                 .setZip(90001)
-                .setPob(i)
+                .setPob(someIndex)
                 .setPhoneNumber("1234567")
                 .setEmailAddress("developer@testemail.com")
                 .build();
