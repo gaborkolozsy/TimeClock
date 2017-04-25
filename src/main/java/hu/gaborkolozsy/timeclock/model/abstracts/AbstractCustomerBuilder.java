@@ -6,6 +6,8 @@ package hu.gaborkolozsy.timeclock.model.abstracts;
 
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Customer.CustomerBuilder;
+import hu.gaborkolozsy.timeclock.model.Job;
+import java.util.List;
 
 /**
  * Order some abstract methode for {@link Customer} entity's 
@@ -39,4 +41,12 @@ public abstract class AbstractCustomerBuilder<E, B> extends AbstractEntity<E, B>
      * @return builder implement class
      */
     public abstract B setContact(String contact);
+    
+    /**
+     * Set the specified {@code Customer} entity's job list.
+     * @param jobs customer's jobs
+     * @return the specified builder type
+     */
+    public abstract B setJobs(List<Job> jobs);
+    
 }
