@@ -32,6 +32,11 @@ import org.hibernate.annotations.DynamicInsert;
  * and it will be called "PAY".
  * 
  * <p>The {@link Audit} is embedded.
+ * 
+ * <p><strong>
+ * If use {@code Order_Number} column for referenced column by @OneToOne 
+ * relationship instead of default primary key, than {@code Job} entity 
+ * must implements the {@code Serializable} interface.</strong>
  *
  * @author Gabor Kolozsy (gabor.kolozsy.development@gmail.com)
  * @since 0.0.1-SNAPSHOT
@@ -111,8 +116,8 @@ public class Pay implements Auditable {
 
     /**
      * Returns the payment's ID.<br>
- The payment's ID created for example:
- <blockquote>
+     * The payment's ID created for example:
+     * <blockquote>
      * <table border=2 style=background-color:rgb(220,220,220)>
      *  <tr>
      *   <th>Customer's ID.</th>
