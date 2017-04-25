@@ -129,8 +129,8 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
      */
     @Override
     public void removeAll() {
-        getAll().forEach((t) -> {
-            entityManager.remove(t);
+        getAll().forEach((entity) -> {
+            entityManager.remove(entity);
         });
     } 
     

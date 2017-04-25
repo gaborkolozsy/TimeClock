@@ -49,23 +49,25 @@ public class WorkingHoursServiceImplTest extends DevelopmentTest {
     public void testUpdateWorkEnd() {
         List<WorkingHours> list = (List<WorkingHours>) workingHoursService.getAll();
         for (int i = 0; i < Math.min(9, list.size()); i++) {
-            LocalDateTime ldt = LocalDateTime.parse("2017-04-17T0" + i + ":00:00");
             WorkingHours wh = list.get(i);
             assertNotNull("WorkingHours instance is null!", wh);
             assertNull("The \"Work_End\" column is not null!", wh.getWorkEnd());
             assertNull("Already updated!", wh.getAudit().getUpdated());
             assertEquals(0, wh.getVersion());
+            
+            LocalDateTime ldt = LocalDateTime.parse("2017-04-17T0" + i + ":00:00");
             workingHoursService.updateWorkEnd(wh, ldt);
         }
         
         list = (List<WorkingHours>) workingHoursService.getAll();
-        for (int i = 0; i < Math.min(9, list.size()); i++) {
-            LocalDateTime ldt = LocalDateTime.parse("2017-04-17T0" + i + ":00:00");
+        for (int i = 0; i < Math.min(9, list.size()); i++) {            
             WorkingHours wh = workingHoursService.get(list.get(i).getId());
             assertNotNull("WorkingHours instance is null!", wh);
             assertNotNull("The \"Work_End\" column is null!", wh.getWorkEnd());
             assertNotNull("Still not updated!", wh.getAudit().getUpdated());
             assertEquals(1, wh.getVersion());
+            
+            LocalDateTime ldt = LocalDateTime.parse("2017-04-17T0" + i + ":00:00");
             assertEquals(ldt, wh.getWorkEnd());
         }
         
