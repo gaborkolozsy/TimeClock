@@ -58,7 +58,7 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long>
      * @return a {@code Developer} 
      */
     @Override
-    public Developer getByDeveloperId(Integer developerId) {
+    public Developer getByDeveloperId(Long developerId) {
         return developerDao.getByDeveloperId(developerId);
     }
 
@@ -78,7 +78,7 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long>
      * @param lastname the developer's lastname
      */
     @Override
-    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
+    public void updateLastnameByDeveloperId(Long developerId, String lastname) {
         developerDao.updateLastnameByDeveloperId(developerId, lastname);
     }
     
@@ -87,19 +87,19 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long>
      * @param developerId developer's ID
      */
     @Override
-    public void removeByDeveloperId(Integer developerId) {
+    public void removeByDeveloperId(Long developerId) {
         developerDao.removeByDeveloperId(developerId);
     }
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
-     * @param developerId developer'S ID
+     * @param developer developer
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isDeveloperExist(Integer developerId) {
-        return developerDao.isDeveloperExist(developerId);
+    public boolean isDeveloperExist(Developer developer) {
+        return developerDao.isDeveloperExist(developer);
     }
 
 }

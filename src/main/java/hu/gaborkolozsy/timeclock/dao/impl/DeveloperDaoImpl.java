@@ -28,7 +28,7 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @return the {@code Developer} instance
      */
     @Override
-    public Developer getByDeveloperId(Integer developerId) {
+    public Developer getByDeveloperId(Long developerId) {
         return entityManager.createNamedQuery("getByDeveloperId", Developer.class)
                 .setParameter("developerId", developerId)
                 .getSingleResult();
@@ -53,7 +53,7 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @param lastname developer's last name
      */
     @Override
-    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
+    public void updateLastnameByDeveloperId(Long developerId, String lastname) {
         entityManager.merge(new DeveloperBuilder(getByDeveloperId(developerId))
                 .setLastName(lastname)
                 .build());
@@ -64,19 +64,19 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @param developerId developer's ID
      */
     @Override
-    public void removeByDeveloperId(Integer developerId) {
+    public void removeByDeveloperId(Long developerId) {
         entityManager.remove(getByDeveloperId(developerId));
     }
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
-     * @param developerId developer's ID
+     * @param developer developer
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isDeveloperExist(Integer developerId) {
-        return getByDeveloperId(developerId) != null;
+    public boolean isDeveloperExist(Developer developer) {
+        return entityManager.find(Developer.class, developer.getId()) != null;
     }
 
 }

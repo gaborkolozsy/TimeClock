@@ -21,7 +21,7 @@ public interface DeveloperDao extends CrudDao<Developer, Long> {
      * @param developerId developer's ID
      * @return a {@code Developer} instance
      */
-    Developer getByDeveloperId(Integer developerId);
+    Developer getByDeveloperId(Long developerId);
     
     /**
      * Returns a list of the {@code Developer} entities by the specified fore name.
@@ -35,20 +35,20 @@ public interface DeveloperDao extends CrudDao<Developer, Long> {
      * @param developerId the developer's ID
      * @param lastname the developer's lastname
      */
-    void updateLastnameByDeveloperId(Integer developerId, String lastname);
+    void updateLastnameByDeveloperId(Long developerId, String lastname);
     
     /**
      * Remove {@link Developer} entity with specified {@code developerId}.
      * @param developerId developer's ID
      */
-    void removeByDeveloperId(Integer developerId);
+    void removeByDeveloperId(Long developerId);
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
-     * @param developerId developer's ID
+     * @param developer developer
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isDeveloperExist(Integer developerId);
+    boolean isDeveloperExist(Developer developer);
     
 }

@@ -26,7 +26,7 @@ public abstract class AbstractDeveloperBuilder<E, B> extends AbstractEntity<E, B
      * @param developerId developer's natural ID
      * @return builder implement class
      */
-    public abstract B setDeveloperId(int developerId);
+    public abstract B setDeveloperId(Long developerId);
     
     /**
      * Set the {@link Developer}'s forename.
