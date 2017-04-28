@@ -33,11 +33,15 @@ import javax.persistence.criteria.Root;
  */
 public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     
-    /** Interface used to interact with the persistence context. */
+    /** 
+     * Interface used to interact with the persistence context. 
+     */
     @PersistenceContext(unitName = "Time_Clock")
     protected EntityManager entityManager;
 
-    /** An entity type. */
+    /** 
+     * An entity type. 
+     */
     private final Class<? extends T> entityType;
     
     /**
