@@ -22,9 +22,12 @@ import hu.gaborkolozsy.timeclock.service.PayService;
 import hu.gaborkolozsy.timeclock.service.WorkingHoursService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.function.Supplier;
 import org.junit.After;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -145,7 +148,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      */
     private static Developer createDeveloper(int someIndex) {
         return new DeveloperBuilder()
-                .setDeveloperId(someIndex)
+                .setDeveloperId((long) someIndex)
                 .setForename("Megan")
                 .setLastName("Fox")
                 .setAddress(createAddressForDeveloper(someIndex))
@@ -220,6 +223,30 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
                 .setPhoneNumber("1234567")
                 .setEmailAddress("developer@testemail.com")
                 .build();
+    }
+    
+    /**
+     * Exception verifier inner class.
+     */
+    public final class ExceptionVerifier {
+
+        private final Supplier<Object> resultSupplier;
+
+        public ExceptionVerifier(Supplier<Object> resultSupplier) {
+            this.resultSupplier = resultSupplier;
+        }
+
+        public void isThrowing(Class<? extends Exception> exception) {
+            try {
+                fail("Expected suggestion to throw " + exception.getName() + 
+                        ", but was " + resultSupplier.get());
+            } catch (Exception ex) {
+                String message = "Expected suggestion to throw " + 
+                        exception.getSimpleName() + " instead of " + 
+                        ex.getClass().getSimpleName();
+                assertEquals(message, exception, ex.getClass());
+            }
+        }
     }
         
 }
