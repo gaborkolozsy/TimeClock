@@ -26,7 +26,7 @@ public abstract class AbstractCustomerBuilder<E, B> extends AbstractEntity<E, B>
      * @param customerId customer's ID
      * @return builder implement class
      */
-    public abstract B setCustomerId(int customerId);
+    public abstract B setCustomerId(Long customerId);
     
     /**
      * Set the {@code Customer}'s name.

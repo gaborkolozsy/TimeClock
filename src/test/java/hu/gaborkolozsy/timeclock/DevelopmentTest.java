@@ -135,7 +135,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      */
     private static Customer createCustomer(int someIndex) {
         return new CustomerBuilder()
-                .setCustomerId(someIndex)
+                .setCustomerId((long)someIndex)
                 .setName("Company"+someIndex)
                 .setContact("Secretary")
                 .setAddress(createAddressForCostumer(someIndex))
