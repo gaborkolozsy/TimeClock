@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.model.Developer.DeveloperBuilder;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -71,12 +72,13 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
-     * @param developer developer
+     * @param developerId developer's ID
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isDeveloperExist(Developer developer) {
-        return entityManager.find(Developer.class, developer.getId()) != null;
+    public boolean isExistWithDeveloperId(Long developerId) {
+        return getAll().stream()
+                .anyMatch((dev) -> (Objects.equals(dev.getDeveloperId(), developerId)));
     }
 
 }

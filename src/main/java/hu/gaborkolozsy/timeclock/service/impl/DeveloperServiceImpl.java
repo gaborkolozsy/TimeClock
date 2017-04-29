@@ -94,12 +94,12 @@ public class DeveloperServiceImpl extends CrudServiceImpl<Developer, Long>
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
-     * @param developer developer
+     * @param developerId developer's ID
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isDeveloperExist(Developer developer) {
-        return developerDao.isDeveloperExist(developer);
+    public boolean isExistWithDeveloperId(Long developerId) {
+        return developerDao.isExistWithDeveloperId(developerId);
     }
 
 }

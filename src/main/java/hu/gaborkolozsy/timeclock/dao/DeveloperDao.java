@@ -46,9 +46,9 @@ public interface DeveloperDao extends CrudDao<Developer, Long> {
     /**
      * Check if the instance is a managed entity instance belonging to the 
      * current persistence context.
-     * @param developer developer
+     * @param developerId developer's ID
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isDeveloperExist(Developer developer);
+    boolean isExistWithDeveloperId(Long developerId);
     
 }
