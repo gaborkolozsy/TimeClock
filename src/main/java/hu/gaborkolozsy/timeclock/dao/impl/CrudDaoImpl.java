@@ -148,6 +148,17 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     public boolean isExist(K primaryKey) {
         return entityManager.find(entityType, primaryKey) != null;
     }
+    
+    /**
+     * Check if the instance is a managed entity instance belonging to the 
+     * current persistence context.
+     * @param entity entity
+     * @return boolean indicating if entity is in persistence context
+     */
+    @Override
+    public boolean isExistEntity(T entity) {
+        return getAll().contains(entity);
+    }
 
     /**
      * Clear the persistence context.
