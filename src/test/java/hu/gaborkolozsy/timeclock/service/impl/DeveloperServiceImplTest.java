@@ -95,17 +95,17 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
     }
 
     /**
-     * Test of isExistByDeveloperId method, of class DeveloperServiceImpl.
+     * Test of isExistWithDeveloperId method, of class DeveloperServiceImpl.
      */
     @Test
     public void testIsExistByDeveloperId() {
         Developer developer = developerService.getByDeveloperId(ID);
         assertNotNull("Developer null!", developer);
         
-        boolean result = developerService.isExistByDeveloperId(developer.getDeveloperId());
+        boolean result = developerService.isExistWithDeveloperId(developer.getDeveloperId());
         assertEquals("Developer not exist!", true, result);
         
-        result = developerService.isExistByDeveloperId(1L);
+        result = developerService.isExistWithDeveloperId(1L);
         assertEquals("Developer exist!", false, result);
     }
     
