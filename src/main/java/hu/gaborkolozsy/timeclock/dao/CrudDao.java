@@ -99,7 +99,7 @@ public interface CrudDao<T, K> {
      * @param entity entity
      * @return boolean indicating if entity is in persistence context
      */
-    public boolean isExistEntity(T entity);
+    boolean isExistEntity(T entity);
     
     /**
      * Clear persistence context.
