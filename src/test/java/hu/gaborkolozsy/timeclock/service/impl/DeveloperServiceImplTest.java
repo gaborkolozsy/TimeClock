@@ -113,9 +113,10 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
      * Test throws exception by non exist ID.
      */
     @Test
-    public void testThrowsException_WhenIdIsNotExist() {
-        new ExceptionVerifier(() -> developerService.getByDeveloperId(1L))
-                .isThrowing(EmptyResultDataAccessException.class);
+    public void testThrowsExceptionWhenIdIsNotExist() {
+        assertEquals("Throws exception test is not ok!", "OK", 
+                new ExceptionVerifier(() -> developerService.getByDeveloperId(1L))
+                .isThrowing(EmptyResultDataAccessException.class));
     }
     
 }
