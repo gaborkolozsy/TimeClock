@@ -27,7 +27,6 @@ import org.junit.After;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -172,7 +171,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      */
     private static Job createJob(int someIndex) {
         return new JobBuilder()
-                .setOrderNumber(someIndex)
+                .setOrderNumber((long)someIndex)
                 .setProjectName("Project")
                 .setStatus("WIP")
                 .build();
@@ -236,15 +235,15 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
             this.resultSupplier = resultSupplier;
         }
 
-        public void isThrowing(Class<? extends Exception> exception) {
+        public String isThrowing(Class<? extends Exception> exception) {
             try {
-                fail("Expected suggestion to throw " + exception.getName() + 
-                        ", but was " + resultSupplier.get());
+                return resultSupplier.get().toString();
             } catch (Exception ex) {
-                String message = "Expected suggestion to throw " + 
-                        exception.getSimpleName() + " instead of " + 
-                        ex.getClass().getSimpleName();
+                String message = "Expected suggestion to throw " 
+                        + exception.getSimpleName() + " instead of " 
+                        + ex.getClass().getSimpleName();
                 assertEquals(message, exception, ex.getClass());
+                return "OK";
             }
         }
     }
