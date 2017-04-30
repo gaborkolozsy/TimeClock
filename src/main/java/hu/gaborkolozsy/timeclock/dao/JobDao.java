@@ -21,7 +21,7 @@ public interface JobDao extends CrudDao<Job, Long> {
      * @param orderNumber job's order No.
      * @return a {@code Job} instance
      */
-    Job getByOrderNumber(int orderNumber);
+    Job getByOrderNumber(Long orderNumber);
     
     /**
      * Returns a list of the {@code Job} entities by the specified project name.
@@ -42,20 +42,20 @@ public interface JobDao extends CrudDao<Job, Long> {
      * @param orderNumber job's order No.
      * @param status the job's status
      */
-    void updateStatusByOrderNumber(int orderNumber, String status);
+    void updateStatusByOrderNumber(Long orderNumber, String status);
     
     /**
      * Update {@link Job}'s comment by specified order No..
      * @param orderNumber job's order No.
      * @param comment the job's comment
      */
-    void updateCommentByOrderNumber(int orderNumber, String comment);
+    void updateCommentByOrderNumber(Long orderNumber, String comment);
     
     /**
      * Remove {@link Job} entity with specified order No..
      * @param orderNumber job's order No.
      */
-    void removeByOrderNumber(int orderNumber);
+    void removeByOrderNumber(Long orderNumber);
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
@@ -63,6 +63,6 @@ public interface JobDao extends CrudDao<Job, Long> {
      * @param orderNumber job's order No.
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isJobExist(int orderNumber);
+    boolean isExistWithOrderNumber(Long orderNumber);
     
 }

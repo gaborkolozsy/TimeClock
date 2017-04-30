@@ -83,7 +83,7 @@ public class Job implements Auditable, Serializable {
     private Long id;
 
     @Column(name = "Order_Number", nullable = false, unique = true, updatable = false)
-    private int orderNumber;
+    private Long orderNumber;
     
     @Column(name = "Project", nullable = false)
     private String projectName;
@@ -126,7 +126,7 @@ public class Job implements Auditable, Serializable {
      * Returns job's order number.
      * @return job's order number
      */
-    public int getOrderNumber() {
+    public Long getOrderNumber() {
         return orderNumber;
     }
     
@@ -245,7 +245,7 @@ public class Job implements Auditable, Serializable {
          * @return this
          */
         @Override
-        public JobBuilder setOrderNumber(int orderNumber) {
+        public JobBuilder setOrderNumber(Long orderNumber) {
             super.entity.orderNumber = orderNumber;
             return this;
         }

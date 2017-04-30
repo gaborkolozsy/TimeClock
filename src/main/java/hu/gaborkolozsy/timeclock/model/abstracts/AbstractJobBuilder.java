@@ -25,7 +25,7 @@ public abstract class AbstractJobBuilder<E, B> extends AbstractEntity<E, B>
      * @param orderNumber No. of order
      * @return the specified builder type
      */
-    public B setOrderNumber(int orderNumber) {
+    public B setOrderNumber(Long orderNumber) {
         return null;
     }
     
