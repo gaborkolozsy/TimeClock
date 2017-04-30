@@ -78,7 +78,8 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
     @Override
     public boolean isExistWithDeveloperId(Long developerId) {
         return getAll().stream()
-                .anyMatch((dev) -> (Objects.equals(dev.getDeveloperId(), developerId)));
+                .anyMatch((developer) -> 
+                        Objects.equals(developer.getDeveloperId(), developerId));
     }
 
 }
