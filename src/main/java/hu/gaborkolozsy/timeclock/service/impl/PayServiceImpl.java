@@ -128,8 +128,8 @@ public class PayServiceImpl extends CrudServiceImpl<Pay, Long> implements PaySer
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isPayExist(String payId) {
-        return payDao.isPayExist(payId);
+    public boolean isExistWithPayId(String payId) {
+        return payDao.isExistWithPayId(payId);
     }
 
     /**

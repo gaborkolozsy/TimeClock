@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.dao.PayDao;
 import hu.gaborkolozsy.timeclock.model.Pay;
 import hu.gaborkolozsy.timeclock.model.Pay.PayBuilder;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -112,8 +113,9 @@ public class PayDaoImpl extends CrudDaoImpl<Pay, Long> implements PayDao {
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isPayExist(String payId) {
-        return getByPayId(payId) != null;
+    public boolean isExistWithPayId(String payId) {
+        return getAll().stream()
+                .anyMatch((pay) -> Objects.equals(pay.getPayId(), payId));
     }
 
     /**
