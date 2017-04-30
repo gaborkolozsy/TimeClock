@@ -7,7 +7,7 @@ package hu.gaborkolozsy.timeclock.dao.impl;
 import hu.gaborkolozsy.timeclock.dao.CustomerDao;
 import hu.gaborkolozsy.timeclock.model.Customer;
 import hu.gaborkolozsy.timeclock.model.Customer.CustomerBuilder;
-import javax.persistence.PersistenceException;
+import java.util.Objects;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -27,7 +27,7 @@ public class CustomerDaoImpl extends CrudDaoImpl<Customer, Long> implements Cust
      * @return {@code Customer} instance
      */
     @Override
-    public Customer getByCustomerId(Integer customerId) throws PersistenceException {
+    public Customer getByCustomerId(Long customerId) {
         return entityManager.createNamedQuery("getByCustomerId", Customer.class)
                 .setParameter("customerId", customerId)
                 .getSingleResult();
@@ -39,7 +39,7 @@ public class CustomerDaoImpl extends CrudDaoImpl<Customer, Long> implements Cust
      * @return {@code Customer} instance
      */
     @Override
-    public Customer getByCustomerName(String name) throws PersistenceException {
+    public Customer getByCustomerName(String name) {
         return entityManager.createNamedQuery("getByCustomerName", Customer.class)
                 .setParameter("name", name)
                 .getSingleResult();
@@ -51,7 +51,7 @@ public class CustomerDaoImpl extends CrudDaoImpl<Customer, Long> implements Cust
      * @param contact contact person's name by customer
      */
     @Override
-    public void updateContactByCustomerId(Integer customerId, String contact) {
+    public void updateContactByCustomerId(Long customerId, String contact) {
         entityManager.merge(new CustomerBuilder(getByCustomerId(customerId))
                 .setContact(contact)
                 .build());
@@ -62,7 +62,7 @@ public class CustomerDaoImpl extends CrudDaoImpl<Customer, Long> implements Cust
      * @param customerId customer's ID
      */
     @Override
-    public void removeByCustomerId(Integer customerId) {
+    public void removeByCustomerId(Long customerId) {
         entityManager.remove(getByCustomerId(customerId));
     }
     
@@ -73,8 +73,10 @@ public class CustomerDaoImpl extends CrudDaoImpl<Customer, Long> implements Cust
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isCustomerExist(Integer customerId) {
-        return getByCustomerId(customerId) != null;
+    public boolean isExistWithCustomerId(Long customerId) {
+        return getAll().stream()
+                .anyMatch((customer) -> 
+                        Objects.equals(customer.getCustomerId(), customerId));
     }
 
 }

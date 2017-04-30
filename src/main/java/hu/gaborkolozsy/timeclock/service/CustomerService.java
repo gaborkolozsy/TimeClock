@@ -19,7 +19,7 @@ public interface CustomerService extends CrudService<Customer, Long> {
      * @param customerId customer's ID
      * @return {@code Customer} instance
      */
-    Customer getByCustomerId(Integer customerId);
+    Customer getByCustomerId(Long customerId);
     
     /**
      * Returns {@code Customer} with the specified name.
@@ -33,13 +33,13 @@ public interface CustomerService extends CrudService<Customer, Long> {
      * @param customerId customer's ID
      * @param contact contact person's name by customer
      */
-    void updateContactByCustomerId(Integer customerId, String contact);
+    void updateContactByCustomerId(Long customerId, String contact);
     
     /**
      * Remove {@code Customer} by the specified customer's ID.
      * @param customerId customer's ID
      */
-    void removeByCustomerId(Integer customerId);
+    void removeByCustomerId(Long customerId);
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
@@ -47,6 +47,6 @@ public interface CustomerService extends CrudService<Customer, Long> {
      * @param customerId customer's ID
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isCustomerExist(Integer customerId);
+    boolean isExistWithCustomerId(Long customerId);
     
 }

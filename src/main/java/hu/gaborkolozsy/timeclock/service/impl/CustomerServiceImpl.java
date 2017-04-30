@@ -56,7 +56,7 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long>
      * @return {@code Customer} instance
      */
     @Override
-    public Customer getByCustomerId(Integer customerId) {
+    public Customer getByCustomerId(Long customerId) {
         return customerDao.getByCustomerId(customerId);
     }
 
@@ -76,7 +76,7 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long>
      * @param contact contact person's name by customer
      */
     @Override
-    public void updateContactByCustomerId(Integer customerId, String contact) {
+    public void updateContactByCustomerId(Long customerId, String contact) {
         customerDao.updateContactByCustomerId(customerId, contact);
     }
 
@@ -85,7 +85,7 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long>
      * @param customerId customer's ID
      */
     @Override
-    public void removeByCustomerId(Integer customerId) {
+    public void removeByCustomerId(Long customerId) {
         customerDao.removeByCustomerId(customerId);
     }
     
@@ -96,8 +96,8 @@ public class CustomerServiceImpl extends CrudServiceImpl<Customer, Long>
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isCustomerExist(Integer customerId) {
-        return customerDao.isCustomerExist(customerId);
+    public boolean isExistWithCustomerId(Long customerId) {
+        return customerDao.isExistWithCustomerId(customerId);
     }
     
 }

@@ -5,7 +5,6 @@
 package hu.gaborkolozsy.timeclock.dao;
 
 import hu.gaborkolozsy.timeclock.model.Customer;
-import javax.persistence.PersistenceException;
 
 /**
  * Extended {@code CustomerDao} interface.
@@ -20,27 +19,27 @@ public interface CustomerDao extends CrudDao<Customer, Long> {
      * @param customerId customer's ID
      * @return {@code Customer} instance
      */
-    Customer getByCustomerId(Integer customerId) throws PersistenceException;
+    Customer getByCustomerId(Long customerId);
     
     /**
      * Returns {@code Customer} with the specified name.
      * @param name customer's name
      * @return {@code Customer} instance
      */
-    Customer getByCustomerName(String name) throws PersistenceException;
+    Customer getByCustomerName(String name);
     
     /**
      * Update the {@code Customer}'s contact person by specified ID.
      * @param customerId customer's ID
      * @param contact contact person's name by customer
      */
-    void updateContactByCustomerId(Integer customerId, String contact);
+    void updateContactByCustomerId(Long customerId, String contact);
     
     /**
      * Remove {@code Customer} by the specified customer's ID.
      * @param customerId customer's ID
      */
-    void removeByCustomerId(Integer customerId);
+    void removeByCustomerId(Long customerId);
     
     /**
      * Check if the instance is a managed entity instance belonging to the 
@@ -48,6 +47,6 @@ public interface CustomerDao extends CrudDao<Customer, Long> {
      * @param customerId customer's ID
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isCustomerExist(Integer customerId);
+    boolean isExistWithCustomerId(Long customerId);
     
 }
