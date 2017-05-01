@@ -93,7 +93,7 @@ public class PayDaoImpl extends CrudDaoImpl<Pay, Long> implements PayDao {
     @Override
     public void updatePaidByPayId(String payId, boolean paid) {
         entityManager.merge(new PayBuilder(getByPayId(payId))
-                .setPayable(paid)
+                .setPaid(paid)
                 .build());
     }
 
