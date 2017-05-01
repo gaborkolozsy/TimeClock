@@ -69,17 +69,20 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private PayService payService;
     
-    public final Long VALID;
-    public final Long INVALID;
-    public final String ISNULL;
+    public final Long valid;
+    public final Long invalid;
+    public final String isNull;
     public String message;    
     public boolean result;
     public static final String PAYID = "1600-0100-0";
     
+    /**
+     * Constructor without parameter.
+     */
     public DevelopmentTest() {
-        this.VALID = 100L;
-        this.INVALID = 1L;
-        this.ISNULL = "Entity is null!";        
+        this.valid = 100L;
+        this.invalid = 1L;
+        this.isNull = "Entity is null!";        
     }
     
     /**
@@ -243,10 +246,19 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
 
         private final Supplier<Object> resultSupplier;
 
+        /**
+         * Constructor with {@code Supplier} functional interface.
+         * @param resultSupplier 
+         */
         public ExceptionVerifier(Supplier<Object> resultSupplier) {
             this.resultSupplier = resultSupplier;
         }
 
+        /**
+         * Verifier that test throws the expected exception or not.
+         * @param exception expected exception
+         * @return a {@code String} object
+         */
         public String isThrowing(Class<? extends Exception> exception) {
             try {
                 return resultSupplier.get().toString();
