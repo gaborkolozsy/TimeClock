@@ -36,10 +36,10 @@ public class JobServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testGetByOrderNumber() {
-        Job job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        Job job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         message = "Identifiers not equals!";
-        assertEquals(message, VALID, job.getOrderNumber());
+        assertEquals(message, valid, job.getOrderNumber());
     }
 
     /**
@@ -79,16 +79,16 @@ public class JobServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdateStatusByOrderNumber() {
-        Job job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        Job job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         String status = "WIP";
         message = "Status is not " + status + "!";        
         assertEquals(message, status, job.getStatus());
         
         status = "DONE";
-        jobService.updateStatusByOrderNumber(VALID, status);
-        job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        jobService.updateStatusByOrderNumber(valid, status);
+        job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         assertEquals(message, status, job.getStatus());
     }
 
@@ -97,15 +97,15 @@ public class JobServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdateCommentByOrderNumber() {
-        Job job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        Job job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         message = "Comment is not null!";
         assertNull(message, job.getComment());
         
         String comment = "blah bla";
-        jobService.updateCommentByOrderNumber(VALID, comment);
-        job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        jobService.updateCommentByOrderNumber(valid, comment);
+        job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         message = "Comment is not " + comment + "!";
         assertEquals(message, comment, job.getComment());
     }
@@ -115,10 +115,10 @@ public class JobServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testRemoveByOrderNumber() {
-        Job job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        Job job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         
-        jobService.removeByOrderNumber(VALID);
+        jobService.removeByOrderNumber(valid);
         result = jobService.isExistEntity(job);
         message = "Job is exist!";
         assertFalse(message, result);
@@ -129,14 +129,14 @@ public class JobServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testIsExistWithOrderNumber() {
-        Job job = jobService.getByOrderNumber(VALID);
-        assertNotNull(ISNULL, job);
+        Job job = jobService.getByOrderNumber(valid);
+        assertNotNull(isNull, job);
         
-        result = jobService.isExistWithOrderNumber(VALID);
+        result = jobService.isExistWithOrderNumber(valid);
         message = "Job is not exist!";
         assertTrue(message, result);
         
-        result = jobService.isExistWithOrderNumber(INVALID);
+        result = jobService.isExistWithOrderNumber(invalid);
         message = "Job is exist!";
         assertFalse(message, result);
     }
@@ -148,7 +148,7 @@ public class JobServiceImplTest extends DevelopmentTest {
     public void testThrowsExceptionWhenIdIsNotExist() {
         message = "Throws exception test is not ok!";
         assertEquals(message, "OK", 
-                new ExceptionVerifier(() -> jobService.getByOrderNumber(INVALID))
+                new ExceptionVerifier(() -> jobService.getByOrderNumber(invalid))
                 .isThrowing(EmptyResultDataAccessException.class));
     }
 

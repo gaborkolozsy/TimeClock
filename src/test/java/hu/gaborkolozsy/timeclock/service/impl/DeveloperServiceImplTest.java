@@ -44,10 +44,10 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testGetByDeveloperId() {
-        Developer developer = developerService.getByDeveloperId(VALID);        
-        assertNotNull(ISNULL, developer);
+        Developer developer = developerService.getByDeveloperId(valid);        
+        assertNotNull(isNull, developer);
         message = "Identifiers not equals!";
-        assertEquals(message, VALID, developer.getDeveloperId());
+        assertEquals(message, valid, developer.getDeveloperId());
     }
 
     /**
@@ -71,16 +71,16 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdateLastnameByDeveloperId() {
-        Developer developer = developerService.getByDeveloperId(VALID);
-        assertNotNull(ISNULL, developer);
+        Developer developer = developerService.getByDeveloperId(valid);
+        assertNotNull(isNull, developer);
         String lastName = "Fox";
         message = "Last name is not " + lastName + "!";
         assertEquals(message, lastName, developer.getLastName());        
         
         lastName = "Updated";
-        developerService.updateLastnameByDeveloperId(VALID, lastName);        
-        developer = developerService.getByDeveloperId(VALID);
-        assertNotNull(ISNULL, developer);
+        developerService.updateLastnameByDeveloperId(valid, lastName);        
+        developer = developerService.getByDeveloperId(valid);
+        assertNotNull(isNull, developer);
         assertEquals(message, lastName, developer.getLastName());
     }
 
@@ -89,10 +89,10 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testRemoveByDeveloperId() {
-        Developer developer = developerService.getByDeveloperId(VALID);
-        assertNotNull(ISNULL, developer);        
+        Developer developer = developerService.getByDeveloperId(valid);
+        assertNotNull(isNull, developer);        
         
-        developerService.removeByDeveloperId(VALID);        
+        developerService.removeByDeveloperId(valid);        
         result = developerService.isExistEntity(developer);
         message = "Developer exist!";
         assertFalse(message, result);
@@ -103,14 +103,14 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testIsExistWithDeveloperId() {
-        Developer developer = developerService.getByDeveloperId(VALID);
-        assertNotNull(ISNULL, developer);        
+        Developer developer = developerService.getByDeveloperId(valid);
+        assertNotNull(isNull, developer);        
         
         result = developerService.isExistWithDeveloperId(developer.getDeveloperId());
         message = "Developer not exist!";
         assertTrue(message, result);        
         
-        result = developerService.isExistWithDeveloperId(INVALID);
+        result = developerService.isExistWithDeveloperId(invalid);
         message = "Developer exist!";
         assertFalse(message, result);
     }
@@ -122,7 +122,7 @@ public class DeveloperServiceImplTest extends DevelopmentTest {
     public void testThrowsExceptionWhenIdIsNotExist() {
         message = "Throws exception test is not ok!";
         assertEquals(message, "OK", 
-                new ExceptionVerifier(() -> developerService.getByDeveloperId(INVALID))
+                new ExceptionVerifier(() -> developerService.getByDeveloperId(invalid))
                 .isThrowing(EmptyResultDataAccessException.class));
     }
     

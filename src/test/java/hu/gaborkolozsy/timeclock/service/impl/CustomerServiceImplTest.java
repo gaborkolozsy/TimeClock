@@ -38,10 +38,10 @@ public class CustomerServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testGetByCustomerId() {
-        Customer customer = customerService.getByCustomerId(VALID);
-        assertNotNull(ISNULL, customer);
+        Customer customer = customerService.getByCustomerId(valid);
+        assertNotNull(isNull, customer);
         message = "Identifiers not equals!";
-        assertEquals(message, VALID, customer.getCustomerId());
+        assertEquals(message, valid, customer.getCustomerId());
     }
 
     /**
@@ -49,10 +49,10 @@ public class CustomerServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testGetByCustomerName() {
-        String name = "Company" + VALID;
+        String name = "Company" + valid;
         Customer customer = customerService.getByCustomerName(name);        
-        assertNotNull(ISNULL, customer);
-        message = "Name is not " + name + VALID + "!";
+        assertNotNull(isNull, customer);
+        message = "Name is not " + name + valid + "!";
         assertEquals(message, name, customer.getName());
     }
 
@@ -61,16 +61,16 @@ public class CustomerServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdateContactByCustomerId() {
-        Customer customer = customerService.getByCustomerId(VALID);
-        assertNotNull(ISNULL, customer);
+        Customer customer = customerService.getByCustomerId(valid);
+        assertNotNull(isNull, customer);
         String contact = "Secretary";
         message = "Contact is not " + contact + "!";
         assertEquals(message, contact, customer.getContact());        
         
         contact = "Updated";
-        customerService.updateContactByCustomerId(VALID, contact);        
-        customer = customerService.getByCustomerId(VALID);
-        assertNotNull(ISNULL, customer);
+        customerService.updateContactByCustomerId(valid, contact);        
+        customer = customerService.getByCustomerId(valid);
+        assertNotNull(isNull, customer);
         assertEquals(message, contact, customer.getContact());
     }
 
@@ -79,11 +79,11 @@ public class CustomerServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testRemoveByCustomerId() {
-        Customer customer = customerService.getByCustomerId(VALID);
-        assertNotNull(ISNULL, customer);
+        Customer customer = customerService.getByCustomerId(valid);
+        assertNotNull(isNull, customer);
         
-        payService.removeByPayId(PAYID + VALID); // constraint
-        customerService.removeByCustomerId(VALID);
+        payService.removeByPayId(PAYID + valid); // constraint
+        customerService.removeByCustomerId(valid);
         result = customerService.isExistEntity(customer);
         message = "Customer is exist!";
         assertFalse(message, result);
@@ -94,14 +94,14 @@ public class CustomerServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testIsExistWithCustomerId() {
-        Customer customer = customerService.getByCustomerId(VALID);
-        assertNotNull(ISNULL, customer);
+        Customer customer = customerService.getByCustomerId(valid);
+        assertNotNull(isNull, customer);
         
-        result = customerService.isExistWithCustomerId(VALID);
+        result = customerService.isExistWithCustomerId(valid);
         message = "Customer is not exist!";
         assertTrue(message, result);
         
-        result = customerService.isExistWithCustomerId(INVALID);
+        result = customerService.isExistWithCustomerId(invalid);
         message = "Customer is exist!";
         assertFalse(message, result);
     }
@@ -113,7 +113,7 @@ public class CustomerServiceImplTest extends DevelopmentTest {
     public void testThrowsExceptionWhenIdIsNotExist() {
         message = "Throws exception test is not ok!";
         assertEquals(message, "OK", 
-                new ExceptionVerifier(() -> customerService.getByCustomerId(INVALID))
+                new ExceptionVerifier(() -> customerService.getByCustomerId(invalid))
                 .isThrowing(EmptyResultDataAccessException.class));
     }
 

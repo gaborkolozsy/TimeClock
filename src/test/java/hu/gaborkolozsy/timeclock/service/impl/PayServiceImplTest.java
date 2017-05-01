@@ -35,10 +35,10 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testGetByPayId() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         message = "Identifiers not equals!";
-        assertEquals(message, PAYID+VALID, pay.getPayId());
+        assertEquals(message, PAYID+valid, pay.getPayId());
     }
 
     /**
@@ -76,15 +76,15 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdatePaymentByPayId() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         double payment = 0.0;
         assertEquals(message, payment, pay.getPayment(), 0.001);
         
         payment = 531.72;
-        payService.updatePaymentByPayId(PAYID+VALID, payment);
-        pay = payService.getByPayId(PAYID+VALID);
-        assertNotNull(ISNULL, pay);
+        payService.updatePaymentByPayId(PAYID+valid, payment);
+        pay = payService.getByPayId(PAYID+valid);
+        assertNotNull(isNull, pay);
         message = "Payment is null!";
         assertNotNull(message, pay.getPayment());
         message = "Payment is not " + payment + "!";
@@ -96,14 +96,14 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdatePayableByPayId() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         message = "Payable is not true!";
         assertTrue(message, pay.isPayable());
         
-        payService.updatePayableByPayId(PAYID+VALID, false);
-        pay = payService.getByPayId(PAYID+VALID);
-        assertNotNull(ISNULL, pay);
+        payService.updatePayableByPayId(PAYID+valid, false);
+        pay = payService.getByPayId(PAYID+valid);
+        assertNotNull(isNull, pay);
         message = "Payable is not false!";
         assertFalse(message, pay.isPayable());
     }
@@ -113,14 +113,14 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testUpdatePaidByPayId() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         message = "Paid is not false!";
         assertFalse(message, pay.isPaid());
         
-        payService.updatePaidByPayId(PAYID+VALID, true);
-        pay = payService.getByPayId(PAYID+VALID);
-        assertNotNull(ISNULL, pay);
+        payService.updatePaidByPayId(PAYID+valid, true);
+        pay = payService.getByPayId(PAYID+valid);
+        assertNotNull(isNull, pay);
         message = "Paid is not true!";
         assertTrue(message, pay.isPaid());
     }
@@ -130,10 +130,10 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testRemoveByPayId() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         
-        payService.removeByPayId(PAYID+VALID);
+        payService.removeByPayId(PAYID+valid);
         result = payService.isExistEntity(pay);
         message = "Pay is exist!";
         assertFalse(message, result);
@@ -144,14 +144,14 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testIsExistWithPayId() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         
-        result = payService.isExistWithPayId(PAYID+VALID);
+        result = payService.isExistWithPayId(PAYID+valid);
         message = "Pay is not exist!";
         assertTrue(message, result);
         
-        result = payService.isExistWithPayId(PAYID+INVALID);
+        result = payService.isExistWithPayId(PAYID+invalid);
         message = "Pay is exist!";
         assertFalse(message, result);
     }
@@ -161,16 +161,16 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testIsPayable() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         message = "Pay is not payable!";
         assertTrue(message, pay.isPayable());
         
-        result = payService.isPayable(PAYID+VALID);
+        result = payService.isPayable(PAYID+valid);
         assertTrue(message, result);
         
-        payService.updatePayableByPayId(PAYID+VALID, false);
-        result = payService.isPayable(PAYID+VALID);
+        payService.updatePayableByPayId(PAYID+valid, false);
+        result = payService.isPayable(PAYID+valid);
         message = "Pay is still payable!";
         assertFalse(message, result);
     }
@@ -180,16 +180,16 @@ public class PayServiceImplTest extends DevelopmentTest {
      */
     @Test
     public void testIsPaid() {
-        Pay pay = payService.getByPayId(PAYID+VALID);        
-        assertNotNull(ISNULL, pay);
+        Pay pay = payService.getByPayId(PAYID+valid);        
+        assertNotNull(isNull, pay);
         message = "Pay is not paid!";
         assertFalse(message, pay.isPaid());
         
-        result = payService.isPaid(PAYID+VALID);
+        result = payService.isPaid(PAYID+valid);
         assertFalse(message, result);
         
-        payService.updatePaidByPayId(PAYID+VALID, true);
-        result = payService.isPaid(PAYID+VALID);
+        payService.updatePaidByPayId(PAYID+valid, true);
+        result = payService.isPaid(PAYID+valid);
         message = "Pay is not paid!";
         assertTrue(message, result);
     }
@@ -201,7 +201,7 @@ public class PayServiceImplTest extends DevelopmentTest {
     public void testThrowsExceptionWhenIdIsNotExist() {
         message = "Throws exception test is not ok!";
         assertEquals(message, "OK", 
-                new ExceptionVerifier(() -> payService.getByPayId(PAYID+INVALID))
+                new ExceptionVerifier(() -> payService.getByPayId(PAYID+invalid))
                 .isThrowing(EmptyResultDataAccessException.class));
     }
 

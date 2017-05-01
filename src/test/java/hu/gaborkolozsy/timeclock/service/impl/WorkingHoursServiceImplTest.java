@@ -45,7 +45,7 @@ public class WorkingHoursServiceImplTest extends DevelopmentTest {
         List<WorkingHours> list = (List<WorkingHours>) workingHoursService.getAll();
         for (int i = 0; i < Math.min(9, list.size()); i++) {
             WorkingHours wh = list.get(i);
-            assertNotNull(ISNULL, wh);
+            assertNotNull(isNull, wh);
             assertNull("The \"Work_End\" column is not null!", wh.getWorkEnd());
             assertNull("Already updated!", wh.getAudit().getUpdated());
             message = "Version is not 0!";
@@ -58,7 +58,7 @@ public class WorkingHoursServiceImplTest extends DevelopmentTest {
         list = (List<WorkingHours>) workingHoursService.getAll();
         for (int i = 0; i < Math.min(9, list.size()); i++) {            
             WorkingHours wh = workingHoursService.get(list.get(i).getId());
-            assertNotNull(ISNULL, wh);
+            assertNotNull(isNull, wh);
             assertNotNull("The \"Work_End\" column is null!", wh.getWorkEnd());
             assertNotNull("Still not updated!", wh.getAudit().getUpdated());
             message = "Version is still 0!";
@@ -77,7 +77,7 @@ public class WorkingHoursServiceImplTest extends DevelopmentTest {
     public void testThrowsExceptionWhenIdIsNotExist() {
         message = "Throws exception test is not ok!";
         assertEquals(message, "OK", 
-                new ExceptionVerifier(() -> workingHoursService.get(INVALID))
+                new ExceptionVerifier(() -> workingHoursService.get(invalid))
                 .isThrowing(NullPointerException.class));
     }
 
