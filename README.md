@@ -13,6 +13,12 @@
 </p>
 
 <p align="center">
+    <a href="https://gaborkolozsy.github.io/TimeClock-Spring/">
+            <img src="https://img.shields.io/badge/Watch%20On-GitHub%20Page-orange.svg">
+    </a>
+</p>
+
+<p align="center">
     <a href="https://travis-ci.org/gaborkolozsy/TimeClock-Spring">
         <img src="https://travis-ci.org/gaborkolozsy/TimeClock-Spring.svg">
     </a>
