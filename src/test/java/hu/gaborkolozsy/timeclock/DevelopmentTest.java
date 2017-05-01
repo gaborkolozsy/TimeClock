@@ -69,6 +69,19 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     private PayService payService;
     
+    public final Long VALID;
+    public final Long INVALID;
+    public final String ISNULL;
+    public String message;    
+    public boolean result;
+    public static final String PAYID = "1600-0100-0";
+    
+    public DevelopmentTest() {
+        this.VALID = 100L;
+        this.INVALID = 1L;
+        this.ISNULL = "Entity is null!";        
+    }
+    
     /**
      * Initialize embedded database before all test method.
      */
@@ -182,9 +195,8 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * @return {@code Pay} 
      */
     private static Pay createPay(int someIndex) {
-        String payId = "1600-0100-000" + someIndex;
         return new PayBuilder()
-                .setPayId(payId)
+                .setPayId(PAYID+someIndex)
                 .setPayable(true)
                 .setPaid(false)
                 .build();
