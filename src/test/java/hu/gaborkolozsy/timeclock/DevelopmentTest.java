@@ -248,7 +248,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
 
         /**
          * Constructor with {@code Supplier} functional interface.
-         * @param resultSupplier 
+         * @param resultSupplier {@code Supplier} functional interface
          */
         public ExceptionVerifier(Supplier<Object> resultSupplier) {
             this.resultSupplier = resultSupplier;
