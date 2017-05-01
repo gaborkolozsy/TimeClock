@@ -152,7 +152,7 @@ public class WorkingHours implements Auditable {
     public int getVersion() {
         return version;
     }
-    
+
     /**
      * {@code WorkingHoursBuilder} is used to build instances of 
      * {@code WorkingHours} from values configured by the setters. 

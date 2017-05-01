@@ -22,8 +22,10 @@ import hu.gaborkolozsy.timeclock.service.PayService;
 import hu.gaborkolozsy.timeclock.service.WorkingHoursService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.function.Supplier;
 import org.junit.After;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
@@ -66,6 +68,22 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
     
     @Autowired
     private PayService payService;
+    
+    public final Long valid;
+    public final Long invalid;
+    public final String isNull;
+    public String message;    
+    public boolean result;
+    public static final String PAYID = "1600-0100-0";
+    
+    /**
+     * Constructor without parameter.
+     */
+    public DevelopmentTest() {
+        this.valid = 100L;
+        this.invalid = 1L;
+        this.isNull = "Entity is null!";        
+    }
     
     /**
      * Initialize embedded database before all test method.
@@ -132,7 +150,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      */
     private static Customer createCustomer(int someIndex) {
         return new CustomerBuilder()
-                .setCustomerId(someIndex)
+                .setCustomerId((long)someIndex)
                 .setName("Company"+someIndex)
                 .setContact("Secretary")
                 .setAddress(createAddressForCostumer(someIndex))
@@ -145,7 +163,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      */
     private static Developer createDeveloper(int someIndex) {
         return new DeveloperBuilder()
-                .setDeveloperId(someIndex)
+                .setDeveloperId((long) someIndex)
                 .setForename("Megan")
                 .setLastName("Fox")
                 .setAddress(createAddressForDeveloper(someIndex))
@@ -169,7 +187,7 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      */
     private static Job createJob(int someIndex) {
         return new JobBuilder()
-                .setOrderNumber(someIndex)
+                .setOrderNumber((long)someIndex)
                 .setProjectName("Project")
                 .setStatus("WIP")
                 .build();
@@ -180,9 +198,8 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
      * @return {@code Pay} 
      */
     private static Pay createPay(int someIndex) {
-        String payId = "1600-0100-000" + someIndex;
         return new PayBuilder()
-                .setPayId(payId)
+                .setPayId(PAYID+someIndex)
                 .setPayable(true)
                 .setPaid(false)
                 .build();
@@ -220,6 +237,39 @@ public class DevelopmentTest extends AbstractJUnit4SpringContextTests {
                 .setPhoneNumber("1234567")
                 .setEmailAddress("developer@testemail.com")
                 .build();
+    }
+    
+    /**
+     * Exception verifier inner class.
+     */
+    public final class ExceptionVerifier {
+
+        private final Supplier<Object> resultSupplier;
+
+        /**
+         * Constructor with {@code Supplier} functional interface.
+         * @param resultSupplier {@code Supplier} functional interface
+         */
+        public ExceptionVerifier(Supplier<Object> resultSupplier) {
+            this.resultSupplier = resultSupplier;
+        }
+
+        /**
+         * Verifier that test throws the expected exception or not.
+         * @param exception expected exception
+         * @return a {@code String} object
+         */
+        public String isThrowing(Class<? extends Exception> exception) {
+            try {
+                return resultSupplier.get().toString();
+            } catch (Exception ex) {
+                String message = "Expected suggestion to throw " 
+                        + exception.getSimpleName() + " instead of " 
+                        + ex.getClass().getSimpleName();
+                assertEquals(message, exception, ex.getClass());
+                return "OK";
+            }
+        }
     }
         
 }

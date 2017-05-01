@@ -94,6 +94,14 @@ public interface CrudService<T, K> {
     boolean isExist(K primaryKey);
     
     /**
+     * Check if the instance is a managed entity instance belonging to the 
+     * current persistence context.
+     * @param entity entity
+     * @return boolean indicating if entity is in persistence context
+     */
+    public boolean isExistEntity(T entity);
+    
+    /**
      * Clear persistence context.
      */
     void clear();

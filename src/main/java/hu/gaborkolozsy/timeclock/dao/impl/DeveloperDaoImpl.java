@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.dao.DeveloperDao;
 import hu.gaborkolozsy.timeclock.model.Developer;
 import hu.gaborkolozsy.timeclock.model.Developer.DeveloperBuilder;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -28,7 +29,7 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @return the {@code Developer} instance
      */
     @Override
-    public Developer getByDeveloperId(Integer developerId) {
+    public Developer getByDeveloperId(Long developerId) {
         return entityManager.createNamedQuery("getByDeveloperId", Developer.class)
                 .setParameter("developerId", developerId)
                 .getSingleResult();
@@ -53,7 +54,7 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @param lastname developer's last name
      */
     @Override
-    public void updateLastnameByDeveloperId(Integer developerId, String lastname) {
+    public void updateLastnameByDeveloperId(Long developerId, String lastname) {
         entityManager.merge(new DeveloperBuilder(getByDeveloperId(developerId))
                 .setLastName(lastname)
                 .build());
@@ -64,7 +65,7 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @param developerId developer's ID
      */
     @Override
-    public void removeByDeveloperId(Integer developerId) {
+    public void removeByDeveloperId(Long developerId) {
         entityManager.remove(getByDeveloperId(developerId));
     }
     
@@ -75,8 +76,10 @@ public class DeveloperDaoImpl extends CrudDaoImpl<Developer, Long> implements De
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isDeveloperExist(Integer developerId) {
-        return getByDeveloperId(developerId) != null;
+    public boolean isExistWithDeveloperId(Long developerId) {
+        return getAll().stream()
+                .anyMatch((developer) -> 
+                        Objects.equals(developer.getDeveloperId(), developerId));
     }
 
 }

@@ -8,6 +8,7 @@ import hu.gaborkolozsy.timeclock.dao.JobDao;
 import hu.gaborkolozsy.timeclock.model.Job;
 import hu.gaborkolozsy.timeclock.model.Job.JobBuilder;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -28,7 +29,7 @@ public class JobDaoImpl extends CrudDaoImpl<Job, Long> implements JobDao {
      * @return a {@code Job} instance
      */
     @Override
-    public Job getByOrderNumber(int orderNumber) {
+    public Job getByOrderNumber(Long orderNumber) {
         return entityManager.createNamedQuery("getAllByOrderNumber", Job.class)
                 .setParameter("orderNumber", orderNumber)
                 .getSingleResult();
@@ -64,7 +65,7 @@ public class JobDaoImpl extends CrudDaoImpl<Job, Long> implements JobDao {
      * @param status the job's status
      */
     @Override
-    public void updateStatusByOrderNumber(int orderNumber, String status) {
+    public void updateStatusByOrderNumber(Long orderNumber, String status) {
         entityManager.merge(new JobBuilder(getByOrderNumber(orderNumber))
                 .setStatus(status)
                 .build());
@@ -76,7 +77,7 @@ public class JobDaoImpl extends CrudDaoImpl<Job, Long> implements JobDao {
      * @param comment the job's comment
      */
     @Override
-    public void updateCommentByOrderNumber(int orderNumber, String comment) {
+    public void updateCommentByOrderNumber(Long orderNumber, String comment) {
         entityManager.merge(new JobBuilder(getByOrderNumber(orderNumber))
                 .setComment(comment)
                 .build());
@@ -87,7 +88,7 @@ public class JobDaoImpl extends CrudDaoImpl<Job, Long> implements JobDao {
      * @param orderNumber job's order No.
      */
     @Override
-    public void removeByOrderNumber(int orderNumber) {
+    public void removeByOrderNumber(Long orderNumber) {
         entityManager.remove(getByOrderNumber(orderNumber));
     }
 
@@ -98,8 +99,10 @@ public class JobDaoImpl extends CrudDaoImpl<Job, Long> implements JobDao {
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isJobExist(int orderNumber) {
-        return getByOrderNumber(orderNumber) != null;
+    public boolean isExistWithOrderNumber(Long orderNumber) {
+        return getAll().stream()
+                .anyMatch((job) -> 
+                        Objects.equals(job.getOrderNumber(), orderNumber));
     }
     
 }

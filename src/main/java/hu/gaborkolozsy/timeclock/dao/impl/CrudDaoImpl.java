@@ -33,11 +33,15 @@ import javax.persistence.criteria.Root;
  */
 public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     
-    /** Interface used to interact with the persistence context. */
+    /** 
+     * Interface used to interact with the persistence context. 
+     */
     @PersistenceContext(unitName = "Time_Clock")
     protected EntityManager entityManager;
 
-    /** An entity type. */
+    /** 
+     * An entity type. 
+     */
     private final Class<? extends T> entityType;
     
     /**
@@ -143,6 +147,17 @@ public class CrudDaoImpl<T, K extends Serializable> implements CrudDao<T, K> {
     @Override
     public boolean isExist(K primaryKey) {
         return entityManager.find(entityType, primaryKey) != null;
+    }
+    
+    /**
+     * Check if the instance is a managed entity instance belonging to the 
+     * current persistence context.
+     * @param entity entity
+     * @return boolean indicating if entity is in persistence context
+     */
+    @Override
+    public boolean isExistEntity(T entity) {
+        return getAll().contains(entity);
     }
 
     /**

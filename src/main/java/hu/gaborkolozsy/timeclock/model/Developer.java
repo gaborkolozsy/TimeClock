@@ -91,7 +91,7 @@ public class Developer implements Auditable, Serializable {
     private Long id;
     
     @Column(name = "Developer_Id", nullable = false, unique = true, updatable = false)
-    private int developerId;
+    private Long developerId;
     
     @Column(name = "Forename", nullable = false)
     private String forename;
@@ -126,7 +126,7 @@ public class Developer implements Auditable, Serializable {
      * Returns developer's natural ID.
      * @return developer's natural ID
      */
-    public int getDeveloperId() {
+    public Long getDeveloperId() {
         return developerId;
     }
 
@@ -222,7 +222,7 @@ public class Developer implements Auditable, Serializable {
          * @return this
          */
         @Override
-        public DeveloperBuilder setDeveloperId(int developerId) {
+        public DeveloperBuilder setDeveloperId(Long developerId) {
             super.entity.developerId = developerId;
             return this;
         }

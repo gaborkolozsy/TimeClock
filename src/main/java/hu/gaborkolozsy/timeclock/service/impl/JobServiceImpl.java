@@ -56,7 +56,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * @return a {@code Job} instance
      */
     @Override
-    public Job getByOrderNumber(int orderNumber) {
+    public Job getByOrderNumber(Long orderNumber) {
         return jobDao.getByOrderNumber(orderNumber);
     }
 
@@ -86,7 +86,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * @param status the job's status
      */
     @Override
-    public void updateStatusByOrderNumber(int orderNumber, String status) {
+    public void updateStatusByOrderNumber(Long orderNumber, String status) {
         jobDao.updateStatusByOrderNumber(orderNumber, status);
     }
 
@@ -96,7 +96,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * @param comment the job's comment
      */
     @Override
-    public void updateCommentByOrderNumber(int orderNumber, String comment) {
+    public void updateCommentByOrderNumber(Long orderNumber, String comment) {
         jobDao.updateCommentByOrderNumber(orderNumber, comment);
     }
 
@@ -105,7 +105,7 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * @param orderNumber job's order No.
      */
     @Override
-    public void removeByOrderNumber(int orderNumber) {
+    public void removeByOrderNumber(Long orderNumber) {
         jobDao.removeByOrderNumber(orderNumber);
     }
 
@@ -116,8 +116,8 @@ public class JobServiceImpl extends CrudServiceImpl<Job, Long> implements JobSer
      * @return boolean indicating if entity is in persistence context
      */
     @Override
-    public boolean isJobExist(int orderNumber) {
-        return jobDao.isJobExist(orderNumber);
+    public boolean isExistWithOrderNumber(Long orderNumber) {
+        return jobDao.isExistWithOrderNumber(orderNumber);
     }
     
 }

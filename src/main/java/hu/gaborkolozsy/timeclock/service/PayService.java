@@ -72,7 +72,7 @@ public interface PayService extends CrudService<Pay, Long> {
      * @param payId pay's ID
      * @return boolean indicating if entity is in persistence context
      */
-    boolean isPayExist(String payId);
+    boolean isExistWithPayId(String payId);
     
     /**
      * Check specified {@link Pay} entity payable or not.

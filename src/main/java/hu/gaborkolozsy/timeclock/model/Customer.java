@@ -87,7 +87,7 @@ public class Customer implements Auditable, Serializable {
     private Long id;
     
     @Column(name = "Customer_Id", nullable = false, unique = true, updatable = false)
-    private int customerId;
+    private Long customerId;
     
     @Column(name = "Name", nullable = false)
     private String name;
@@ -121,7 +121,7 @@ public class Customer implements Auditable, Serializable {
      * Returns customer's natural ID.
      * @return customer's natural ID
      */
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
@@ -217,7 +217,7 @@ public class Customer implements Auditable, Serializable {
          * @return this
          */
         @Override
-        public CustomerBuilder setCustomerId(int customerId) {
+        public CustomerBuilder setCustomerId(Long customerId) {
             super.entity.customerId = customerId;
             return this;
         }
