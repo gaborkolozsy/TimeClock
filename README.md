@@ -13,6 +13,12 @@
 </p>
 
 <p align="center">
+    <a href="https://gaborkolozsy.github.io/TimeClock-Spring/">
+            <img src="https://img.shields.io/badge/Watch%20On-GitHub%20Page-orange.svg">
+    </a>
+</p>
+
+<p align="center">
     <a href="https://travis-ci.org/gaborkolozsy/TimeClock-Spring">
         <img src="https://travis-ci.org/gaborkolozsy/TimeClock-Spring.svg">
     </a>
@@ -38,6 +44,7 @@ Maven based project with Spring, JPA and Hibernate.
 [![Framework](https://img.shields.io/badge/Framework-Spring-green.svg?colorB=6db33f)](https://github.com/gaborkolozsy/TimeClock-Spring)
 [![API](https://img.shields.io/badge/API-JPA&nbsp;|&nbsp;Hibernate-red.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
 [![Build Tool](https://img.shields.io/badge/Build-Maven-blue.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
+[![Test](https://img.shields.io/badge/Test&nbsp;Frameworks-JUnit&nbsp;|&nbsp;Mockito-green.svg)]()
 [![Database](https://img.shields.io/badge/DB-H2-yellow.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
 [![Design Patterns](https://img.shields.io/badge/Design&nbsp;Pattern-DAO&nbsp;|&nbsp;Builder-orange.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
 

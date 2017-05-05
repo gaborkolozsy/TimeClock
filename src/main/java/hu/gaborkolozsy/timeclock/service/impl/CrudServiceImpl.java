@@ -118,7 +118,7 @@ public class CrudServiceImpl<T, K extends Serializable> implements CrudService<T
      */
     @Override
     public boolean isExistEntity(T entity) {
-        return getAll().contains(entity);
+        return crudDao.isExistEntity(entity);
     }
 
     /**
