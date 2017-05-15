@@ -45,8 +45,8 @@
 ## Description
 
 The program will help you to check-in and to checkout to your job. The `TimeClock`
-data will store in H2 database(at this time). It is a practising project and
-it hasn't any GUI.
+data will store in H2 database(at this time). It is a practising project and it
+hasn't got any GUI.
 
 ## Construction
 
