@@ -36,7 +36,7 @@
     </a>
 </p>
 
-## Content of table
+## Table of Contents
 
 * [Description](#description)
 * [Construction](#construction)
@@ -46,7 +46,7 @@
 
 The program will help you to check-in and to checkout to your job. The `TimeClock`
 data will store in H2 database(at this time). It is a practising project and
-hasn't any GUI.
+it hasn't any GUI.
 
 ## Construction
 
