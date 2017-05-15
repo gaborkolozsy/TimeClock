@@ -36,9 +36,21 @@
     </a>
 </p>
 
-## Build construction
+## Table of Contents
 
-Maven based project with Spring, JPA and Hibernate.
+* [Description](#description)
+* [Construction](#construction)
+* [License](LICENSE.txt)
+
+## Description
+
+The program will help you to check-in and to checkout to your job. The `TimeClock`
+data will store in H2 database(at this time). It is a practising project and it
+hasn't got any GUI.
+
+## Construction
+
+Maven based project with Spring, JPA and Hibernate. It was edited in NetBeans.
 
 [![Language](https://img.shields.io/badge/Language-Java-red.svg?colorB=b07219)](https://github.com/gaborkolozsy/TimeClock-Spring)
 [![Framework](https://img.shields.io/badge/Framework-Spring-green.svg?colorB=6db33f)](https://github.com/gaborkolozsy/TimeClock-Spring)
@@ -47,17 +59,6 @@ Maven based project with Spring, JPA and Hibernate.
 [![Test](https://img.shields.io/badge/Test&nbsp;Frameworks-JUnit&nbsp;|&nbsp;Mockito-green.svg)]()
 [![Database](https://img.shields.io/badge/DB-H2-yellow.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
 [![Design Patterns](https://img.shields.io/badge/Design&nbsp;Pattern-DAO&nbsp;|&nbsp;Builder-orange.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
-
-## Content of table
-
-* [Build construction](#build-construction)
-* [Description](#description)
-* [Next point](#)
-* [License](LICENSE.txt)
-
-## Description
-
-The program will help you to check-in and to checkout to your job. The working hours store in H2 database(at this time).
 
 # &nbsp;
 <br>
