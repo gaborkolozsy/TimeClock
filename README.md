@@ -40,6 +40,7 @@
 
 * [Description](#description)
 * [Construction](#construction)
+    * [UML Class Diagrams](#uml-class-diagrams)
 * [License](LICENSE.txt)
 
 ## Description
@@ -59,6 +60,14 @@ Maven based project with Spring, JPA and Hibernate. It was edited in NetBeans.
 [![Test](https://img.shields.io/badge/Test&nbsp;Frameworks-JUnit&nbsp;|&nbsp;Mockito-green.svg)]()
 [![Database](https://img.shields.io/badge/DB-H2-yellow.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
 [![Design Patterns](https://img.shields.io/badge/Design&nbsp;Pattern-DAO&nbsp;|&nbsp;Builder-orange.svg)](https://github.com/gaborkolozsy/TimeClock-Spring)
+
+### UML Class Diagrams
+
+* [TimeClock-Spring](https://cloud.githubusercontent.com/assets/23102020/26121839/dc263d86-3a75-11e7-83ad-3d250ab2a77c.png)
+    * [DAO Pattern](https://cloud.githubusercontent.com/assets/23102020/26122110/ae2a1d34-3a76-11e7-9609-1d4bc61b5777.png)
+        * [DAO](https://cloud.githubusercontent.com/assets/23102020/26122133/be1ce03c-3a76-11e7-8b87-544ac86b13da.png)
+        * [Service](https://cloud.githubusercontent.com/assets/23102020/26122157/d4c4bdfa-3a76-11e7-86f5-a79c5e673876.png)
+    * [Builder Pattern](https://cloud.githubusercontent.com/assets/23102020/26122199/f4ea0d4c-3a76-11e7-9c3c-ddd0deecd5a2.png)
 
 # &nbsp;
 <br>
